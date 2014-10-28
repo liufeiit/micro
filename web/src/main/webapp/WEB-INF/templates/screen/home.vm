@@ -33,6 +33,7 @@
 <script src="assets/js/handlebars.min.js"></script>
 <script src="assets/js/amazeui.widgets.helper.js"></script>
 
+
 <script>
   $(function() {
     var $tpl = $('#amz-tpl'),
