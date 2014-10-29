@@ -16,10 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class Home extends BaseController {
 	
-	@RequestMapping(value = "/index.htm")
+	@RequestMapping(value = "/home.htm")
 	public ModelAndView index(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("login");
-		mv.addObject("errorMsg", request.getParameter("errorMsg"));
+		ModelAndView mv = new ModelAndView("home");
 		return mv;
 	}
 }

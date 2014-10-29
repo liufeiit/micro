@@ -26,7 +26,7 @@ public class OnlineHandler extends GenericFilterBean {
 			ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
-		boolean isLogin = SessionManager.isLogin(request.getSession(true));
+		/*boolean isLogin = SessionManager.isLogin(request.getSession(true));
 		String reqURL = request.getRequestURL().toString();
 		if (!(isIngore(request, reqURL)) && !isLogin) {
 			response.sendRedirect("invalidate.htm");
@@ -36,7 +36,7 @@ public class OnlineHandler extends GenericFilterBean {
 			response.setHeader("Cache-Control","no-cache");
 			response.setHeader("Pragma","no-cache");
 			response.setDateHeader ("Expires", 0);
-		}
+		}*/
 		chain.doFilter(request, response);
 	}
 
