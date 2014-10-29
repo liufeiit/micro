@@ -7,18 +7,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Web首页。
  * 
  * @author 刘飞 E-mail:liufei_it@126.com
  * @version 1.0
- * @since 2014年10月29日 下午10:52:48
+ * @since 2014年10月29日 下午10:49:42
  */
 @Controller
-public class Home extends BaseController {
+public class Detail extends BaseController {
 	
-	@RequestMapping(value = "/home.htm")
+	@RequestMapping(value = "/detail.htm")
 	public ModelAndView index(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("home");
+		ModelAndView mv = new ModelAndView("detail");
 		return mv;
 	}
 }

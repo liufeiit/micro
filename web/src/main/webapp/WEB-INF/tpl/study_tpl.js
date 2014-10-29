@@ -20,19 +20,19 @@ $(function() {
 				"cols" : "1"
 			},
 			"content" : [ {
-				"link" : "./list.html",
+				"link" : "list.htm",
 				"title" : "爆笑搞怪"
 			}, {
-				"link" : "./list.html",
+				"link" : "list.htm",
 				"title" : "哲理励志"
 			}, {
-				"link" : "./list.html",
+				"link" : "list.htm",
 				"title" : "健康生活"
 			}, {
-				"link" : "./list.html",
+				"link" : "list.htm",
 				"title" : "女性天地"
 			}, {
-				"link" : "./list.html",
+				"link" : "list.htm",
 				"title" : "健康生活"
 			}, ],
 			"theme" : "offcanvas1"
@@ -88,24 +88,24 @@ $(function() {
 			},
 			"content" : [ {
 				"title" : "首页",
-				"link" : "./home.html",
+				"link" : "home.htm",
 				"icon" : "home",
 			}, {
 				"title" : "商城",
-				"link" : "../index.html",
+				"link" : "home.htm",
 				"icon" : "shopping-cart",
 			}, {
 				"title" : "一键分享",
-				"link" : "###",
+				"link" : "home.htm",
 				"icon" : "share-alt",
 				"dataApi" : "data-am-navbar-share"
 			}, {
 				"title" : "我的收益",
-				"link" : "./profile.html",
+				"link" : "profile.htm",
 				"icon" : "user"
 			}, {
 				"title" : "盟友学堂",
-				"link" : "./study.html",
+				"link" : "study.htm",
 				"icon" : "group",
 				"dataApi" : ""
 			} ]
