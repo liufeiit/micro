@@ -1,24 +1,3 @@
-<!DOCTYPE HTML>
-<html class="no-js">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>微界</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <link rel="icon" type="image/png" href="assets/i/favicon.png">
-  <link rel="stylesheet" href="assets/css/amazeui.min.css">
-  <link rel="stylesheet" href="assets/css/app.css">
-</head>
-<body>
-
-<!--[if lte IE 9]>
-<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，本系统暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
-  以获得更好的体验！</p>
-<![endif]-->
 
 <script type="text/x-handlebars-template" id="amz-tpl">
   {{>header header}}
@@ -28,11 +7,6 @@
   {{>paragraph paragraph_content}}
   {{>navbar navbar}}
 </script>
-
-<script src="assets/js/zepto.min.js?ver=1.1.3"></script>
-<script src="assets/js/amazeui.js"></script>
-<script src="assets/js/handlebars.min.js"></script>
-<script src="assets/js/amazeui.widgets.helper.js"></script>
 
 <script>
   $(function() {
@@ -155,5 +129,3 @@
     });
   });
 </script>
-</body>
-</html>
