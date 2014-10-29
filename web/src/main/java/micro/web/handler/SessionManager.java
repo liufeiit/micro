@@ -2,7 +2,7 @@ package micro.web.handler;
 
 import javax.servlet.http.HttpSession;
 
-import micro.core.dataobject.UserDO;
+import micro.core.vo.UserVO;
 import micro.web.util.Static;
 
 import org.apache.commons.logging.Log;
@@ -17,23 +17,7 @@ public class SessionManager {
 
 	static final Log log = LogFactory.getLog(SessionManager.class);
 
-	public static void selectedApp(HttpSession session, long appId) {
-		session.setAttribute(Static.SELECTED_APP, appId);
-	}
-	
-	public static long getSelectedApp(HttpSession session) {
-		Object val = session.getAttribute(Static.SELECTED_APP);
-		if(val == null) {
-			return 0L;
-		}
-		long appId = ((Long) val).longValue();
-		if(appId <= 0L) {
-			return 0L;
-		}
-		return appId;
-	}
-	
-	public static void login(HttpSession session, UserDO user) {
+	public static void login(HttpSession session, UserVO user) {
 		session.setAttribute(Static.ONLINE_USER, user);
 		/*if(!Application.isRedisAvailable()) {
 			return;
@@ -72,7 +56,8 @@ public class SessionManager {
 	}
 
 	public static boolean isLogin(HttpSession session) {
-		return session.getAttribute(Static.ONLINE_USER) != null;
+//		return session.getAttribute(Static.ONLINE_USER) != null;
+		return true;
 		/*if(!Application.isRedisAvailable()) {
 			return session.getAttribute(Static.ONLINE_USER) != null;
 		}
@@ -89,8 +74,8 @@ public class SessionManager {
 		return false;*/
 	}
 
-	public static UserDO getUser(HttpSession session) {
-		return (UserDO) session.getAttribute(Static.ONLINE_USER);
+	public static UserVO getUser(HttpSession session) {
+		return (UserVO) session.getAttribute(Static.ONLINE_USER);
 		/*if(!Application.isRedisAvailable()) {
 			return (UserDO) session.getAttribute(Static.ONLINE_USER);
 		}

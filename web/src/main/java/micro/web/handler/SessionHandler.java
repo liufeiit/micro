@@ -19,7 +19,7 @@ public class SessionHandler implements HttpSessionListener {
 
 	public void sessionCreated(HttpSessionEvent event) {
 		HttpSession session = event.getSession();
-		log.error("Session : " + session.getId() + " created.");
+		log.debug("Session : " + session.getId() + " created.");
 	}
 
 	public void sessionDestroyed(HttpSessionEvent event) {

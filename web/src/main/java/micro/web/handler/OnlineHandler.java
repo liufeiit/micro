@@ -19,24 +19,24 @@ import org.springframework.web.filter.GenericFilterBean;
  */
 public class OnlineHandler extends GenericFilterBean {
 
-	private final static String[] INGORE_URLS = new String[] { "login.htm", "invalidate.htm", "logout.htm", "index.htm", "analytics/event", "analytics/label", "/stats_service.htm" };
+	private final static String[] INGORE_URLS = new String[] { "home.htm", "detail.htm", "list.htm", "profile.htm", "study.htm" };
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException,
 			ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
-		/*boolean isLogin = SessionManager.isLogin(request.getSession(true));
+		boolean isLogin = SessionManager.isLogin(request.getSession(true));
 		String reqURL = request.getRequestURL().toString();
 		if (!(isIngore(request, reqURL)) && !isLogin) {
-			response.sendRedirect("invalidate.htm");
+			response.sendRedirect("home.htm");
 			return;
 		}
 		if(StringUtils.contains(reqURL, "report_line.htm")) {
 			response.setHeader("Cache-Control","no-cache");
 			response.setHeader("Pragma","no-cache");
 			response.setDateHeader ("Expires", 0);
-		}*/
+		}
 		chain.doFilter(request, response);
 	}
 
@@ -46,6 +46,7 @@ public class OnlineHandler extends GenericFilterBean {
 				return true;
 			}
 		}
-		return false;
+//		return false;
+		return true;
 	}
 }

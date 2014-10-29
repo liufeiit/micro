@@ -24,8 +24,6 @@ public interface Static {
 	
 	String ONLINE_USER = "online:user";
 	
-	String SELECTED_APP = "selected:app";
-
 	Charset UTF_8 = Charset.forName("UTF-8");
 
 	Charset GBK = Charset.forName("GBK");
