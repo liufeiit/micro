@@ -64,7 +64,7 @@ public class DefaultUserService extends BaseService implements UserService {
 				return Result.newError().with(ErrorCode.Error_ErrPasswd);
 			}
 			user.setPassword("");
-			return Result.newSuccess().with(ErrorCode.Success).withUser(user);
+			return Result.newSuccess().with(ErrorCode.Success);
 		} catch (DAOException e) {
 			log.error("Login Error.", e);
 		}

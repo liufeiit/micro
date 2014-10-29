@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import micro.core.dataobject.UserDO;
 import micro.core.util.ErrorCode;
 
 /**
@@ -23,8 +22,6 @@ public class Result implements Serializable {
 	
 	private final Map<String, Object> data = new HashMap<String, Object>();
 	
-	private UserDO user;
-	
 	public Result() {
 		this(false);
 	}
@@ -40,15 +37,6 @@ public class Result implements Serializable {
 	
 	public static Result newSuccess() {
 		return new Result(true);
-	}
-	
-	public Result withUser(UserDO user) {
-		this.user = user;
-		return this;
-	}
-	
-	public UserDO getUser() {
-		return user;
 	}
 	
 	public Result with(String key, Object value) {

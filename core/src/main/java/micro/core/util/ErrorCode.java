@@ -9,20 +9,6 @@ package micro.core.util;
  */
 public enum ErrorCode {
 	Success								(200, 		"成功"),
-	Error_AppID							(-100, 		"请输入合法的AppID"),
-	Error_LabelID						(-200, 		"请输入合法的LabelID"),
-	Error_EventID						(-201, 		"请输入合法的EventID"),
-	Error_LabelName						(-202, 		"请输入合法的Label名称"),
-	Error_Accumulation					(-300, 		"请输入合法的Accumulation"),
-	
-	Error_CreateApp						(-400, 		"创建应用失败"),
-	Error_DeleteApp						(-500, 		"删除应用失败"),
-
-	Error_CreateEvent					(-600, 		"创建应用统计事件失败"),
-
-	Error_CreateLabel					(-700, 		"创建应用统计事件的分类失败"),
-
-	Error_CreateModel					(-800, 		"创建应用统计事件的分类展示模型失败"),
 
 	Error_CreateUser					(-1000, 	"创建用户失败"),
 	

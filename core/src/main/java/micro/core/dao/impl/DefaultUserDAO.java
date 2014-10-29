@@ -3,6 +3,7 @@ package micro.core.dao.impl;
 import micro.core.dao.BaseDAO;
 import micro.core.dao.DAOException;
 import micro.core.dao.UserDAO;
+import micro.core.dao.statement.UserMapper;
 import micro.core.dataobject.UserDO;
 
 import org.springframework.dao.DataAccessException;
@@ -20,14 +21,8 @@ import tulip.data.jdbc.mapper.BeanRowMapper;
  * @since 2014年9月5日 上午10:59:30
  */
 @Repository("userDAO")
-public class DefaultUserDAO extends BaseDAO implements UserDAO {
+public class DefaultUserDAO extends BaseDAO implements UserDAO, UserMapper {
 
-	public static final String ADD_SQL = "INSERT INTO usr "
-			+ "(name, email, mobile, weixin, password, gmt_created, gmt_modified) VALUES "
-			+ "(:name, :email, :mobile, :weixin, :password, NOW(), NOW());";
-
-	public static final String SELECT_BYNAME_SQL = "SELECT id, name, email, mobile, weixin, password, gmt_created, gmt_modified FROM usr WHERE name = :name;";
-	
 	@Override
 	public void insertUser(UserDO user) throws DAOException {
 		try {
