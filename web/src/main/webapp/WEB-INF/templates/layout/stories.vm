@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NX工作室</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="author" content="m.cq.com">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+        <link rel="stylesheet" type="text/css" href="css/base.css" charset="utf-8"/>
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" defer src="js/util.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/blog.css" charset="utf-8"/>
+    </head>
+    <body id="body">
+       <header>
+            <div class="new-header">
+                <a href="javascript:pageBack();" class="new-a-back" id="backUrl"><span>返回</span></a>
+                <h2>NX工作室</h2>
+                <a href="javascript:void(0)" id="btnMenu" class="new-a-menu"><span>菜单</span></a>
+            </div>
+            <div class="new-menu-tab" style="display:none" id="menu">
+                <div class="new-tbl-type">
+                    <a href="./blogs.html" class="new-tbl-cell">
+                        <p style="color:#6e6e6e;">爆笑搞怪</p>
+                    </a>
+                    <a href="./blogs.html" class="new-tbl-cell">
+                        <p style="color:#6e6e6e;">哲理励志</p>
+                    </a>
+                    <a href="./blogs.html" id="html5_cart" class="new-tbl-cell">
+                        <p style="color:#6e6e6e;">健康生活</p>
+                    </a>
+                    <a href="./blogs.html" class="new-tbl-cell">
+                        <p style="color:#6e6e6e;">女性天地</p>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <div class="item-list">
+            <div class="item-list-tab">
+                <span>爆笑搞怪</span>
+            </div>
+            <ul>
+                <li>
+                    <a href="./blog.html" class="item">
+                        <span class="item-image">
+                            <img src="tmp/1.png" width="100" height="100" alt=""/>
+                        </span>
+                        <span class="item-tc">
+                            <span class="item-title">我很囧，你保重....晒晒旅行中的那些囧！</span>
+                            <span class="item-content">
+                                囧人囧事囧照，人在囧途，越囧越萌。囧人囧事囧照，人在囧途，越囧越萌。囧人囧事囧照，人在囧途，越囧越萌......
+                            </span>
+                            <span class="item-footer">7000人阅读</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./blog.html" class="item">
+                        <span class="item-image">
+                            <img src="tmp/2.png" width="100" height="100" alt=""/>
+                        </span>
+                        <span class="item-tc">
+                            <span class="item-title">我最喜欢的一张画</span>
+                            <span class="item-content">
+                                你最喜欢的艺术作品，告诉大家它们的名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片......
+                            </span>
+                            <span class="item-footer">10000人阅读</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./blog.html" class="item">
+                        <span class="item-tc">
+                            <span class="item-title">我最喜欢的一张画</span>
+                            <span class="item-content">
+                                你最喜欢的艺术作品，告诉大家它们的名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片......
+                            </span>
+                            <span class="item-footer">10000人阅读</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div style="height:60px"></div>
+        <div class="navbar">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="./home.html">
+                        <span class="icon-home"></span>
+                        <span class="navbar-label">首页</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon-shopping"></span>
+                        <span class="navbar-label">商城</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon-user"></span>
+                        <span class="navbar-label">我的空间</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon-help"></span>
+                        <span class="navbar-label">帮助</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>
