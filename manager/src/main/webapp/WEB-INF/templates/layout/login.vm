@@ -4,11 +4,11 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=8" />
         <meta charset="UTF-8">
-        <title>统计分析系统 - 登录</title>
+        <title>微界后台管理 - 登录</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-		<link href="/css/login.css" rel="stylesheet" type="text/css" />
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/adpacks.js"></script>
+		<link href="$cdn.name("css/login.css")" rel="stylesheet" type="text/css" />
+        <script src="$cdn.name("js/jquery.min.js")"></script>
+        <script src="$cdn.name("js/adpacks.js")"></script>
     </head>
     <body style="background-color: #FFFFFF; margin: 0px auto; padding: 0px;width: 100%">
 		$!screen_placeholder

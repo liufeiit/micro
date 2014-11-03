@@ -4,31 +4,31 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=8" />
 		
-        ##<meta   http-equiv="Pragma" content="no-cache">  
-        ##<meta   http-equiv="Cache-Control" content="no-cache">  
-        ##<meta   http-equiv="Expires" content="0">
+        <meta   http-equiv="Pragma" content="no-cache">  
+        <meta   http-equiv="Cache-Control" content="no-cache">  
+        <meta   http-equiv="Expires" content="0">
 	
         <meta charset="UTF-8">
-        <title>统计分析系统</title>
+        <title>微界后台管理</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 		
-        <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <link href="$cdn.name("css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+        <link href="$cdn.name("css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+        <link href="$cdn.name("css/ionicons.min.css")" rel="stylesheet" type="text/css" />
 		
-        <link href="/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+        <link href="$cdn.name("css/AdminLTE.css")" rel="stylesheet" type="text/css" />
 		
         <!--[if lt IE 9]>
-          <script src="/js/html5shiv.js"></script>
-          <script src="/js/respond.min.js"></script>
+          <script src="$cdn.name("js/html5shiv.js")"></script>
+          <script src="$cdn.name("js/respond.min.js")"></script>
         <![endif]-->
 		
-        <script src="/js/jquery.min.js" type="text/javascript"></script>
-        <script src="/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="/js/AdminLTE/app.js" type="text/javascript"></script>
+        <script src="$cdn.name("js/jquery.min.js")" type="text/javascript"></script>
+        <script src="$cdn.name("js/bootstrap.min.js")" type="text/javascript"></script>
+        <script src="$cdn.name("js/AdminLTE/app.js")" type="text/javascript"></script>
 		
 		##皮肤设置
-		##<script src="/js/AdminLTE/demo.js" type="text/javascript"></script>
+		##<script src="$cdn.name("js/AdminLTE/demo.js")" type="text/javascript"></script>
 		<script type="text/javascript">
 			$(function() {
                 //$(".left-side").css("height", $(window).height());

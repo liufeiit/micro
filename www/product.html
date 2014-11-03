@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>浪漫LOVE熊抱-诚谦商城</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+        <meta name="author" content="m.cq.com">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+        <link rel="stylesheet" type="text/css" href="css/base.css" charset="gbk"/>
+        <link rel="stylesheet" type="text/css" href="css/view.css" charset="gbk"/>
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="js/view.js"></script>
+    </head>
+    <body id="body">
+       <header>
+            <div class="new-header">
+                <a href="javascript:pageBack();" class="new-a-back" id="backUrl"><span>返回</span></a>
+                <h2>商品详情</h2>
+                <a href="javascript:void(0)" id="btnJdkey" class="new-a-jd"><span>京东键</span></a>
+            </div>
+            <div class="new-jd-tab" style="display:none" id="jdkey">
+                <div class="new-tbl-type">
+                    <a href="./index.html" class="new-tbl-cell">
+                        <span class="icon">首页</span>
+                        <p style="color:#6e6e6e;">首页</p>
+                    </a>
+                    <a href="./product.html" class="new-tbl-cell">
+                        <span class="icon2">分类搜索</span>
+                        <p style="color:#6e6e6e;">分类搜索</p>
+                    </a>
+                    <a href="#" id="html5_cart" class="new-tbl-cell">
+                        <span class="icon3">购物车</span>
+                        <p style="color:#6e6e6e;">购物车</p>
+                    </a>
+                    <a href="#" class="new-tbl-cell">
+                        <span class="icon4">我的</span>
+                        <p style="color:#6e6e6e;">我的</p>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <div id="mainLayout" style="display:-webkit-box;">
+            <div class="new-ct" id="mainStay" style="-webkit-box-flex: 1;width: 100%;">
+                <div class="new-p-re">
+                    <div class="detail-img">
+                        <div class="tbl-type" id="_zoom">
+                            <div id="imgSlider" style="position:relative;left:0px;">
+                                <span class="tbl-cell">
+                                    <img src="http://img13.360buyimg.com/n12/jfs/t181/111/695201396/265853/f459a90c/539556b3N88f243aa.jpg!q70.jpg" seq="0" width="320" height="292">
+                                </span>
+                            </div>
+                            <!--<ul class="new-banner-num new-b-num-v1 new-tbl-type" id="imgSliderPage" style="display:none"></ul>-->
+                            <ul class="new-banner-num new-b-num-v1 new-tbl-type" id="imgSliderPage">
+                                <li class="new-tbl-cell on"><a href="javascript:void(0)"></a></li>
+                                <li class="new-tbl-cell "><a href="javascript:void(0)"></a></li>
+                                <li class="new-tbl-cell "><a href="javascript:void(0)"></a></li>
+                                <li class="new-tbl-cell "><a href="javascript:void(0)"></a></li>
+                                <li class="new-tbl-cell "><a href="javascript:void(0)"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="detail-price">
+                        <span class="text" id="price">&yen;98.00  </span>
+                        <a class="btn-sc" id="attention"><span></span></a>
+                    </div>
+                </div>
+                <input type="hidden" value="http://img13.360buyimg.com/n12/jfs/t181/111/695201396/265853/f459a90c/539556b3N88f243aa.jpg!q70.jpg,http://img13.360buyimg.com/n12/jfs/t178/242/719679270/279446/2dcc1a61/5397fd94Na002b9f7.jpg!q70.jpg,http://img13.360buyimg.com/n12/jfs/t148/251/1220371586/280566/95c7d8d8/53a79cc3N54264115.jpg!q70.jpg,http://img13.360buyimg.com/n12/jfs/t145/38/1306150293/234583/85ca428f/53aa3d16N2dd93f9e.jpg!q70.jpg,http://img13.360buyimg.com/n12/jfs/t151/335/1206479042/316270/269d131f/53a79cceN279cadc7.jpg!q70.jpg," id="imgs">
+                <div class="secton10">
+                    <div class="info">
+                        <a href="#"><span class="text">商品信息</span></a>
+                        <span class="icon-arr"></span>
+                    </div>
+                    <p class="detail-title">浪漫LOVE熊抱心熊泰迪熊 <font color="red">高品质浪漫温馨爱心熊 送心爱女生 秀出你的爱！</font></p>
+                    <p class="text2" id="vender" style=" ">服务：由xxxxx店负责发货，并提供售后服务。</p>
+                </div>
+                <div class="bg-h15"></div>
+                <div id="spinner1" class="spinner" style="left:50%;position: absolute;height:120px;margin-top:50px;z-index:1000"></div>
+                <div class="secton10 secton10-v1">
+                    <div class="info">
+                        <a href="#" id="btnAssess">
+                            <span class="text">商品评价</span><span class="text-fr" id="comments"><em>3377</em> 人评价  <em>93%</em> 好评</span>
+                        </a>        
+                        <span class="icon-arr"></span>
+                    </div>
+                    <div class="detail-option" id="select" style="display: block;" data="block">
+                        <div class="option-section new-mg-t10">
+                            <span class="text-fl">颜色：</span>
+                            <div class="option" id="color">
+                                <a title="粉红色" date="current" class="btn-color-op new-mg-b10 on">粉红色</a>&nbsp;
+                                <a title="紫色" date="noCurrent" href="javascript:void(0)" wareid="1018601194" class="btn-color-op new-mg-b10">紫色</a>&nbsp;
+                                <a title="情侣一对" date="noCurrent" href="javascript:void(0)" wareid="1073457037" class="btn-color-op new-mg-b10">情侣一对</a>&nbsp;
+                            </div>
+                        </div>
+                        <div class="option-section new-mg-t10">
+                            <span class="text-fl">尺寸：</span>
+                            <div class="option" id="size">
+                                <a title="1米" class="btn-color-op new-mg-b10 on" date="currentSize">1米</a>&nbsp;
+                                <a title="1.3米" href="javascript:void(0)" date="noCurrentSize" wareid="1016292844" class="btn-color-op new-mg-b10">1.3米</a>&nbsp;
+                                <a title="特大号直角1.6米" href="javascript:void(0)" date="noCurrentSize" wareid="1109006057" class="btn-color-op new-mg-b10">1.6米</a>&nbsp;
+                            </div>
+                        </div>
+                        <div class="option-section new-mg-t10">
+                            <span class="text-fl">数量：</span>
+                            <div class="option">
+                                <span class="add-del">
+                                    <a class="btn-add" id="plus" onclick="reduce();"><span></span></a>
+                                    <input type="text" class="new-input" value="1" id="number" onblur="modify();">
+                                    <a class="btn-del" id="minus" onclick="add();"><span></span></a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-pop" id="cart" style="display:none; position:absolute; bottom:50%; z-index:9999;">
+                    <div class="ico-succ">
+                        <span class="att-succ">添加成功！</span>
+                        <span class="cart-succ">商品已成功加入购物车</span>
+                    </div>
+                    <div class="cp-lnk">
+                        <a href="javascript:void(0)" onclick="$(&#39;#cart&#39;).hide();$(&#39;#_mask&#39;).hide();" id="stroll">再逛逛</a>
+                        <a id="goCart"><span class="bar"></span>去购物车</a>
+                    </div>
+                </div>
+                <div class="bg-h15"></div>
+                <div class="tbl-type detail-tbn2" id="cart1" style="position: fixed; left: 0px; bottom: 0px; z-index: 10; display: table;">
+                    <div class="tbl-cell">
+                        <a id="directorder" class="btn-buy"><span></span>立即购买</a>
+                    </div>
+                    <div class="tbl-cell">
+                        <a id="add_cart" class="btn-cart"><span></span>加入购物车</a>
+                    </div>
+                </div>
+                <!---->
+            </div>
+        </div>
+        <span class="pop-attention" style="position:absolute;z-index:9999;display:none" id="save">
+            <span class="icon-succ" id="guanzhu">关注成功</span>
+        </span>
+        <div class="new-gd-view-img" id="popImg" style="position: absolute; z-index: 9000; left: 801.5px; top: 139.5px; -webkit-transform-origin: 0px 0px; opacity: 1; -webkit-transform: scale(1, 1); display: none;" onclick="hidePop()">
+            <div class="new-banner new-p-re">
+                <ul class="new-tbl-type" style="position: absolute; margin-left: 0px;" id="bigImgSlider">
+                    <li class="new-tbl-cell">
+                        <a href="javascript:void(0)">
+                            <span class="new-shade-img"><img src="http://img13.360buyimg.com/n12/jfs/t181/111/695201396/265853/f459a90c/539556b3N88f243aa.jpg!q70.jpg" seq="0" alt="" width="300" height="300"></span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="new-banner-num new-tbl-type" id="bigImgSliderPage" style="-webkit-transform-origin: 0px 0px; opacity: 1; -webkit-transform: scale(1, 1);">
+                    <li class="new-tbl-cell on"><a href="javascript:void(0)"></a></li>
+                    <li class="new-tbl-cell "><a href="javascript:void(0)"></a></li>
+                    <li class="new-tbl-cell "><a href="javascript:void(0)"></a></li>
+                    <li class="new-tbl-cell "><a href="javascript:void(0)"></a></li>
+                    <li class="new-tbl-cell "><a href="javascript:void(0)"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="login-area" id="footer">
+            <div class="login">
+                <a href="#">登录</a><span class="lg-bar">|</span><a href="#">注册</a>
+                <span class="new-fr"><a href="#">反馈</a><span class="lg-bar">|</span><a href="#top">回到顶部</a></span>
+            </div>
+            <div class="author">诚谦电子商务有限公司</div>
+            <div class="copyright">&copy; m.cq.com </div>
+        </div>
+        <script>
+        if ($("#btnJdkey")) {
+            $("#btnJdkey").click(function() {
+                if ($("#jdkey").css("display")=="none") {
+                    $("#jdkey").show();
+                } else {
+                    $("#jdkey").hide();
+                }
+            })
+        }
+
+        var Q = function() {
+            addWare(1, 10, false);
+        };
+        var M = function() {
+            addWare(1, 10, true);
+        };
+        $("#add_cart").click(Q);
+        $("#directorder").click(M);
+        var addWare = function (productId, qty, isDirectOrder) {
+            if (isDirectOrder) {
+                alert("todo");
+            } else {
+                if($("#_mask")) {
+                    $("#_mask").remove()
+                }
+                var k = ((document.body || document.documentElement).clientHeight + 20) + "px";
+                var m = document.createElement("div");
+                m.setAttribute("id", "_mask");
+                m.setAttribute("style", "position:absolute;left:0px;top:0px;background-color:rgb(20,20,20);filter:alpha(opacity=60);opacity:0.6;width:100%;height:" + k + ";z-index:9998;");
+                (document.body || document.documentElement).appendChild(m);
+
+                var p=window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop;
+                var r=document.documentElement.clientHeight||document.body.clientHeight;
+                document.getElementById("cart").style.bottom = ((r-100)/2-p) + "px";
+                $("#cart").show();
+            }
+        };
+        </script>
+    </body>
+</html>

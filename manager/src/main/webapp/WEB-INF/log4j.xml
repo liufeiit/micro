@@ -4,7 +4,7 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" threshold="null" debug="null">
     
     <appender name="PROJECT" class="tulip.util.DailyRollingFileAppender">
-        <param name="file" value="${loggingRoot}/micro.log"/>
+        <param name="file" value="${loggingRoot}/micro-m.log"/>
         <param name="append" value="true"/>
         <param name="encoding" value="UTF-8"/>
         <param name="threshold" value="info"/>
@@ -14,7 +14,7 @@
     </appender>
     
     <appender name="TulipAppender" class="tulip.util.DailyRollingFileAppender">
-        <param name="file" value="${loggingRoot}/tulip.log" />
+        <param name="file" value="${loggingRoot}/tulip-m.log" />
         <param name="append" value="true" />
         <param name="encoding" value="UTF-8" />
         <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
@@ -25,7 +25,7 @@
     </appender>
     
     <appender name="ControllerAppender" class="tulip.util.DailyRollingFileAppender">
-        <param name="file" value="${loggingRoot}/controller.log" />
+        <param name="file" value="${loggingRoot}/controller-m.log" />
         <param name="append" value="true" />
         <param name="encoding" value="UTF-8" />
         <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />

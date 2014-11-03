@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NX工作室</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="author" content="m.cq.com">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+        <link rel="stylesheet" type="text/css" href="css/base.css" charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="css/signin-up.css" charset="utf-8">
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" defer src="js/util.js"></script>
+    </head>
+    <body id="body">
+       <header>
+            <div class="new-header">
+                <a href="javascript:pageBack();" class="new-a-back" id="backUrl"><span>返回</span></a>
+                <h2>登录</h2>
+                <a href="javascript:void(0)" id="btnMenu" class="new-a-menu"><span>菜单</span></a>
+            </div>
+            <div class="new-menu-tab" style="display:none" id="menu">
+                <div class="new-tbl-type">
+                    <a href="./home.html" class="new-tbl-cell">
+                        <span class="home">首页</span>
+                        <p style="color:#6e6e6e;">首页</p>
+                    </a>
+                    <a href="#" class="new-tbl-cell">
+                        <span class="cart">商城</span>
+                        <p style="color:#6e6e6e;">商城</p>
+                    </a>
+                    <a href="#" class="new-tbl-cell">
+                        <span class="profile">我的空间</span>
+                        <p style="color:#6e6e6e;">我的空间</p>
+                    </a>
+                    <a href="#" class="new-tbl-cell">
+                        <span class="help">帮助</span>
+                        <p style="color:#6e6e6e;">帮助</p>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <div class="set-info">
+            <form action="#" method="post" id="frm_login">
+                <input type="hidden" name="returnurl" value="">
+                <div class="txt-err" id="err" style="display:none;"></div>
+                <span class="new-input-span">
+                    <input type="text" value="" class="new-input" name="account" id="account" placeholder="请输入手机号码/邮箱" title="请输入验证码" onkeydown="changeColor('account',event)">
+                </span>
+                <span class="new-input-span">
+                    <input type="password" value="" class="new-input" name="password" id="password" placeholder="请输入密码" title="请输入验证码" onkeydown="changeColor('password',event)">
+                </span>
+                <span class="new-tbl-type new-mg-b5">
+                    <span class="new-tbl-cell">
+                        <span class="new-input-span">
+                            <input name="validateCode" type="text" id="validateCode" class="new-input" placeholder="请输入验证码" title="请输入验证码" onkeydown="changeColor('validateCode',event)">
+                        </span>
+                    </span>
+                    <span class="new-tbl-cell">
+                        <span class="abtn-code">
+                            <img onclick="" id="code" style="width:100px;height:40px;" src="./tmp/authCodeImg.png">
+                        </span>
+                        <a href="javascript:void(0);" onclick="" class="txt-change">换一张</a>
+                    </span>
+                </span>
+                <a href="javascript:void(0);" id="loginSubmit" class="new-abtn-type new-mg-t15">登录</a>
+            </form>
+            <div class="login-register">
+                <div class="new-tbl-type">
+                    <span class="new-tbl-cell">
+                        <a rel="nofollow" href="./signup.html" class="new-fl">免费注册</a>
+                    </span>
+                    <span class="new-tbl-cell text-right">
+                        <a href="./retrieve_pwd.html" class="new-fr"> 找回密码</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="login-area" id="footer">
+            <div class="login">
+                <a href="./signin.html">登录</a><span class="lg-bar">|</span><a href="./signup.html">注册</a>
+                <span class="new-fr"><a href="#">反馈</a><span class="lg-bar">|</span><a href="#top">回到顶部</a></span>
+            </div>
+            <div class="author">NX工作室</div>
+            <div class="copyright">&copy; m.nx.com </div>
+        </div>
+
+        <script type="text/javascript">
+        var checkAccount = function(){
+            var account = $("#account").val().trim();
+            if(account == ""){
+                $("#err").html("\u8d26\u6237\u540d\u4e0d\u80fd\u4e3a\u7a7a");
+                $("#err").show();
+                return false;
+            }
+            return true;
+        }
+        var checkPassword = function(){
+            var password = $("#password").val().trim();
+            if(password == ""){
+                $("#err").html("\u5bc6\u7801\u4e0d\u80fd\u4e3a\u7a7a");
+                $("#err").show();
+                return false;
+            }
+            return true;
+        }
+
+        var checkCode = function(){
+            var code = $('#validateCode').val().trim();
+            if(code == ""){
+                $("#err").html("\u8bf7\u8f93\u5165\u9a8c\u8bc1\u7801");
+                $("#err").show();
+                return false;
+            }
+            return true;
+        }
+
+        $(document).ready(function(){
+            $(':text').focus(function(){
+                $("#error").hide();
+                $("#err").hide();
+            });
+            $(':password').focus(function(){
+                $("#error").hide();
+                $("#err").hide();
+            });
+
+            $('#frm_login').bind('submit',function(e){
+                if(!(checkAccount() && checkPassword() && checkCode())){
+                    e.preventDefault();
+                }
+            });
+            $('#loginSubmit').click(function(){
+                $('#frm_login').submit();
+            });
+        });
+
+        var changeColor = function(ele, evt){
+            evt = (evt) ? evt : ((window.event) ? window.event : "");
+            var key = evt.keyCode?evt.keyCode:evt.which;
+            if (key == 8 || key == 46) {
+                var text = $('#' + ele).val().trim();
+                if(text.length == 1){
+                    $('#' + ele).css("color","#DBDBDB");
+                }
+            } else {
+                $('#' + ele).css("color","black");
+            }
+        }
+        </script>
+    </body>
+</html>

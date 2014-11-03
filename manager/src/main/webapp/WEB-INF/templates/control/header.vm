@@ -8,18 +8,7 @@
 			<span class="icon-bar"></span>
 		</a>
 		<div class="navbar-left">
-			<form role="form" action="selected_app.htm" method="post" name="selectApps">
-				<select id="select_app" class="form-control select-head" name="selectedApp">
-					#if($!{hasApp})
-						<option value="0">全部应用</option>
-						#foreach($app in $allApp)
-							<option value="$!{app.id}" #if($!{app.id} == $!{selected_app}) selected="selected" #end>$!{app.name}</option>
-						#end
-					#else
-						<option value="0">您还没有任何应用</option>
-					#end
-                </select>
-            </form>
+			
         </div>
 		<div class="navbar-right">
 			<ul class="nav navbar-nav">
@@ -37,7 +26,7 @@
 								<li>
 									<a href="#">
 										<div class="pull-left">
-											<img src="/image/avatar3.jpg" class="img-circle" alt="User Image" />
+											<img src="$cdn.name("image/avatar3.jpg")" class="img-circle" alt="User Image" />
 										</div>
 										<h4>
 											Support Team 
@@ -114,7 +103,7 @@
 					</a>
 					<ul class="dropdown-menu">
 						<li class="user-header bg-light-blue">
-							<img src="/image/avatar3.jpg" class="img-circle" alt="User Image" />
+							<img src="$cdn.name("image/avatar3.jpg")" class="img-circle" alt="User Image" />
 							<p>
 								$!{name} ##<small>2014年8月8号</small>
 							</p>

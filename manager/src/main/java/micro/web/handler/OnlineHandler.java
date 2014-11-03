@@ -29,7 +29,8 @@ public class OnlineHandler extends GenericFilterBean {
 		boolean isLogin = SessionManager.isLogin(request.getSession(true));
 		String reqURL = request.getRequestURL().toString();
 		if (!(isIngore(request, reqURL)) && !isLogin) {
-			response.sendRedirect("invalidate.htm");
+//			response.sendRedirect("invalidate.htm");
+			chain.doFilter(request, response);
 			return;
 		}
 		if(StringUtils.contains(reqURL, "report_line.htm")) {

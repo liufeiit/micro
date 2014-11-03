@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NX工作室</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="author" content="m.cq.com">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+        <link rel="stylesheet" type="text/css" href="css/base.css" charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="css/signin-up.css" charset="utf-8">
+        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" defer src="js/util.js"></script>
+    </head>
+    <body id="body">
+       <header>
+            <div class="new-header">
+                <a href="javascript:pageBack();" class="new-a-back" id="backUrl"><span>返回</span></a>
+                <h2>注册</h2>
+                <a href="javascript:void(0)" id="btnMenu" class="new-a-menu"><span>菜单</span></a>
+            </div>
+            <div class="new-menu-tab" style="display:none" id="menu">
+                <div class="new-tbl-type">
+                    <a href="./home.html" class="new-tbl-cell">
+                        <span class="home">首页</span>
+                        <p style="color:#6e6e6e;">首页</p>
+                    </a>
+                    <a href="#" class="new-tbl-cell">
+                        <span class="cart">商城</span>
+                        <p style="color:#6e6e6e;">商城</p>
+                    </a>
+                    <a href="#" class="new-tbl-cell">
+                        <span class="profile">我的空间</span>
+                        <p style="color:#6e6e6e;">我的空间</p>
+                    </a>
+                    <a href="#" class="new-tbl-cell">
+                        <span class="help">帮助</span>
+                        <p style="color:#6e6e6e;">帮助</p>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <ul class="tab">
+            <li><a class="item current" id="mobile_reg">手机注册</a></li>
+            <li><a class="item" id="email_reg">邮箱注册</a></li>
+        </ul>
+        <ul class="tab-scroller">
+            <li class="mobile_reg" style="display: list-item;">
+                <div class="set-info">
+                    <form action="#" method="post" id="mobile_form">
+                        <div class="new-txt-err" id="errormsg"></div>
+                        <span class="new-input-span new-input-span-v1 new-mg-b10">
+                            <input class="new-input" type="tel" id="mobile" name="account" placeholder="请输入手机号码" title="请输入手机号码" maxlength="11" onkeydown="changeColor('mobile',event)">
+                            <a id="sub_btn" href="javascript:void(0);" class="get-btn">获取验证码</a>
+                            <span id="second" class="get-num" style="display:none;"></span>
+                        </span>
+                        <div id="mobileNull" class="txt-err"></div>
+                            <span class="new-input-span new-mg-b10">
+                                <input type="tel" class="new-input" name="code" id="code" placeholder="输入您收到的验证码" title="输入您收到的验证码" onkeydown="changeColor('code',event)">
+                            </span>
+                            <div id="codeNull" class="txt-err"></div>
+                            <span class="new-input-span new-mg-b10">
+                                <input type="password" class="new-input" name="password" id="password" placeholder="请输入密码" title="请输入密码" onkeydown="changeColor('password',event)">
+                            </span>
+                            <div id="passwordNull" class="txt-err"></div>
+                            <span class="new-input-span new-mg-b10">
+                                <input type="tel" class="new-input" name="refid" id="refid" placeholder="请输入推荐人ID，可不填" title="请输入推荐人ID，可不填" onkeydown="changeColor('refid',event)">
+                            </span>
+                            <div id="refidNull" class="txt-err"></div>
+                            <a href="javascript:void(0);" class="new-abtn-type new-mg-t15" id="submitMobile">注册</a>
+                    </form>
+                </div>
+            </li>
+            <li class="email_reg" style="display: none;">
+                <div class="set-info">
+                    <form action="#" method="post" id="email_form">
+                        <div class="new-txt-err" id="errormsg"></div>
+                        <span class="new-input-span new-mg-b10">
+                            <input type="text" class="new-input" name="account" id="email" placeholder="请输入邮箱" title="请输入邮箱" onkeydown="changeColor('email',event)">
+                        </span>
+                        <div id="emailNull" class="txt-err"></div>
+                        <span class="new-input-span new-mg-b10">
+                            <input type="password" class="new-input" name="password" id="e_password" placeholder="请输入密码" title="请输入密码" onkeydown="changeColor('e_password',event)">
+                        </span>
+                        <div id="e_passwordNull" class="txt-err"></div>
+                        <span class="new-input-span new-mg-b10">
+                            <input type="tel" class="new-input" name="refid" id="e_refid" placeholder="请输入推荐人ID，可不填" title="请输入推荐人ID，可不填" onkeydown="changeColor('e_refid',event)">
+                        </span>
+                        <div id="e_refidNull" class="txt-err"></div>
+                        <a href="javascript:void(0);" class="new-abtn-type new-mg-t15" id="submitEmail">注册</a>
+                    </form>
+                </div>
+            </li>
+        </ul>
+        <div class="login-area" id="footer">
+            <div class="login">
+                <a href="./signin.html">登录</a><span class="lg-bar">|</span><a href="./signup.html">注册</a>
+                <span class="new-fr"><a href="#">反馈</a><span class="lg-bar">|</span><a href="#top">回到顶部</a></span>
+            </div>
+            <div class="author">NX工作室</div>
+            <div class="copyright">&copy; m.nx.com </div>
+        </div>
+
+        <script type="text/javascript">
+        var distantTime = 120;
+        var endTime;
+
+        function checkMobile(){
+            var mobile = $("#mobile").val().trim();
+            if(mobile == ""){
+                $("#mobileNull").show();
+                $("#mobileNull").text("手机号不能为空");
+                return false;
+            }
+            if(!mobile.match(/^1\d{10}$/)){
+                $("#mobileNull").text("手机号格式有误,请重新输入 ");
+                $("#mobileNull").show();
+                return false;
+            }
+            return true;
+        }
+
+        function checkEmail(){
+            var email = $("#email").val().trim();
+            if(email == ""){
+                $("#emailNull").show();
+                $("#emailNull").text("邮箱不能为空");
+                return false;
+            }
+            if(!email.match(/^([\.a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/)){
+                $("#emailNull").text("邮箱格式有误,请重新输入 ");
+                $("#emailNull").show();
+                return false;
+            }
+            return true;
+        }
+
+        var mobileClick = function(){
+            var password = $("#password").val().trim();
+            var mobile =  $("#mobile").val().trim();
+            var code = $('#code').val().trim();
+            var refid = $('#refid').val().trim();
+            if(!checkMobile()){
+                return ;
+            }
+            if(code == ""){
+                $("#codeNull").text("手机验证码不能为空");
+                $("#codeNull").show();
+                return;
+            }
+            if(password == ""){
+                $("#passwordNull").text("密码不能为空");
+                $("#passwordNull").show();
+                return;
+            }
+            if (refid != "" && !refid.match(/^[1-9]+[0-9]*]*$/)) {
+                $("#refidNull").text("推荐人ID有误,请重新输入");
+                $("#refidNull").show();
+                return;
+            }
+
+            jQuery.post('#',{account:mobile, password:password, code:code},
+                function(data){
+                    if (data.success != true) {
+                        // TODO
+                    } else {
+                        //注册成功回到returnurl
+                    }
+            });
+        }
+
+        var emailClick = function(){
+            var email =  $("#email").val().trim();
+            var password = $("#e_password").val().trim();
+            var refid = $('#e_refid').val().trim();
+            if(!checkEmail()){
+                return ;
+            }
+            if(password == ""){
+                $("#e_passwordNull").text("密码不能为空");
+                $("#e_passwordNull").show();
+                return;
+            }
+            if (refid != "" && !refid.match(/^[1-9]+[0-9]*]*$/)) {
+                $("#e_refidNull").text("推荐人ID有误,请重新输入");
+                $("#e_refidNull").show();
+                return;
+            }
+
+            jQuery.post('#',{account:email, password:password},
+                function(data){
+                    if (data.success != true) {
+                        // TODO
+                    } else {
+                        //注册成功回到returnurl
+                    }
+            });
+        }
+
+        var countdown = function(){
+            var nowTime = new Date().getTime()/1000;
+            var time = Math.floor(endTime - nowTime);
+            $("#second").text(time.toString()+'秒');
+            if(time > 0){
+                setTimeout("countdown()",1000);
+            }else{
+                $("#sub_btn").show();
+                $("#second").hide();
+            }
+        }
+
+        var getCode = function(){
+            var mobile = $("#mobile").val().trim();
+            if(!checkMobile()){
+                return ;
+            }
+
+            // 实现事这段code去掉
+            $("#mobileNull").hide();
+            $("#sub_btn").hide();
+            $("#second").show();
+            endTime = new Date().getTime()/1000 + 120;
+            countdown();
+            return ;
+
+            jQuery.get('#', {mobile:mobile}, function(data){
+                if (data.success) {
+                    $("#mobileNull").hide();
+                    $("#sub_btn").hide();
+                    $("#second").show();
+                    endTime = new Date().getTime()/1000 + 120;
+                    countdown();
+                } else {
+                    $("#mobileNull").text(data.message);
+                    $("#mobileNull").show();
+                    $("#sub_btn").show();
+                }
+            });
+        }
+
+        $(document).ready(function(){
+            $('#mobile_reg').click(function(){
+                $('#mobile_reg').addClass("current");
+                $('#email_reg').removeClass("current");
+                $('.mobile_reg').show();
+                $('.email_reg').hide();
+            });
+            $('#email_reg').click(function(){
+                $('#mobile_reg').removeClass("current");
+                $('#email_reg').addClass("current");
+                $('.email_reg').show();
+                $('.mobile_reg').hide();
+            });
+
+            $("#mobile").click(function(){
+                $("#codeNull").hide();
+                $("#mobileNull").hide();
+                $("#passwordNull").hide();
+                $("#refidNull").hide();
+                $("#errormsg").hide();
+            });
+            $("#password").click(function(){
+                $("#codeNull").hide();
+                $("#mobileNull").hide();
+                $("#passwordNull").hide();
+                $("#refidNull").hide();
+                $("#errormsg").hide();
+            });
+            $("#code").click(function(){
+                $("#codeNull").hide();
+                $("#mobileNull").hide();
+                $("#passwordNull").hide();
+                $("#refidNull").hide();
+                $("#errormsg").hide();
+            });
+            $("#refid").click(function(){
+                $("#codeNull").hide();
+                $("#mobileNull").hide();
+                $("#passwordNull").hide();
+                $("#refidNull").hide();
+                $("#errormsg").hide();
+            });
+            $("#email").click(function(){
+                $("#emailNull").hide();
+                $("#e_passwordNull").hide();
+                $("#e_refidNull").hide();
+                $("#errormsg").hide();
+            });
+            $("#e_password").click(function(){
+                $("#emailNull").hide();
+                $("#e_passwordNull").hide();
+                $("#e_refidNull").hide();
+                $("#errormsg").hide();
+            });
+            $("#e_refid").click(function(){
+                $("#emailNull").hide();
+                $("#e_passwordNull").hide();
+                $("#e_refidNull").hide();
+                $("#errormsg").hide();
+            });
+
+            $("#sub_btn").click(getCode);
+
+            $("#submitMobile").click(mobileClick);
+
+            $("#submitEmail").click(emailClick);
+        })
+
+        var changeColor = function(ele, evt){
+            evt = (evt) ? evt : ((window.event) ? window.event : "");
+            var key = evt.keyCode?evt.keyCode:evt.which;
+            if (key == 8 || key == 46) {
+                var text = $('#' + ele).val().trim();
+                if(text.length == 1){
+                    $('#' + ele).css("color","#DBDBDB");
+                }
+            } else {
+                $('#' + ele).css("color","black");
+            }
+        }
+        </script>
+    </body>
+</html>

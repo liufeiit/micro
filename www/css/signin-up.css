@@ -1,0 +1,115 @@
+
+
+.tab {
+    background: #f1f1f5;
+}
+
+.tab li {
+    padding-top: 5px;
+    display: block;
+    text-align: center;
+    position: relative;
+    float: left;
+    width: 50%;
+}
+
+.tab .item {
+    font-weight: bold;
+    color: #797979;
+    line-height: 40px;
+}
+
+.tab .current {
+    color: #a40000;
+}
+
+.tab .current:after {
+    content: ' ';
+    position: absolute;
+    background: #a40000;
+    display: block;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+}
+
+.tab-scroller {
+    width: 100%;
+    overflow: hidden;
+}
+
+.set-info {
+    padding: 20px 10px;
+    min-height: 400px;
+	background: #fafafa;
+}
+.set-info .new-input {
+	height: 40px;
+}
+.set-info .new-input-span {
+    margin-bottom: 15px;
+	height: 40px;
+	border-top: 1px solid #9f9f9f;
+	background: #fff;
+}
+.set-info .new-tbl-cell {
+	vertical-align: top;
+}
+
+.set-info .new-tbl-cell .new-input {
+	margin-right: 0;
+}
+
+.abtn-code {
+	display: inline-block;
+	margin-left: 10px;
+	padding: 6px 0;
+}
+
+.abtn-code img {
+	vertical-align: top;
+}
+
+.login-register {
+	padding: 10px;
+}
+
+.login-register .new-tbl-cell {
+	padding: 3px 0;
+}
+
+.login-register .text-right {
+	text-align: right;
+}
+
+.login-register a {
+	font-size: 14px;
+	color: #333;
+	text-decoration: underline;
+}
+
+.new-input-span-v1 {
+	position: relative;
+	padding-right: 115px;
+}
+
+.get-num, .get-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 115px;
+	height: 40px;
+	border-left: 1px solid #ccc;
+	background-color: #e6e5e5;
+	line-height: 40px;
+	font-size: 12px;
+	color: #999;
+	text-align: center;
+}
+
+.get-btn {
+	height: 40px;
+	line-height: 40px;
+	background-color: #c00;
+	color: #fff;
+}
