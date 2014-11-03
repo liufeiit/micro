@@ -21,4 +21,10 @@ public class Home extends BaseController {
 		ModelAndView mv = new ModelAndView("home");
 		return mv;
 	}
+	
+	@RequestMapping(value = "/create_story.htm")
+	public ModelAndView create_story(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("create_story");
+		return mv;
+	}
 }
