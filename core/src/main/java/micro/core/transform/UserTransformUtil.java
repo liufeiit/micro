@@ -1,6 +1,5 @@
 package micro.core.transform;
 
-import micro.core.bo.UserBO;
 import micro.core.dataobject.UserDO;
 import micro.core.vo.UserVO;
 
@@ -12,19 +11,11 @@ import micro.core.vo.UserVO;
  */
 public class UserTransformUtil {
 
-	public static UserDO bo_transform_do(UserBO bo) {
+	public static UserDO bo_transform_do(UserVO vo) {
 		return null;
 	}
 	
-	public static UserBO do_transform_bo(UserDO _do) {
-		return null;
-	}
-	
-	public static UserVO bo_transform_vo(UserBO bo) {
-		return null;
-	}
-	
-	public static UserBO vo_transform_bo(UserVO vo) {
+	public static UserVO bo_transform_vo(UserDO _do) {
 		return null;
 	}
 }
