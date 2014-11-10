@@ -32,41 +32,31 @@
 		"
 	default-lazy-init="false">
 	
-	<aop:aspectj-autoproxy proxy-target-class="true" />
-	<context:annotation-config />
-	<mvc:annotation-driven />
-	<context:component-scan base-package="micro.core.dao.impl"/>
-	<context:component-scan base-package="micro.core.service.impl"/>
+	<bean id="baseJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean" abstract="true">
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="dataSource" value-ref="dataSource"/>
+            </map>
+        </property>
+    </bean>
 	
-	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
-		<property name="driverClass" value="${jdbc.driverClassName}"/>
-		<property name="jdbcUrl" value="${jdbc.url}"/>
-		<property name="username" value="${jdbc.username}"/>
-		<property name="password" value="${jdbc.password}"/>
-	</bean>
-
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
-	</bean>
+	<bean id="novaMessageClearJobDetail" parent="baseJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="com.ruoogle.nova.core.quartz.NovaMessageClearJob"/>
+    </bean>
 	
-	<bean id="jdbcTemplate" class="tulip.data.jdbc.named.NamedJdbcTemplate">
-		<property name="dataSource" ref="dataSource"/>
+	<bean id="novaMessageClearJobJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="novaMessageClearJobDetail"/>
+	    <property name="cronExpression" value="0 15 5 ? * *"/>
 	</bean>
 	
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-           <tx:method name="insert*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="micro.core.dao.DAOException"/>
-           <tx:method name="update*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="micro.core.dao.DAOException"/>
-           <tx:method name="delete*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="micro.core.dao.DAOException"/>
-           <tx:method name="incr*" propagation="REQUIRED" isolation="READ_COMMITTED" rollback-for="micro.core.dao.DAOException"/>
-           <tx:method name="*" propagation="SUPPORTS" read-only="true"/>
-        </tx:attributes>
-    </tx:advice>
-    
-	<aop:config>
-		<aop:pointcut id="txPointcut" expression="execution(* micro.core.dao.impl.*.*(..))" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
-	</aop:config>
+	<bean id="novaSystemScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" autowire="no">
+		<property name="triggers">
+			<list>
+				<ref bean="novaMessageClearJobJobTrigger"/>
+			</list>
+		</property>
+		<property name="autoStartup" value="true"/>
+		<property name="schedulerName" value="novaSystemScheduler"/>
+	</bean>
 	
-	<import resource="classpath:configurer/scheduler.xml"/>
 </beans>
