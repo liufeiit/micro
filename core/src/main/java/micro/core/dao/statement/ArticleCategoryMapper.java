@@ -12,7 +12,7 @@ public interface ArticleCategoryMapper {
 	
 	String UPDATE_SQL = "UPDATE content_category SET name = :name, description = :description, icon = :icon, position = :position, updated = :updated WHERE content_category_id = :content_category_id;";
 	
-	String INSERT_SQL = "INSERT INTO content_category(content_category_id, name, description, icon, position, created, updated) VALUES (:content_category_id, :name, :description, :icon, :position, :created, :updated);";
+	String INSERT_SQL = "INSERT INTO content_category(content_category_id, name, description, icon, position, created, updated) VALUES (:content_category_id, :name, :description, :icon, :position, NOW(), NOW());";
 	
 	String DELETE_SQL = "DELETE FROM content_category WHERE content_category_id = :content_category_id;";
 }

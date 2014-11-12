@@ -8,7 +8,7 @@ package micro.core.dao.statement;
  */
 public interface ArticleMapper {
 
-	String INSERT_SQL = "INSERT INTO content (type, title, content, content_category_id, status, position, clicks, creator, created, updated) VALUES (:type, :title, :content, :content_category_id, :status, :position, :clicks, :creator, :created, :updated);";
+	String INSERT_SQL = "INSERT INTO content (type, title, content, content_category_id, status, position, clicks, creator, created, updated) VALUES (:type, :title, :content, :content_category_id, :status, :position, :clicks, :creator, NOW(), NOW());";
 
 	String DELETE_SQL = "DELETE FROM content WHERE content_id = :content_id;";
 	

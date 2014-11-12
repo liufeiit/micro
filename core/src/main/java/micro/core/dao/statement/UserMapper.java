@@ -7,9 +7,10 @@ package micro.core.dao.statement;
  * @since 2014年10月29日 下午11:57:58
  */
 public interface UserMapper {
-	String ADD_SQL = "INSERT INTO usr "
-			+ "(name, email, mobile, weixin, password, gmt_created, gmt_modified) VALUES "
+	String ADD_SQL = "INSERT INTO manager "
+			+ "(name, email, mobile, weixin, password, created, updated) VALUES "
 			+ "(:name, :email, :mobile, :weixin, :password, NOW(), NOW());";
 
-	String SELECT_BYNAME_SQL = "SELECT id, name, email, mobile, weixin, password, gmt_created, gmt_modified FROM usr WHERE name = :name;";
+	String SELECT_BYNAME_SQL = "SELECT id, name, email, mobile, weixin, password, created, updated FROM manager WHERE name = :name;";
+	
 }

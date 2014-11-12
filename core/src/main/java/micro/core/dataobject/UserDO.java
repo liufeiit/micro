@@ -1,8 +1,5 @@
 package micro.core.dataobject;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 import tulip.data.annotation.Column;
 
 /**
@@ -15,14 +12,11 @@ public class UserDO extends BaseDO {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "user_id")
-	private long userId;
-
-	@Column(name = "user_group_id")
-	private int groupId;
-
-	@Column(name = "status")
-	private String status;
+	@Column(name = "id")
+	private long id;
+	
+	@Column(name = "name")
+	private String name;
 
 	@Column(name = "email")
 	private String email;
@@ -30,33 +24,64 @@ public class UserDO extends BaseDO {
 	@Column(name = "mobile")
 	private String mobile;
 
-	@Column(name = "name")
-	private String name;
+	@Column(name = "weixin")
+	private String weixin;
 
 	@Column(name = "password")
 	private String password;
 
-	@Column(name = "salt")
-	private String salt;
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
 
-	@Column(name = "fullname")
-	private String fullname;
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
 
-	@Column(name = "account_balance")
-	private BigDecimal accountBalance = new BigDecimal(0);
+	public String getName() {
+		return name;
+	}
 
-	@Column(name = "is_email_verified")
-	private boolean emailVerified = false;
+	public void setName(String name) {
+		this.name = name;
+	}
 
-	@Column(name = "is_mobile_verified")
-	private boolean mobileVerified = false;
+	public String getEmail() {
+		return email;
+	}
 
-	@Column(name = "client_ip")
-	private long clientIp;
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-	@Column(name = "last_login")
-	private Date lastLogin;
+	public String getMobile() {
+		return mobile;
+	}
 
-	@Column(name = "last_ip")
-	private long lastIp;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getWeixin() {
+		return weixin;
+	}
+
+	public void setWeixin(String weixin) {
+		this.weixin = weixin;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 }

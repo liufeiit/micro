@@ -10,7 +10,7 @@ import micro.core.dataobject.UserDO;
  */
 public interface UserDAO {
 
-	void insertUser(UserDO userDO) throws DAOException;
+	void insertUser(UserDO user) throws DAOException;
 	
 	UserDO selectUser(String name) throws DAOException;
 }
