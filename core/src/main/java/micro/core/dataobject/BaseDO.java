@@ -16,34 +16,39 @@ public class BaseDO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "id")
-	private long id;
-	@Column(name = "gmt_created")
-	private Date gmt_created;
-	@Column(name = "gmt_modified")
-	private Date gmt_modified;
+	@Column(name = "created")
+	private Date created;
+	@Column(name = "updated")
+	private Date updated;
 
-	public long getId() {
-		return id;
+	/**
+	 * @return the created
+	 */
+	public Date getCreated() {
+		return created;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	/**
+	 * @param created
+	 *            the created to set
+	 */
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
-	public Date getGmt_created() {
-		return gmt_created;
+	/**
+	 * @return the updated
+	 */
+	public Date getUpdated() {
+		return updated;
 	}
 
-	public void setGmt_created(Date gmt_created) {
-		this.gmt_created = gmt_created;
+	/**
+	 * @param updated
+	 *            the updated to set
+	 */
+	public void setUpdated(Date updated) {
+		this.updated = updated;
 	}
 
-	public Date getGmt_modified() {
-		return gmt_modified;
-	}
-
-	public void setGmt_modified(Date gmt_modified) {
-		this.gmt_modified = gmt_modified;
-	}
 }

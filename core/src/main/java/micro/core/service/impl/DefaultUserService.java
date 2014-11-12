@@ -32,8 +32,8 @@ public class DefaultUserService extends BaseService implements UserService {
 		user.setWeixin(weixin);
 		user.setPassword(PasswdUtil.signPwsswd(password));
 		Date date = new Date();
-		user.setGmt_created(date);
-		user.setGmt_modified(date);
+		user.setCreated(date);
+		user.setUpdated(date);
 		try {
 			userDAO.insertUser(user);
 		} catch (DAOException e) {

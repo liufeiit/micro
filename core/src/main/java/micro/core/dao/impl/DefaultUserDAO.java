@@ -29,7 +29,7 @@ public class DefaultUserDAO extends BaseDAO implements UserDAO, UserMapper {
 			KeyHolder holder = new GeneratedKeyHolder();
 			jdbcTemplate.update(ADD_SQL, BeanParameterMapper.newInstance(user), holder, new String[]{ "id" });
 			Number id = holder.getKey();
-			user.setId(id.longValue());
+//			user.setId(id.longValue());
 		} catch (DataAccessException e) {
 			log.error("InsertUser Error.", e);
 			throw new DAOException("InsertUser Error.", e);
