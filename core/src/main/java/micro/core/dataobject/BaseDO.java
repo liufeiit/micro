@@ -6,7 +6,7 @@ import java.util.Date;
 import tulip.data.annotation.Column;
 
 /**
- * 基础统计数据结构.
+ * 基础数据结构.
  * 
  * @author 刘飞 E-mail:liufei_it@126.com
  * @version 1.0

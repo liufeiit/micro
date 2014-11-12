@@ -8,7 +8,7 @@ import tulip.data.annotation.Column;
  * @version 1.0.0
  * @since 2014年11月12日 下午1:52:02
  */
-public class UserGroup extends BaseDO {
+public class UserGroupDO extends BaseDO {
 
 	private static final long serialVersionUID = 1L;
 	@Column(name = "user_group_id")

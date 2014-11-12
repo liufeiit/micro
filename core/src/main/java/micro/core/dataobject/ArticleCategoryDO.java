@@ -24,7 +24,7 @@ public class ArticleCategoryDO extends BaseDO {
 	private String icon;
 
 	@Column(name = "position")
-	private Integer position;
+	private int position;
 
 	/**
 	 * @return the id

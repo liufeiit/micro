@@ -1,5 +1,8 @@
 package micro.core.dataobject;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 import tulip.data.annotation.Column;
 
 /**
@@ -12,8 +15,14 @@ public class UserDO extends BaseDO {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "name")
-	private String name;
+	@Column(name = "user_id")
+	private long userId;
+
+	@Column(name = "user_group_id")
+	private int groupId;
+
+	@Column(name = "status")
+	private String status;
 
 	@Column(name = "email")
 	private String email;
@@ -21,50 +30,33 @@ public class UserDO extends BaseDO {
 	@Column(name = "mobile")
 	private String mobile;
 
-	@Column(name = "weixin")
-	private String weixin;
+	@Column(name = "name")
+	private String name;
 
 	@Column(name = "password")
 	private String password;
 
-	public String getName() {
-		return name;
-	}
+	@Column(name = "salt")
+	private String salt;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	@Column(name = "fullname")
+	private String fullname;
 
-	public String getEmail() {
-		return email;
-	}
+	@Column(name = "account_balance")
+	private BigDecimal accountBalance = new BigDecimal(0);
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	@Column(name = "is_email_verified")
+	private boolean emailVerified = false;
 
-	public String getMobile() {
-		return mobile;
-	}
+	@Column(name = "is_mobile_verified")
+	private boolean mobileVerified = false;
 
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
+	@Column(name = "client_ip")
+	private long clientIp;
 
-	public String getWeixin() {
-		return weixin;
-	}
+	@Column(name = "last_login")
+	private Date lastLogin;
 
-	public void setWeixin(String weixin) {
-		this.weixin = weixin;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
+	@Column(name = "last_ip")
+	private long lastIp;
 }
