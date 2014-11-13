@@ -58,7 +58,7 @@
 	
 	<bean id="cdn" class="tulip.web.module.CDNServer">
 		<property name="host" value="127.0.0.1"/>
-		<property name="context" value="mm"/>
+		<property name="context" value="manager"/>
 		<property name="port" value="8080"/>
 	</bean>
 	

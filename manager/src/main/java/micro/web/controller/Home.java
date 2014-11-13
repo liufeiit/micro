@@ -1,6 +1,13 @@
 package micro.web.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+
+import micro.core.dataobject.UserDO;
+import micro.core.service.Result;
+import micro.web.handler.SessionManager;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,13 +25,43 @@ public class Home extends BaseController {
 	
 	@RequestMapping(value = "/home.htm")
 	public ModelAndView home(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("home");
+		ModelAndView mv = returnView(request, "home", "首页", "首页概况");
 		return mv;
 	}
 	
-	@RequestMapping(value = "/create_story.htm")
-	public ModelAndView create_story(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("create_story");
+	@RequestMapping(value = "/index.htm")
+	public ModelAndView index(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("login");
+		mv.addObject("errorMsg", request.getParameter("errorMsg"));
 		return mv;
+	}
+	
+	@RequestMapping(value = "/logout.htm")
+	public ModelAndView logout(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("login");
+		SessionManager.logout(request.getSession(true));
+		return mv;
+	}
+	
+	@RequestMapping(value = "/invalidate.htm")
+	public ModelAndView session_invalidate(HttpServletRequest request) {
+		SessionManager.logout(request.getSession(true));
+		ModelAndView mv = new ModelAndView("login");
+		mv.addObject("errorMsg", "用户登录会话失效");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/login.htm")
+	public ModelAndView login(HttpServletRequest request) {
+		Map<String, Object> data = new HashMap<String, Object>();
+		String name = request.getParameter("name");
+		String passwd = request.getParameter("passwd");
+		Result result = userService.login(name, passwd);
+		if(result.isSuccess()) {
+			userLogin(request, (UserDO) result.get("online.user"));
+			return post("home.htm", data, "登录中...");
+		}
+		data.put("errorMsg", result.getMessage());
+		return post("index.htm", data, true, result.getMessage(), "登录中...");
 	}
 }

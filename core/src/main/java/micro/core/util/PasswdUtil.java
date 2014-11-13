@@ -36,4 +36,9 @@ public class PasswdUtil {
 		}
 		return result;
 	}
+	
+	//INSERT INTO `ec_core`.`manager` (`name`, `email`, `mobile`, `weixin`, `password`, `created`, `updated`) VALUES ('liufei', 'liufei_it@126.com', '13701659642', 'liufeiit', '-hT_sYuGGWmdjJL0agbhc5XLqQrjdlIJosSyAV6yzXc', now(), now());
+	public static void main(String[] args) {
+		System.out.println(signPwsswd("lF0130lf"));
+	}
 }

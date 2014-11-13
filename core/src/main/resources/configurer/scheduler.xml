@@ -40,23 +40,23 @@
         </property>
     </bean>
 	
-	<bean id="novaMessageClearJobDetail" parent="baseJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
-        <property name="jobClass" value="com.ruoogle.nova.core.quartz.NovaMessageClearJob"/>
+	<bean id="touchStatsTableJobDetail" parent="baseJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="micro.core.scheduler.TouchStatsTableJob"/>
     </bean>
 	
-	<bean id="novaMessageClearJobJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
-		<property name="jobDetail" ref="novaMessageClearJobDetail"/>
+	<bean id="touchStatsTableJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="touchStatsTableJobDetail"/>
 	    <property name="cronExpression" value="0 15 5 ? * *"/>
 	</bean>
 	
-	<bean id="novaSystemScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" autowire="no">
+	<bean id="microSystemScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" autowire="no">
 		<property name="triggers">
 			<list>
-				<ref bean="novaMessageClearJobJobTrigger"/>
+				<ref bean="touchStatsTableJobTrigger"/>
 			</list>
 		</property>
 		<property name="autoStartup" value="true"/>
-		<property name="schedulerName" value="novaSystemScheduler"/>
+		<property name="schedulerName" value="microSystemScheduler"/>
 	</bean>
 	
 </beans>

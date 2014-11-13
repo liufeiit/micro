@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jboss-web>
-	<context-root>/mm</context-root>
+	<context-root>/manager</context-root>
 </jboss-web>

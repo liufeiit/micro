@@ -2,7 +2,13 @@ package micro.web.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import micro.core.dataobject.UserDO;
+import micro.core.service.ArticleCatService;
+import micro.core.service.ArticleService;
 import micro.core.service.UserService;
+import micro.web.handler.SessionManager;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -23,6 +29,12 @@ public class BaseController {
 	@Autowired
 	@Qualifier(value = "userService")
 	protected UserService userService;
+	@Autowired
+	@Qualifier(value = "articleService")
+	protected ArticleService articleService;
+	@Autowired
+	@Qualifier(value = "articleCatService")
+	protected ArticleCatService articleCatService;
 	
 	protected ModelAndView post(String action, Map<String, Object> data, String title) {
 		return post(action, data, false, null, title);
@@ -38,5 +50,31 @@ public class BaseController {
 			mv.addObject("alertMsg", alertMsg);
 		}
 		return mv;
+	}
+	
+	protected ModelAndView returnView(HttpServletRequest request, String name, String nav, String nav_desc) {
+		ModelAndView mv = new ModelAndView(name);
+		UserDO user = getLoginUser(request);
+		mv.addObject("name", user.getName());
+		mv.addObject("uid", user.getId());
+		mv.addObject("nav", nav);
+		mv.addObject("nav_desc", nav_desc);
+		return mv;
+	}
+	
+	protected void userLogin(HttpServletRequest request, UserDO user) {
+		SessionManager.login(request.getSession(true), user);
+	}
+	
+	protected UserDO getLoginUser(HttpServletRequest request) {
+		return SessionManager.getUser(request.getSession(true));
+	}
+	
+	protected long getUserId(HttpServletRequest request) {
+		UserDO user = getLoginUser(request);
+		if(user == null) {
+			return -1L;
+		}
+		return user.getId();
 	}
 }

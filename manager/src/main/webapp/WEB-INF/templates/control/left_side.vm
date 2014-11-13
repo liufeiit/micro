@@ -32,15 +32,23 @@
 			</li>
 			
 			<li>
-				<a href="stats.htm">
+				<a href="article_create_page.htm">
 					<i class="fa fa-bar-chart-o"></i>
-					<span>统计</span>
+					<span>创建文章</span>
 					##<small class="badge pull-right bg-green">new</small>
 				</a>
 			</li>
 			
 			<li>
-				<a href="configurer.htm">
+				<a href="create_cat.htm">
+					<i class="fa fa-bar-chart-o"></i>
+					<span>创建文章分类</span>
+					##<small class="badge pull-right bg-green">new</small>
+				</a>
+			</li>
+			
+			<li>
+				<a href="#">
 					<i class="fa fa-bar-chart-o"></i>
 					<span>在线参数</span>
 					<small class="badge pull-right bg-green">建设中</small>
@@ -88,7 +96,7 @@
 			</li>
 			
 			<li>
-				<a href="setting.htm">
+				<a href="#">
 					<i class="fa fa-gear"></i>
 					<span>设置</span>
 					##<small class="badge pull-right bg-yellow">12</small>
