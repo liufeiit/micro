@@ -1,0 +1,38 @@
+#if($!success)
+	<div class="row">
+	    <div class="col-xs-12">
+			<div class="box box-danger">
+	            <div class="box-header">
+	                <h3 class="box-title">$!{article.title}</h3>
+	            </div>
+	            <div class="box-body">
+	            	<div class="timeline-item">
+                        <div class="timeline-body">
+                            $!{article.content}
+                        </div>
+                    </div>
+	            </div>
+	            <div class="box-footer">
+		            <div class="form-group">
+	                    <a class="btn btn-default btn-flat" href="article_edit_page.htm?id=$!{article.id}">编辑</a>
+	                </div>
+                </div>
+	        </div>
+		</div>
+	</div>
+#else
+	<div class="row">
+	    <div class="col-xs-12">
+			<div class="box box-danger">
+	            <div class="box-header">
+	                <h3 class="box-title">文章<small>文章详情</small></h3>
+	            </div>
+	            <div class="box-body">
+		            <div class="form-group">
+	                    <label>查询文章失败或者文章不存在！</label>
+	                </div>
+	            </div>
+	        </div>
+		</div>
+	</div>
+#end
