@@ -7,7 +7,7 @@ import micro.core.dataobject.UserDO;
 import micro.core.service.BaseService;
 import micro.core.service.Result;
 import micro.core.service.UserService;
-import micro.core.util.ErrorCode;
+import micro.core.util.ResultCode;
 import micro.core.util.PasswdUtil;
 
 import org.springframework.stereotype.Service;
@@ -38,9 +38,9 @@ public class DefaultUserService extends BaseService implements UserService {
 			userDAO.insertUser(user);
 		} catch (DAOException e) {
 			log.error("CreateUser Error.", e);
-			return Result.newError().with(ErrorCode.Error_CreateUser);
+			return Result.newError().with(ResultCode.Error_CreateUser);
 		}
-		return Result.newSuccess().with(ErrorCode.Success).with("user", user);
+		return Result.newSuccess().with(ResultCode.Success).with("user", user);
 	}
 	
 	public static void main(String[] args) {
@@ -51,23 +51,23 @@ public class DefaultUserService extends BaseService implements UserService {
 	public Result login(String name, String passwd) {
 		try {
 			if(StringUtil.isBlank(name)) {
-				return Result.newError().with(ErrorCode.Error_InputUsername);
+				return Result.newError().with(ResultCode.Error_InputUsername);
 			}
 			if(StringUtil.isBlank(passwd)) {
-				return Result.newError().with(ErrorCode.Error_InputPasswd);
+				return Result.newError().with(ResultCode.Error_InputPasswd);
 			}
 			UserDO user = userDAO.selectUser(name);
 			if(user == null) {
-				return Result.newError().with(ErrorCode.Error_NonUser);
+				return Result.newError().with(ResultCode.Error_NonUser);
 			}
 			if(!PasswdUtil.signPwsswd(passwd).equals(user.getPassword())) {
-				return Result.newError().with(ErrorCode.Error_ErrPasswd);
+				return Result.newError().with(ResultCode.Error_ErrPasswd);
 			}
 			user.setPassword("");
-			return Result.newSuccess().with(ErrorCode.Success).with("online.user", user);
+			return Result.newSuccess().with(ResultCode.Success).with("online.user", user);
 		} catch (DAOException e) {
 			log.error("Login Error.", e);
 		}
-		return Result.newError().with(ErrorCode.Error_UserLogin);
+		return Result.newError().with(ResultCode.Error_UserLogin);
 	}
 }

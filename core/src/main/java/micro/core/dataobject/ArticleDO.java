@@ -21,7 +21,7 @@ public class ArticleDO extends BaseDO {
 	@Column(name = "title")
 	private String title;
 
-	@Column(name = "title")
+	@Column(name = "content")
 	private String content;
 
 	@Column(name = "content_category_id")

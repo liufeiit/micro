@@ -1,5 +1,7 @@
 package micro.core.service;
 
+import micro.core.dao.ArticleCatDAO;
+import micro.core.dao.ArticleDAO;
 import micro.core.dao.UserDAO;
 
 import org.apache.commons.logging.Log;
@@ -21,18 +23,25 @@ import org.springframework.context.ApplicationEventPublisherAware;
  * @version 1.0
  * @since 2014年8月25日 下午1:12:04
  */
-public abstract class BaseService implements InitializingBean, BeanNameAware, ApplicationContextAware, ApplicationEventPublisherAware {
+public abstract class BaseService implements InitializingBean, BeanNameAware, ApplicationContextAware,
+		ApplicationEventPublisherAware {
 
 	protected final Log log = LogFactory.getLog(getClass());
-	
+
 	@Autowired
-	@Qualifier(value="userDAO")
+	@Qualifier(value = "userDAO")
 	protected UserDAO userDAO;
-	
+	@Autowired
+	@Qualifier(value = "articleDAO")
+	protected ArticleDAO articleDAO;
+	@Autowired
+	@Qualifier(value = "articleCatDAO")
+	protected ArticleCatDAO articleCatDAO;
+
 	protected ApplicationContext application;
 	protected ApplicationEventPublisher publisher;
 	protected String name;
-	
+
 	@Override
 	public final void setBeanName(String name) {
 		this.name = name;
@@ -61,10 +70,24 @@ public abstract class BaseService implements InitializingBean, BeanNameAware, Ap
 	}
 
 	protected void initialize() throws Exception {
-		
+
 	}
 
 	public void setUserDAO(UserDAO userDAO) {
 		this.userDAO = userDAO;
+	}
+	
+	/**
+	 * @param articleDAO the articleDAO to set
+	 */
+	public void setArticleDAO(ArticleDAO articleDAO) {
+		this.articleDAO = articleDAO;
+	}
+	
+	/**
+	 * @param articleCatDAO the articleCatDAO to set
+	 */
+	public void setArticleCatDAO(ArticleCatDAO articleCatDAO) {
+		this.articleCatDAO = articleCatDAO;
 	}
 }

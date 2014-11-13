@@ -2,15 +2,16 @@ package micro.core.dao.impl;
 
 import java.util.List;
 
-import micro.core.dao.ArticleCategoryDAO;
+import micro.core.dao.ArticleCatDAO;
 import micro.core.dao.BaseDAO;
 import micro.core.dao.DAOException;
-import micro.core.dao.statement.ArticleCategoryMapper;
-import micro.core.dataobject.ArticleCategoryDO;
+import micro.core.dao.statement.ArticleCatMapper;
+import micro.core.dataobject.ArticleCatDO;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import tulip.data.jdbc.mapper.BeanParameterMapper;
 import tulip.data.jdbc.mapper.BeanRowMapper;
@@ -21,18 +22,19 @@ import tulip.data.jdbc.mapper.BeanRowMapper;
  * @version 1.0
  * @since 2014年11月12日 下午11:24:55
  */
-public class DefaultArticleCategoryDAO extends BaseDAO implements ArticleCategoryDAO, ArticleCategoryMapper {
+@Repository("articleCatDAO")
+public class DefaultArticleCatDAO extends BaseDAO implements ArticleCatDAO, ArticleCatMapper {
 
 	@Override
-	public void insert(ArticleCategoryDO category) throws DAOException {
+	public void insert(ArticleCatDO category) throws DAOException {
 		try {
 			KeyHolder holder = new GeneratedKeyHolder();
 			jdbcTemplate.update(INSERT_SQL, BeanParameterMapper.newInstance(category), holder, new String[]{ "content_category_id" });
 			Number id = holder.getKey();
 			category.setId(id.longValue());
 		} catch (DataAccessException e) {
-			log.error("insert Error.", e);
-			throw new DAOException("insert Error.", e);
+			log.error("Insert Error.", e);
+			throw new DAOException("Insert Error.", e);
 		}
 	}
 
@@ -41,28 +43,39 @@ public class DefaultArticleCategoryDAO extends BaseDAO implements ArticleCategor
 		try {
 			jdbcTemplate.update(DELETE_SQL, BeanParameterMapper.newSingleParameterMapper("content_category_id", catId));
 		} catch (DataAccessException e) {
-			log.error("delete Error.", e);
-			throw new DAOException("delete Error.", e);
+			log.error("Delete Error.", e);
+			throw new DAOException("Delete Error.", e);
 		}
 	}
 
 	@Override
-	public void update(ArticleCategoryDO category) throws DAOException {
+	public void update(ArticleCatDO category) throws DAOException {
 		try {
 			jdbcTemplate.update(UPDATE_SQL, BeanParameterMapper.newInstance(category));
 		} catch (DataAccessException e) {
-			log.error("update Error.", e);
-			throw new DAOException("update Error.", e);
+			log.error("Update Error.", e);
+			throw new DAOException("Update Error.", e);
 		}
 	}
 
 	@Override
-	public List<ArticleCategoryDO> selectAll() throws DAOException {
+	public List<ArticleCatDO> selectAll() throws DAOException {
 		try {
-			return jdbcTemplate.query(SELECT_ALL, BeanRowMapper.newInstance(ArticleCategoryDO.class));
+			return jdbcTemplate.query(SELECT_ALL, BeanRowMapper.newInstance(ArticleCatDO.class));
 		} catch (DataAccessException e) {
 			log.error("SelectAll Error.", e);
 			throw new DAOException("SelectAll Error.", e);
+		}
+	}
+
+	@Override
+	public ArticleCatDO getArticleCat(long catId) throws DAOException {
+		try {
+			return jdbcTemplate.queryForObject(SELECT_ONE_SQL, 
+					BeanParameterMapper.newSingleParameterMapper("content_category_id", catId), BeanRowMapper.newInstance(ArticleCatDO.class));
+		} catch (DataAccessException e) {
+			log.error("Select ArticleCat Error.", e);
+			throw new DAOException("Select ArticleCat Error.", e);
 		}
 	}
 }

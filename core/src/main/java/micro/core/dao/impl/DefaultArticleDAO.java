@@ -11,6 +11,7 @@ import micro.core.dataobject.ArticleDO;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import tulip.data.jdbc.mapper.BeanParameterMapper;
 import tulip.data.jdbc.mapper.BeanRowMapper;
@@ -21,6 +22,7 @@ import tulip.data.jdbc.mapper.BeanRowMapper;
  * @version 1.0
  * @since 2014年11月12日 下午11:50:55
  */
+@Repository("articleDAO")
 public class DefaultArticleDAO extends BaseDAO implements ArticleDAO, ArticleMapper {
 
 	@Override
@@ -31,8 +33,8 @@ public class DefaultArticleDAO extends BaseDAO implements ArticleDAO, ArticleMap
 			Number id = holder.getKey();
 			article.setId(id.longValue());
 		} catch (DataAccessException e) {
-			log.error("insert Error.", e);
-			throw new DAOException("insert Error.", e);
+			log.error("Insert Error.", e);
+			throw new DAOException("Insert Error.", e);
 		}
 	}
 
@@ -41,8 +43,8 @@ public class DefaultArticleDAO extends BaseDAO implements ArticleDAO, ArticleMap
 		try {
 			jdbcTemplate.update(DELETE_SQL, BeanParameterMapper.newSingleParameterMapper("content_id", id));
 		} catch (DataAccessException e) {
-			log.error("delete Error.", e);
-			throw new DAOException("delete Error.", e);
+			log.error("Delete Error.", e);
+			throw new DAOException("Delete Error.", e);
 		}
 	}
 
@@ -54,8 +56,8 @@ public class DefaultArticleDAO extends BaseDAO implements ArticleDAO, ArticleMap
 			Number id = holder.getKey();
 			article.setId(id.longValue());
 		} catch (DataAccessException e) {
-			log.error("update Error.", e);
-			throw new DAOException("update Error.", e);
+			log.error("Update Error.", e);
+			throw new DAOException("Update Error.", e);
 		}
 	}
 
@@ -65,8 +67,8 @@ public class DefaultArticleDAO extends BaseDAO implements ArticleDAO, ArticleMap
 			return jdbcTemplate.query(SELECT_CAT_SQL, BeanParameterMapper.newSingleParameterMapper("content_category_id", catId), 
 					BeanRowMapper.newInstance(ArticleDO.class));
 		} catch (DataAccessException e) {
-			log.error("SelectYearStats Error.", e);
-			throw new DAOException("SelectYearStats Error.", e);
+			log.error("Select Article By Cat Error.", e);
+			throw new DAOException("Select Article By Cat Error.", e);
 		}
 	}
 
@@ -76,8 +78,8 @@ public class DefaultArticleDAO extends BaseDAO implements ArticleDAO, ArticleMap
 			return jdbcTemplate.queryForObject(SELECT_ONE_SQL, 
 					BeanParameterMapper.newSingleParameterMapper("content_id", id), BeanRowMapper.newInstance(ArticleDO.class));
 		} catch (DataAccessException e) {
-			log.error("SelectEvent Error.", e);
-			throw new DAOException("SelectEvent Error.", e);
+			log.error("Select Article Error.", e);
+			throw new DAOException("Select Article Error.", e);
 		}
 	}
 }

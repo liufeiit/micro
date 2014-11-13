@@ -7,7 +7,7 @@ package micro.core.util;
  * @version 1.0
  * @since 2014年9月4日 下午7:52:58
  */
-public enum ErrorCode {
+public enum ResultCode {
 	Success								(200, 		"成功"),
 
 	Error_CreateUser					(-1000, 	"创建用户失败"),
@@ -20,12 +20,16 @@ public enum ErrorCode {
 	
 	Error_Query							(-3000, 	"查询失败"),
 	
+	Error_Update						(-3001, 	"数据更新失败"),
+	
+	Error_Insert						(-3002, 	"添加数据失败"),
+	
 	Error_Permission					(-9000, 	"非法权限"),
 	
 	;
 	public final int code;
 	public final String description;
-	private ErrorCode(int code, String description) {
+	private ResultCode(int code, String description) {
 		this.code = code;
 		this.description = description;
 	}
@@ -34,12 +38,12 @@ public enum ErrorCode {
 		return this.code == code;
 	}
 	
-	public boolean eq(ErrorCode code) {
+	public boolean eq(ResultCode code) {
 		return this.code == code.code;
 	}
 	
-	public static ErrorCode parse(int code) {
-		for(ErrorCode e : values()) {
+	public static ResultCode parse(int code) {
+		for(ResultCode e : values()) {
 			if(e.code == code) {
 				return e;
 			}
@@ -48,7 +52,7 @@ public enum ErrorCode {
 	}
 	
 	public static String getMessage(int code) {
-		for(ErrorCode e : values()) {
+		for(ResultCode e : values()) {
 			if(e.code == code) {
 				return e.description;
 			}

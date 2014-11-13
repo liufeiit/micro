@@ -6,7 +6,7 @@ package micro.core.dao.statement;
  * @version 1.0
  * @since 2014年11月12日 下午11:24:23
  */
-public interface ArticleCategoryMapper {
+public interface ArticleCatMapper {
 
 	String SELECT_ALL = "SELECT content_category_id, name, description, icon, position, created, updated FROM content_category;";
 	
@@ -15,4 +15,6 @@ public interface ArticleCategoryMapper {
 	String INSERT_SQL = "INSERT INTO content_category(content_category_id, name, description, icon, position, created, updated) VALUES (:content_category_id, :name, :description, :icon, :position, NOW(), NOW());";
 	
 	String DELETE_SQL = "DELETE FROM content_category WHERE content_category_id = :content_category_id;";
+	
+	String SELECT_ONE_SQL = "SELECT content_category_id, name, description, icon, position, created, updated FROM content_category WHERE content_category_id = :content_category_id;";
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import micro.core.util.ErrorCode;
+import micro.core.util.ResultCode;
 
 /**
  * 
@@ -48,7 +48,7 @@ public class Result implements Serializable {
 		return data.get(key);
 	}
 	
-	public Result with(ErrorCode errorCode) {
+	public Result with(ResultCode errorCode) {
 		errorCode(errorCode.code);
 		message(errorCode.description);
 		return this;
