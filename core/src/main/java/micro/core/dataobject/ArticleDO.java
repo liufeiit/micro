@@ -47,8 +47,7 @@ public class ArticleDO extends BaseDO {
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param id the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -62,8 +61,7 @@ public class ArticleDO extends BaseDO {
 	}
 
 	/**
-	 * @param type
-	 *            the type to set
+	 * @param type the type to set
 	 */
 	public void setType(String type) {
 		this.type = type;
@@ -77,8 +75,7 @@ public class ArticleDO extends BaseDO {
 	}
 
 	/**
-	 * @param title
-	 *            the title to set
+	 * @param title the title to set
 	 */
 	public void setTitle(String title) {
 		this.title = title;
@@ -92,8 +89,7 @@ public class ArticleDO extends BaseDO {
 	}
 
 	/**
-	 * @param content
-	 *            the content to set
+	 * @param content the content to set
 	 */
 	public void setContent(String content) {
 		this.content = content;
@@ -107,8 +103,7 @@ public class ArticleDO extends BaseDO {
 	}
 
 	/**
-	 * @param catId
-	 *            the catId to set
+	 * @param catId the catId to set
 	 */
 	public void setCatId(long catId) {
 		this.catId = catId;
@@ -122,8 +117,7 @@ public class ArticleDO extends BaseDO {
 	}
 
 	/**
-	 * @param status
-	 *            the status to set
+	 * @param status the status to set
 	 */
 	public void setStatus(String status) {
 		this.status = status;
@@ -137,8 +131,7 @@ public class ArticleDO extends BaseDO {
 	}
 
 	/**
-	 * @param position
-	 *            the position to set
+	 * @param position the position to set
 	 */
 	public void setPosition(int position) {
 		this.position = position;
@@ -152,8 +145,7 @@ public class ArticleDO extends BaseDO {
 	}
 
 	/**
-	 * @param clicks
-	 *            the clicks to set
+	 * @param clicks the clicks to set
 	 */
 	public void setClicks(long clicks) {
 		this.clicks = clicks;
@@ -167,8 +159,7 @@ public class ArticleDO extends BaseDO {
 	}
 
 	/**
-	 * @param creator
-	 *            the creator to set
+	 * @param creator the creator to set
 	 */
 	public void setCreator(long creator) {
 		this.creator = creator;

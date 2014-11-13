@@ -34,8 +34,7 @@ public class ArticleCatDO extends BaseDO {
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param id the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -49,8 +48,7 @@ public class ArticleCatDO extends BaseDO {
 	}
 
 	/**
-	 * @param name
-	 *            the name to set
+	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -64,8 +62,7 @@ public class ArticleCatDO extends BaseDO {
 	}
 
 	/**
-	 * @param description
-	 *            the description to set
+	 * @param description the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -79,8 +76,7 @@ public class ArticleCatDO extends BaseDO {
 	}
 
 	/**
-	 * @param icon
-	 *            the icon to set
+	 * @param icon the icon to set
 	 */
 	public void setIcon(String icon) {
 		this.icon = icon;
@@ -89,15 +85,14 @@ public class ArticleCatDO extends BaseDO {
 	/**
 	 * @return the position
 	 */
-	public Integer getPosition() {
+	public int getPosition() {
 		return position;
 	}
 
 	/**
-	 * @param position
-	 *            the position to set
+	 * @param position the position to set
 	 */
-	public void setPosition(Integer position) {
+	public void setPosition(int position) {
 		this.position = position;
 	}
 }

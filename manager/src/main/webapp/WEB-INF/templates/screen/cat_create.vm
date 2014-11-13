@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-xs-12">
+		<div class="box box-danger">
+            <div class="box-header">
+                <h3 class="box-title">创建文章类型<small>注意填写规范</small></h3>
+            </div>
+            <form role="form" action="cat_create.htm" method="post" >
+                <div class="box-body">
+                	<div class="form-group">
+	                    <label for="name">名称</label>
+						<div class="input-group">
+	                        <div class="input-group-addon">
+	                            <i class="fa fa-edit"></i>
+	                        </div>
+	                        <input name="name" type="text" class="form-control" id="name" placeholder="名称"/>
+	                    </div>
+	                </div>
+		                                    
+		        	<div class="form-group">
+	                    <label for="description">描述</label>
+						<div class="input-group">
+	                        <div class="input-group-addon">
+	                            <i class="fa fa-edit"></i>
+	                        </div>
+	                        <input name="description" type="text" class="form-control" id="description" placeholder="描述"/>
+	                    </div>
+	                </div>
+		            
+		            <div class="form-group">
+	                    <label for="icon">图标</label>
+						<div class="input-group">
+	                        <div class="input-group-addon">
+	                            <i class="fa fa-edit"></i>
+	                        </div>
+	                        <input name="icon" type="text" class="form-control" id="icon" placeholder="图标"/>
+	                    </div>
+	                </div>
+		            
+		            <div class="form-group">
+	                    <label for="position">位置</label>
+						<div class="input-group">
+	                        <div class="input-group-addon">
+	                            <i class="fa fa-edit"></i>
+	                        </div>
+	                        <input name="position" type="text" class="form-control" id="position" placeholder="位置(默认为:0)"/>
+	                    </div>
+	                </div>
+		            
+                </div>
+                <div class="box-footer">
+		            <div class="form-group">
+	                    <button type="submit" class="btn btn-primary">创建</button>
+	                </div>
+                </div>
+            </form>
+        </div>
+	</div>
+</div>

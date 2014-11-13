@@ -31,6 +31,12 @@ public class Article extends BaseController {
 		mv.addObject("article", result.get("article"));
 		return mv;
 	}
+	
+	@RequestMapping(value = "/article_list.htm")
+	public ModelAndView article_list(HttpServletRequest request) {
+		ModelAndView mv = returnView(request, "article_list", "文章", "文章列表");
+		return mv;
+	}
 
 	@RequestMapping(value = "/article_create_page.htm")
 	public ModelAndView article_create_page(HttpServletRequest request) {
