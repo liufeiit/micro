@@ -1,6 +1,8 @@
 package micro.core.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import micro.core.dao.ArticleDAO;
 import micro.core.dao.BaseDAO;
@@ -62,9 +64,13 @@ public class DefaultArticleDAO extends BaseDAO implements ArticleDAO, ArticleMap
 	}
 
 	@Override
-	public List<ArticleDO> selectCat(long catId) throws DAOException {
+	public List<ArticleDO> selectCat(long catId, int index, int size) throws DAOException {
 		try {
-			return jdbcTemplate.query(SELECT_CAT_SQL, BeanParameterMapper.newSingleParameterMapper("content_category_id", catId), 
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("content_category_id", catId);
+			paramMap.put("start", index);
+			paramMap.put("size", size);
+			return jdbcTemplate.query(SELECT_CAT_SQL, BeanParameterMapper.newMapParameterMapper(paramMap), 
 					BeanRowMapper.newInstance(ArticleDO.class));
 		} catch (DataAccessException e) {
 			log.error("Select Article By Cat Error.", e);

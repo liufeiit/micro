@@ -6,6 +6,7 @@ import micro.core.dao.DAOException;
 import micro.core.dataobject.ArticleDO;
 import micro.core.service.ArticleService;
 import micro.core.service.BaseService;
+import micro.core.service.PageQuery;
 import micro.core.service.Result;
 import micro.core.util.ResultCode;
 
@@ -47,6 +48,17 @@ public class DefaultArticleService extends BaseService implements ArticleService
 	public Result addArticle(ArticleDO article) {
 		try {
 			articleDAO.insert(article);
+			return Result.newSuccess().with(ResultCode.Success);
+		} catch (DAOException e) {
+			log.error("Insert Article Error.", e);
+		}
+		return Result.newError().with(ResultCode.Error_Insert);
+	}
+
+	@Override
+	public Result query(long catId, PageQuery pageQuery) {
+		try {
+			articleDAO.selectCat(catId, pageQuery.getIndex(), pageQuery.getSize());
 			return Result.newSuccess().with(ResultCode.Success);
 		} catch (DAOException e) {
 			log.error("Insert Article Error.", e);

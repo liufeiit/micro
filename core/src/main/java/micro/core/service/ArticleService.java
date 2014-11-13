@@ -15,4 +15,6 @@ public interface ArticleService {
 	Result updateArticle(ArticleDO article);
 	
 	Result addArticle(ArticleDO article);
+	
+	Result query(long catId, PageQuery pageQuery);
 }

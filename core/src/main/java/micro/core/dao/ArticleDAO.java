@@ -18,7 +18,7 @@ public interface ArticleDAO {
 
 	void update(ArticleDO article) throws DAOException;
 
-	List<ArticleDO> selectCat(long catId) throws DAOException;
+	List<ArticleDO> selectCat(long catId, int index, int size) throws DAOException;
 	
 	ArticleDO selectArticle(long id) throws DAOException;
 }
