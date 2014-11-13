@@ -26,6 +26,9 @@ public class Home extends BaseController {
 	@RequestMapping(value = "/home.htm")
 	public ModelAndView home(HttpServletRequest request) {
 		ModelAndView mv = returnView(request, "home", "首页", "首页概况");
+		Result result = articleCatService.getAllArticleCat();
+		mv.addObject("hasCat", result.isSuccess());
+		mv.addObject("catList", result.get("catList"));
 		return mv;
 	}
 	
