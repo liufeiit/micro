@@ -59,9 +59,9 @@ public class DefaultArticleCatDAO extends BaseDAO implements ArticleCatDAO, Arti
 	}
 
 	@Override
-	public List<ArticleCatDO> selectAll() throws DAOException {
+	public List<ArticleCatDO> selectAll(boolean simple) throws DAOException {
 		try {
-			return jdbcTemplate.query(SELECT_ALL, BeanRowMapper.newInstance(ArticleCatDO.class));
+			return jdbcTemplate.query(simple ? SELECT_SIMPLE_ALL : SELECT_ALL, BeanRowMapper.newInstance(ArticleCatDO.class));
 		} catch (DataAccessException e) {
 			log.error("SelectAll Error.", e);
 			throw new DAOException("SelectAll Error.", e);

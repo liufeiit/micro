@@ -12,7 +12,7 @@ public interface ArticleCatService {
 	
 	Result getArticleCat(long id);
 	
-	Result getAllArticleCat();
+	Result getAllArticleCat(boolean simple);
 	
 	Result updateArticle(ArticleCatDO articleCat);
 

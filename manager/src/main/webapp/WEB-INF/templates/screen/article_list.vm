@@ -73,19 +73,23 @@
 	                    		#foreach($article in $articleList)
 	                    			<tr >
 	                            		<td >
-	                            			$!{article.type}
+	                            			#if($!{article.type} == "normal")
+	                            			常规类型
+	                            			#elseif($!{article.type} == "ad")
+	                            			广告类型
+	                            			#end
 	                                    </td>
 	                            		<td >
-	                            			$!{article.title}
+	                            			<a href="article_detail.htm?id=$!{article.id}" target="_self">$!{article.title}</a>
 	                                    </td>
 	                            		<td >
-											$!{article.catId}
+											$!{catMapper.get($!{article.catId})}
 	                                    </td>
 	                            		<td >
 											$!{article.status}
 	                                    </td>
 	                            		<td >
-											$!{article.clicks}
+											$!{article.clicks}次
 	                                    </td>
 	                                </tr>
 	                    		#end

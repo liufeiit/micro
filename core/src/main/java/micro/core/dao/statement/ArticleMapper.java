@@ -21,10 +21,26 @@ public interface ArticleMapper {
 			+ "status = :status, position = :position, updated = :updated "
 			+ "WHERE content_id = :content_id;";
 	
-	String SELECT_CAT_SQL = "SELECT content_id, type, title, "
+	String QUERY_CAT_BY_CATID_SQL = "SELECT content_id, type, title, "
 			+ "content_category_id, status, position, clicks, creator, "
-			+ "created, updated FROM content "
-			+ "WHERE content_category_id = :content_category_id  limit :start, :size";
+			+ "created, updated FROM content WHERE "
+			+ "content_category_id = :content_category_id "
+			
+			+ "AND type LIKE :type "
+			+ "AND title LIKE :title "
+			+ "AND status LIKE :status "
+			
+			+ "limit :start, :size";
+	
+	String QUERY_CAT_SQL = "SELECT content_id, type, title, "
+			+ "content_category_id, status, position, clicks, creator, "
+			+ "created, updated FROM content WHERE "
+			
+			+ "type LIKE :type "
+			+ "AND title LIKE :title "
+			+ "AND status LIKE :status "
+			
+			+ "limit :start, :size";
 	
 	String SELECT_ONE_SQL = "SELECT content_id, type, title, content, "
 			+ "content_category_id, status, position, clicks, creator, "

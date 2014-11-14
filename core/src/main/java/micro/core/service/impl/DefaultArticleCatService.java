@@ -37,9 +37,9 @@ public class DefaultArticleCatService extends BaseService implements ArticleCatS
 	}
 
 	@Override
-	public Result getAllArticleCat() {
+	public Result getAllArticleCat(boolean simple) {
 		try {
-			List<ArticleCatDO> catList = articleCatDAO.selectAll();
+			List<ArticleCatDO> catList = articleCatDAO.selectAll(simple);
 			if(CollectionUtil.isEmpty(catList)) {
 				return Result.newError().with(ResultCode.Error_Query);
 			}

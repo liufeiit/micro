@@ -20,5 +20,5 @@ public interface ArticleCatDAO {
 	
 	void update(ArticleCatDO category) throws DAOException;
 	
-	List<ArticleCatDO> selectAll() throws DAOException;
+	List<ArticleCatDO> selectAll(boolean simple) throws DAOException;
 }

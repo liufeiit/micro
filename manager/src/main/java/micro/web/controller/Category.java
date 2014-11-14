@@ -46,7 +46,7 @@ public class Category extends BaseController {
 	@RequestMapping(value = "/cat_list.htm")
 	public ModelAndView article_detail(HttpServletRequest request) {
 		ModelAndView mv = returnView(request, "cat_list", "文章类型", "文章类型列表");
-		Result result = articleCatService.getAllArticleCat();
+		Result result = articleCatService.getAllArticleCat(false);
 		mv.addObject("hasCat", result.isSuccess());
 		mv.addObject("catList", result.get("catList"));
 		return mv;

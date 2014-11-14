@@ -10,6 +10,8 @@ public interface ArticleCatMapper {
 
 	String SELECT_ALL = "SELECT content_category_id, name, description, icon, position, created, updated FROM content_category;";
 	
+	String SELECT_SIMPLE_ALL = "SELECT content_category_id, name FROM content_category;";
+	
 	String UPDATE_SQL = "UPDATE content_category SET name = :name, description = :description, icon = :icon, position = :position, updated = :updated WHERE content_category_id = :content_category_id;";
 	
 	String INSERT_SQL = "INSERT INTO content_category(content_category_id, name, description, icon, position, created, updated) VALUES (:content_category_id, :name, :description, :icon, :position, NOW(), NOW());";

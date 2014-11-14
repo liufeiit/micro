@@ -1,10 +1,12 @@
 package micro.web.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import micro.core.dataobject.ArticleCatDO;
 import micro.core.dataobject.ArticleDO;
 import micro.core.service.PageQuery;
 import micro.core.service.Result;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @version 1.0.0
  * @since 2014年11月13日 下午1:22:32
  */
+@SuppressWarnings("unchecked")
 @Controller
 public class Article extends BaseController {
 
@@ -54,6 +57,14 @@ public class Article extends BaseController {
 			mv.addObject("currentPage", 1);
 			mv.addObject("nextPage", 1);
 		}
+		Result catResult = articleCatService.getAllArticleCat(true);
+		List<ArticleCatDO> catList = (List<ArticleCatDO>) catResult.get("catList");
+		Map<Long, String> catMapper = new HashMap<Long, String>();
+		for (ArticleCatDO cat : catList) {
+			catMapper.put(cat.getId(), cat.getName());
+		}
+		mv.addObject("catMapper", catMapper);
+		mv.addObject("catList", catList);
 		Result result = articleService.query(catId, type, status, title, new PageQuery(page));
 		boolean hasArticle = result.isSuccess();
 		if(!hasArticle) {
@@ -69,7 +80,7 @@ public class Article extends BaseController {
 	@RequestMapping(value = "/article_create_page.htm")
 	public ModelAndView article_create_page(HttpServletRequest request) {
 		ModelAndView mv = returnView(request, "article_create", "文章", "创建文章");
-		Result result = articleCatService.getAllArticleCat();
+		Result result = articleCatService.getAllArticleCat(true);
 		mv.addObject("hasCat", result.isSuccess());
 		mv.addObject("catList", result.get("catList"));
 		return mv;
@@ -98,7 +109,7 @@ public class Article extends BaseController {
 	@RequestMapping(value = "/article_edit_page.htm")
 	public ModelAndView article_edit_page(HttpServletRequest request) {
 		ModelAndView mv = returnView(request, "article_edit", "文章", "文章编辑");
-		Result cat = articleCatService.getAllArticleCat();
+		Result cat = articleCatService.getAllArticleCat(true);
 		mv.addObject("hasCat", cat.isSuccess());
 		mv.addObject("catList", cat.get("catList"));
 		long id = NumberUtils.toLong(request.getParameter("id"), 0L);

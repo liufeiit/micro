@@ -1,5 +1,5 @@
 #if($!success)
-<form role="form" action="article_create.htm" method="post" >
+<form role="form" action="article_edit.htm" method="post" >
 	<input type="hidden" name="id" id="id" value="$!{article.id}"/>
 	<div class="row">
 		

@@ -53,10 +53,7 @@ public class DefaultArticleDAO extends BaseDAO implements ArticleDAO, ArticleMap
 	@Override
 	public void update(ArticleDO article) throws DAOException {
 		try {
-			KeyHolder holder = new GeneratedKeyHolder();
-			jdbcTemplate.update(UPDATE_SQL, BeanParameterMapper.newInstance(article), holder, new String[]{ "content_id" });
-			Number id = holder.getKey();
-			article.setId(id.longValue());
+			jdbcTemplate.update(UPDATE_SQL, BeanParameterMapper.newInstance(article));
 		} catch (DataAccessException e) {
 			log.error("Update Error.", e);
 			throw new DAOException("Update Error.", e);
@@ -64,13 +61,16 @@ public class DefaultArticleDAO extends BaseDAO implements ArticleDAO, ArticleMap
 	}
 
 	@Override
-	public List<ArticleDO> selectCat(long catId, int index, int size) throws DAOException {
+	public List<ArticleDO> query(long catId, String type, String status, String title, int index, int size) throws DAOException {
 		try {
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("content_category_id", catId);
+			paramMap.put("type", LIKE_SIG + type + LIKE_SIG);
+			paramMap.put("status", LIKE_SIG + status + LIKE_SIG);
+			paramMap.put("title", LIKE_SIG + title + LIKE_SIG);
 			paramMap.put("start", index);
 			paramMap.put("size", size);
-			return jdbcTemplate.query(SELECT_CAT_SQL, BeanParameterMapper.newMapParameterMapper(paramMap), 
+			return jdbcTemplate.query(catId > 0L ? QUERY_CAT_BY_CATID_SQL : QUERY_CAT_SQL, BeanParameterMapper.newMapParameterMapper(paramMap), 
 					BeanRowMapper.newInstance(ArticleDO.class));
 		} catch (DataAccessException e) {
 			log.error("Select Article By Cat Error.", e);

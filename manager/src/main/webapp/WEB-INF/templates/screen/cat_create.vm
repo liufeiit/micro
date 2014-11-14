@@ -2,7 +2,7 @@
     <div class="col-xs-12">
 		<div class="box box-danger">
             <div class="box-header">
-                <h3 class="box-title">创建文章类型<small>注意填写规范</small></h3>
+                <h3 class="box-title">创建文章分类<small>注意填写规范</small></h3>
             </div>
             <form role="form" action="cat_create.htm" method="post" >
                 <div class="box-body">

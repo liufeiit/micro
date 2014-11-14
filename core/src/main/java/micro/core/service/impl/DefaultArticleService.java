@@ -12,6 +12,9 @@ import micro.core.util.ResultCode;
 
 import org.springframework.stereotype.Service;
 
+import tulip.util.CollectionUtil;
+import tulip.util.StringUtil;
+
 /**
  * 
  * @author 刘飞 E-mail:liufei_it@126.com
@@ -60,7 +63,13 @@ public class DefaultArticleService extends BaseService implements ArticleService
 	@Override
 	public Result query(long catId, String type, String status, String title, PageQuery pageQuery) {
 		try {
-			List<ArticleDO> articleList = articleDAO.selectCat(catId, pageQuery.getIndex(), pageQuery.getSize());
+			type = StringUtil.defaultIfBlank(type, StringUtil.EMPTY);
+			status = StringUtil.defaultIfBlank(status, StringUtil.EMPTY);
+			title = StringUtil.defaultIfBlank(title, StringUtil.EMPTY);
+			List<ArticleDO> articleList = articleDAO.query(catId, type, status, title, pageQuery.getIndex(), pageQuery.getSize());
+			if(CollectionUtil.isEmpty(articleList)) {
+				return Result.newError().with(ResultCode.Error_Query);
+			}
 			return Result.newSuccess().with(ResultCode.Success).with("articleList", articleList);
 		} catch (DAOException e) {
 			log.error("Insert Article Error.", e);
