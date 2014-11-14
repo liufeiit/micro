@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import micro.core.dataobject.ArticleDO;
+import micro.core.service.PageQuery;
 import micro.core.service.Result;
 
 import org.apache.commons.lang.math.NumberUtils;
@@ -35,6 +36,33 @@ public class Article extends BaseController {
 	@RequestMapping(value = "/article_list.htm")
 	public ModelAndView article_list(HttpServletRequest request) {
 		ModelAndView mv = returnView(request, "article_list", "文章", "文章列表");
+		long catId = NumberUtils.toLong(request.getParameter("catId"), 0L);
+		mv.addObject("selected_catId", catId);
+		String type = request.getParameter("type");
+		mv.addObject("selected_type", type);
+		String status = request.getParameter("status");
+		mv.addObject("selected_status", status);
+		String title = request.getParameter("title");
+		mv.addObject("selected_title", title);
+		int page = NumberUtils.toInt(request.getParameter("page"), 1);
+		if(page > 1) {
+			mv.addObject("prePage", page - 1);
+			mv.addObject("currentPage", page);
+			mv.addObject("nextPage", page + 1);
+		} else {
+			mv.addObject("prePage", 1);
+			mv.addObject("currentPage", 1);
+			mv.addObject("nextPage", 1);
+		}
+		Result result = articleService.query(catId, type, status, title, new PageQuery(page));
+		boolean hasArticle = result.isSuccess();
+		if(!hasArticle) {
+			mv.addObject("prePage", 1);
+			mv.addObject("currentPage", 1);
+			mv.addObject("nextPage", 1);
+		}
+		mv.addObject("hasArticle", hasArticle);
+		mv.addObject("articleList", result.get("articleList"));
 		return mv;
 	}
 
@@ -69,7 +97,7 @@ public class Article extends BaseController {
 
 	@RequestMapping(value = "/article_edit_page.htm")
 	public ModelAndView article_edit_page(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("article_edit");
+		ModelAndView mv = returnView(request, "article_edit", "文章", "文章编辑");
 		Result cat = articleCatService.getAllArticleCat();
 		mv.addObject("hasCat", cat.isSuccess());
 		mv.addObject("catList", cat.get("catList"));

@@ -16,5 +16,5 @@ public interface ArticleService {
 	
 	Result addArticle(ArticleDO article);
 	
-	Result query(long catId, PageQuery pageQuery);
+	Result query(long catId, String type, String status, String title, PageQuery pageQuery);
 }

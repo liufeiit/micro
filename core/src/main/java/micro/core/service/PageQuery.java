@@ -13,8 +13,8 @@ public class PageQuery {
 	private final int index;
 	private final int size;
 
-	public PageQuery(int index) {
-		this(index, DEFAULT_PAGE_SIZE);
+	public PageQuery(int page) {
+		this(page, DEFAULT_PAGE_SIZE);
 	}
 
 	public PageQuery(int page, int size) {

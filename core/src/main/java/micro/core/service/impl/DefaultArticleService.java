@@ -1,6 +1,6 @@
 package micro.core.service.impl;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
 import micro.core.dao.DAOException;
 import micro.core.dataobject.ArticleDO;
@@ -9,6 +9,8 @@ import micro.core.service.BaseService;
 import micro.core.service.PageQuery;
 import micro.core.service.Result;
 import micro.core.util.ResultCode;
+
+import org.springframework.stereotype.Service;
 
 /**
  * 
@@ -56,13 +58,13 @@ public class DefaultArticleService extends BaseService implements ArticleService
 	}
 
 	@Override
-	public Result query(long catId, PageQuery pageQuery) {
+	public Result query(long catId, String type, String status, String title, PageQuery pageQuery) {
 		try {
-			articleDAO.selectCat(catId, pageQuery.getIndex(), pageQuery.getSize());
-			return Result.newSuccess().with(ResultCode.Success);
+			List<ArticleDO> articleList = articleDAO.selectCat(catId, pageQuery.getIndex(), pageQuery.getSize());
+			return Result.newSuccess().with(ResultCode.Success).with("articleList", articleList);
 		} catch (DAOException e) {
 			log.error("Insert Article Error.", e);
 		}
-		return Result.newError().with(ResultCode.Error_Insert);
+		return Result.newError().with(ResultCode.Error_Query);
 	}
 }
