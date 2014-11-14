@@ -34,7 +34,7 @@
 			<li>
 				<a href="article_create_page.htm">
 					<i class="fa fa-bar-chart-o"></i>
-					<span>创建文章</span>
+					<span>新建文章</span>
 					##<small class="badge pull-right bg-green">new</small>
 				</a>
 			</li>
@@ -42,7 +42,7 @@
 			<li>
 				<a href="cat_create_page.htm">
 					<i class="fa fa-bar-chart-o"></i>
-					<span>创建文章分类</span>
+					<span>新建分类</span>
 					##<small class="badge pull-right bg-green">new</small>
 				</a>
 			</li>
