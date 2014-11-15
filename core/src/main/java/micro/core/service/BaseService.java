@@ -2,7 +2,7 @@ package micro.core.service;
 
 import micro.core.dao.ArticleCatDAO;
 import micro.core.dao.ArticleDAO;
-import micro.core.dao.UserDAO;
+import micro.core.dao.AdminDAO;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -29,8 +29,8 @@ public abstract class BaseService implements InitializingBean, BeanNameAware, Ap
 	protected final Log log = LogFactory.getLog(getClass());
 
 	@Autowired
-	@Qualifier(value = "userDAO")
-	protected UserDAO userDAO;
+	@Qualifier(value = "adminDAO")
+	protected AdminDAO adminDAO;
 	@Autowired
 	@Qualifier(value = "articleDAO")
 	protected ArticleDAO articleDAO;
@@ -73,8 +73,11 @@ public abstract class BaseService implements InitializingBean, BeanNameAware, Ap
 
 	}
 
-	public void setUserDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
+	/**
+	 * @param adminDAO the adminDAO to set
+	 */
+	public void setAdminDAO(AdminDAO adminDAO) {
+		this.adminDAO = adminDAO;
 	}
 	
 	/**

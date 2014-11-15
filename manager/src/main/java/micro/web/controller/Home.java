@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import micro.core.dataobject.UserDO;
+import micro.core.dataobject.AdminDO;
 import micro.core.service.Result;
 import micro.web.handler.SessionManager;
 
@@ -59,9 +59,9 @@ public class Home extends BaseController {
 		Map<String, Object> data = new HashMap<String, Object>();
 		String name = request.getParameter("name");
 		String passwd = request.getParameter("passwd");
-		Result result = userService.login(name, passwd);
+		Result result = adminService.login(name, passwd);
 		if(result.isSuccess()) {
-			userLogin(request, (UserDO) result.get("online.user"));
+			adminLogin(request, (AdminDO) result.get("admin"));
 			return post("home.htm", data, "登录中...");
 		}
 		data.put("errorMsg", result.getMessage());

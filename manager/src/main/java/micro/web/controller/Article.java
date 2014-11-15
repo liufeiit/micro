@@ -55,7 +55,7 @@ public class Article extends BaseController {
 		} else {
 			mv.addObject("prePage", 1);
 			mv.addObject("currentPage", 1);
-			mv.addObject("nextPage", 1);
+			mv.addObject("nextPage", 2);
 		}
 		Result catResult = articleCatService.getAllArticleCat(true);
 		List<ArticleCatDO> catList = (List<ArticleCatDO>) catResult.get("catList");
@@ -67,11 +67,6 @@ public class Article extends BaseController {
 		mv.addObject("catList", catList);
 		Result result = articleService.query(catId, type, status, title, new PageQuery(page));
 		boolean hasArticle = result.isSuccess();
-		if(!hasArticle) {
-			mv.addObject("prePage", 1);
-			mv.addObject("currentPage", 1);
-			mv.addObject("nextPage", 1);
-		}
 		mv.addObject("hasArticle", hasArticle);
 		mv.addObject("articleList", result.get("articleList"));
 		return mv;
@@ -92,7 +87,7 @@ public class Article extends BaseController {
 		article.setCatId(NumberUtils.toLong(request.getParameter("catId"), 0L));
 		article.setClicks(0L);
 		article.setContent(request.getParameter("content"));
-		article.setCreator(getUserId(request));
+		article.setCreator(getAdminId(request));
 		article.setPosition(NumberUtils.toInt(request.getParameter("position"), 0));
 		article.setStatus(request.getParameter("status"));
 		article.setTitle(request.getParameter("title"));
@@ -127,7 +122,7 @@ public class Article extends BaseController {
 		article.setCatId(NumberUtils.toLong(request.getParameter("catId"), 0L));
 		article.setClicks(0L);
 		article.setContent(request.getParameter("content"));
-		article.setCreator(getUserId(request));
+		article.setCreator(getAdminId(request));
 		article.setPosition(NumberUtils.toInt(request.getParameter("position"), 0));
 		article.setStatus(request.getParameter("status"));
 		article.setTitle(request.getParameter("title"));

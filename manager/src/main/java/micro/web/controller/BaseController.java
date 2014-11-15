@@ -4,10 +4,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import micro.core.dataobject.UserDO;
+import micro.core.dataobject.AdminDO;
 import micro.core.service.ArticleCatService;
 import micro.core.service.ArticleService;
-import micro.core.service.UserService;
+import micro.core.service.AdminService;
 import micro.web.handler.SessionManager;
 
 import org.apache.commons.logging.Log;
@@ -27,8 +27,8 @@ public class BaseController {
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	@Autowired
-	@Qualifier(value = "userService")
-	protected UserService userService;
+	@Qualifier(value = "adminService")
+	protected AdminService adminService;
 	@Autowired
 	@Qualifier(value = "articleService")
 	protected ArticleService articleService;
@@ -54,27 +54,27 @@ public class BaseController {
 	
 	protected ModelAndView returnView(HttpServletRequest request, String name, String nav, String nav_desc) {
 		ModelAndView mv = new ModelAndView(name);
-		UserDO user = getLoginUser(request);
-		mv.addObject("name", user.getName());
-		mv.addObject("uid", user.getId());
+		AdminDO admin = getLoginAdmin(request);
+		mv.addObject("name", admin.getName());
+		mv.addObject("uid", admin.getId());
 		mv.addObject("nav", nav);
 		mv.addObject("nav_desc", nav_desc);
 		return mv;
 	}
 	
-	protected void userLogin(HttpServletRequest request, UserDO user) {
-		SessionManager.login(request.getSession(true), user);
+	protected void adminLogin(HttpServletRequest request, AdminDO admin) {
+		SessionManager.login(request.getSession(true), admin);
 	}
 	
-	protected UserDO getLoginUser(HttpServletRequest request) {
-		return SessionManager.getUser(request.getSession(true));
+	protected AdminDO getLoginAdmin(HttpServletRequest request) {
+		return SessionManager.getAdmin(request.getSession(true));
 	}
 	
-	protected long getUserId(HttpServletRequest request) {
-		UserDO user = getLoginUser(request);
-		if(user == null) {
+	protected long getAdminId(HttpServletRequest request) {
+		AdminDO admin = getLoginAdmin(request);
+		if(admin == null) {
 			return -1L;
 		}
-		return user.getId();
+		return admin.getId();
 	}
 }

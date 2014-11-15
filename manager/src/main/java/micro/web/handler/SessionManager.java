@@ -2,7 +2,7 @@ package micro.web.handler;
 
 import javax.servlet.http.HttpSession;
 
-import micro.core.dataobject.UserDO;
+import micro.core.dataobject.AdminDO;
 import micro.web.util.Static;
 
 import org.apache.commons.logging.Log;
@@ -17,19 +17,19 @@ public class SessionManager {
 
 	static final Log log = LogFactory.getLog(SessionManager.class);
 	
-	public static void login(HttpSession session, UserDO user) {
-		session.setAttribute(Static.ONLINE_USER, user);
+	public static void login(HttpSession session, AdminDO user) {
+		session.setAttribute(Static.ONLINE_ADMIN, user);
 	}
 	
 	public static void logout(HttpSession session) {
-		session.removeAttribute(Static.ONLINE_USER);
+		session.removeAttribute(Static.ONLINE_ADMIN);
 	}
 
 	public static boolean isLogin(HttpSession session) {
-		return session.getAttribute(Static.ONLINE_USER) != null;
+		return session.getAttribute(Static.ONLINE_ADMIN) != null;
 	}
 
-	public static UserDO getUser(HttpSession session) {
-		return (UserDO) session.getAttribute(Static.ONLINE_USER);
+	public static AdminDO getAdmin(HttpSession session) {
+		return (AdminDO) session.getAttribute(Static.ONLINE_ADMIN);
 	}
 }

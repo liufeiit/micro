@@ -2,9 +2,9 @@ package micro.core.dao.impl;
 
 import micro.core.dao.BaseDAO;
 import micro.core.dao.DAOException;
-import micro.core.dao.UserDAO;
-import micro.core.dao.statement.UserMapper;
-import micro.core.dataobject.UserDO;
+import micro.core.dao.AdminDAO;
+import micro.core.dao.statement.AdminMapper;
+import micro.core.dataobject.AdminDO;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -20,30 +20,30 @@ import tulip.data.jdbc.mapper.BeanRowMapper;
  * @version 1.0
  * @since 2014年9月5日 上午10:59:30
  */
-@Repository("userDAO")
-public class DefaultUserDAO extends BaseDAO implements UserMapper, UserDAO {
+@Repository("adminDAO")
+public class DefaultAdminDAO extends BaseDAO implements AdminMapper, AdminDAO {
 
 	@Override
-	public void insertUser(UserDO user) throws DAOException {
+	public void insertAdmin(AdminDO admin) throws DAOException {
 		try {
 			KeyHolder holder = new GeneratedKeyHolder();
-			jdbcTemplate.update(ADD_SQL, BeanParameterMapper.newInstance(user), holder, new String[]{ "id" });
+			jdbcTemplate.update(ADD_SQL, BeanParameterMapper.newInstance(admin), holder, new String[]{ "id" });
 			Number id = holder.getKey();
-			user.setId(id.longValue());
+			admin.setId(id.longValue());
 		} catch (DataAccessException e) {
-			log.error("InsertUser Error.", e);
-			throw new DAOException("InsertUser Error.", e);
+			log.error("InsertAdmin Error.", e);
+			throw new DAOException("InsertAdmin Error.", e);
 		}
 	}
 
 	@Override
-	public UserDO selectUser(String name) throws DAOException {
+	public AdminDO selectAdmin(String name) throws DAOException {
 		try {
 			return jdbcTemplate.queryForObject(SELECT_BYNAME_SQL, 
-					BeanParameterMapper.newSingleParameterMapper("name", name), BeanRowMapper.newInstance(UserDO.class));
+					BeanParameterMapper.newSingleParameterMapper("name", name), BeanRowMapper.newInstance(AdminDO.class));
 		} catch (DataAccessException e) {
-			log.error("SelectUser Error.", e);
-			throw new DAOException("SelectUser Error.", e);
+			log.error("SelectAdmin Error.", e);
+			throw new DAOException("SelectAdmin Error.", e);
 		}
 	}
 }

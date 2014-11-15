@@ -8,7 +8,7 @@ import tulip.data.annotation.Column;
  * @version 1.0
  * @since 2014年9月5日 上午10:49:20
  */
-public class UserDO extends BaseDO {
+public class AdminDO extends BaseDO {
 
 	private static final long serialVersionUID = 1L;
 

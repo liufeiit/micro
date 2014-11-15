@@ -2,7 +2,7 @@ package micro.web.controller;
 
 import java.util.Map;
 
-import micro.core.service.UserService;
+import micro.core.service.AdminService;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -22,7 +22,7 @@ public class BaseController {
 	
 	@Autowired
 	@Qualifier(value = "userService")
-	protected UserService userService;
+	protected AdminService userService;
 	
 	protected ModelAndView post(String action, Map<String, Object> data, String title) {
 		return post(action, data, false, null, title);

@@ -22,7 +22,7 @@ public interface Static {
 	
 	Log log = LogFactory.getLog(Static.class);
 	
-	String ONLINE_USER = "online:user";
+	String ONLINE_ADMIN = "online:admin";
 	
 	Charset UTF_8 = Charset.forName("UTF-8");
 

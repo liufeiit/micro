@@ -6,7 +6,7 @@ package micro.core.dao.statement;
  * @version 1.0
  * @since 2014年10月29日 下午11:57:58
  */
-public interface UserMapper {
+public interface AdminMapper {
 	String ADD_SQL = "INSERT INTO manager "
 			+ "(name, email, mobile, weixin, password, created, updated) VALUES "
 			+ "(:name, :email, :mobile, :weixin, :password, NOW(), NOW());";

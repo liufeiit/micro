@@ -3,10 +3,10 @@ package micro.core.service.impl;
 import java.util.Date;
 
 import micro.core.dao.DAOException;
-import micro.core.dataobject.UserDO;
+import micro.core.dataobject.AdminDO;
 import micro.core.service.BaseService;
 import micro.core.service.Result;
-import micro.core.service.UserService;
+import micro.core.service.AdminService;
 import micro.core.util.ResultCode;
 import micro.core.util.PasswdUtil;
 
@@ -20,27 +20,27 @@ import tulip.util.StringUtil;
  * @version 1.0
  * @since 2014年9月5日 上午11:10:30
  */
-@Service("userService")
-public class DefaultUserService extends BaseService implements UserService {
+@Service("adminService")
+public class DefaultAdminService extends BaseService implements AdminService {
 
 	@Override
-	public Result createUser(String name, String email, String mobile, String weixin, String password) {
-		UserDO user = new UserDO();
-		user.setName(name);
-		user.setEmail(email);
-		user.setMobile(mobile);
-		user.setWeixin(weixin);
-		user.setPassword(PasswdUtil.signPwsswd(password));
+	public Result createAdmin(String name, String email, String mobile, String weixin, String password) {
+		AdminDO admin = new AdminDO();
+		admin.setName(name);
+		admin.setEmail(email);
+		admin.setMobile(mobile);
+		admin.setWeixin(weixin);
+		admin.setPassword(PasswdUtil.signPwsswd(password));
 		Date date = new Date();
-		user.setCreated(date);
-		user.setUpdated(date);
+		admin.setCreated(date);
+		admin.setUpdated(date);
 		try {
-			userDAO.insertUser(user);
+			adminDAO.insertAdmin(admin);
 		} catch (DAOException e) {
-			log.error("CreateUser Error.", e);
+			log.error("CreateAdmin Error.", e);
 			return Result.newError().with(ResultCode.Error_CreateUser);
 		}
-		return Result.newSuccess().with(ResultCode.Success).with("user", user);
+		return Result.newSuccess().with(ResultCode.Success).with("admin", admin);
 	}
 	
 	public static void main(String[] args) {
@@ -56,15 +56,15 @@ public class DefaultUserService extends BaseService implements UserService {
 			if(StringUtil.isBlank(passwd)) {
 				return Result.newError().with(ResultCode.Error_InputPasswd);
 			}
-			UserDO user = userDAO.selectUser(name);
-			if(user == null) {
+			AdminDO admin = adminDAO.selectAdmin(name);
+			if(admin == null) {
 				return Result.newError().with(ResultCode.Error_NonUser);
 			}
-			if(!PasswdUtil.signPwsswd(passwd).equals(user.getPassword())) {
+			if(!PasswdUtil.signPwsswd(passwd).equals(admin.getPassword())) {
 				return Result.newError().with(ResultCode.Error_ErrPasswd);
 			}
-			user.setPassword("");
-			return Result.newSuccess().with(ResultCode.Success).with("online.user", user);
+			admin.setPassword("");
+			return Result.newSuccess().with(ResultCode.Success).with("admin", admin);
 		} catch (DAOException e) {
 			log.error("Login Error.", e);
 		}

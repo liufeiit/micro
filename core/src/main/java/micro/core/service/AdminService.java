@@ -6,9 +6,9 @@ package micro.core.service;
  * @version 1.0
  * @since 2014年9月5日 上午11:08:30
  */
-public interface UserService {
+public interface AdminService {
 
-	Result createUser(String name, String email, String mobile, String weixin, String password);
+	Result createAdmin(String name, String email, String mobile, String weixin, String password);
 	
 	Result login(String name, String passwd);
 }
