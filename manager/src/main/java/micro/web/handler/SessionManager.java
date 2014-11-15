@@ -17,8 +17,8 @@ public class SessionManager {
 
 	static final Log log = LogFactory.getLog(SessionManager.class);
 	
-	public static void login(HttpSession session, AdminDO user) {
-		session.setAttribute(Static.ONLINE_ADMIN, user);
+	public static void login(HttpSession session, AdminDO admin) {
+		session.setAttribute(Static.ONLINE_ADMIN, admin);
 	}
 	
 	public static void logout(HttpSession session) {
