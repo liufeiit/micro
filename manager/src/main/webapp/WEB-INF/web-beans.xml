@@ -57,9 +57,7 @@
 	</bean>
 	
 	<bean id="cdn" class="tulip.web.module.CDNServer">
-		<property name="host" value="127.0.0.1"/>
-		<property name="context" value="manager"/>
-		<property name="port" value="8080"/>
+		<property name="host" value="120.132.53.127"/>
 	</bean>
 	
 	<mvc:resources location="/WEB-INF/assets/images/" mapping="/image/**" cache-period="315569262"/>

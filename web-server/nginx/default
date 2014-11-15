@@ -68,13 +68,16 @@ server {
         #        proxy_pass http://jboss;
         #}
 				location ~ ^/js/(.*)$ { 
-								alias /mnt/resource/js/$1; 
+								alias /mnt/resource/assets/js/$1; 
     		}
 				location ~ ^/css/(.*)$ {
-                alias /mnt/resource/css/$1;
+                alias /mnt/resource/assets/css/$1;
         }
 				location ~ ^/image/(.*)$ {
-                alias /mnt/resource/image/$1;
+                alias /mnt/resource/assets/image/$1;
+        }
+        location ~ ^/fonts/(.*)$ {
+                alias /mnt/resource/assets/fonts/$1;
         }
 }
 
