@@ -31,7 +31,7 @@ public class Article extends WebBase {
 	public ModelAndView article_detail(HttpServletRequest request) {
 		ModelAndView mv = returnView(request, "article_detail", "文章", "文章详情");
 		long id = NumberUtils.toLong(request.getParameter("id"), 0L);
-		Result result = articleService.getArticle(id);
+		Result result = articleService.getArticle(id, true);
 		mv.addObject("success", result.isSuccess());
 		mv.addObject("article", result.get("article"));
 		return mv;
@@ -109,7 +109,7 @@ public class Article extends WebBase {
 		mv.addObject("hasCat", cat.isSuccess());
 		mv.addObject("catList", cat.get("catList"));
 		long id = NumberUtils.toLong(request.getParameter("id"), 0L);
-		Result result = articleService.getArticle(id);
+		Result result = articleService.getArticle(id, true);
 		mv.addObject("success", result.isSuccess());
 		mv.addObject("article", result.get("article"));
 		return mv;

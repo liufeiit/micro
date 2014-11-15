@@ -21,6 +21,7 @@ public class ArticleDO extends BaseDO {
 	@Column(name = "title")
 	private String title;
 
+	//需要关联到article表查询对于的内容
 	@Column(name = "content")
 	private String content;
 

@@ -24,7 +24,7 @@ import tulip.data.jdbc.mapper.BeanRowMapper;
 public class DefaultAdminDAO extends BaseDAO implements AdminMapper, AdminDAO {
 
 	@Override
-	public void insertAdmin(AdminDO admin) throws DAOException {
+	public void insert(AdminDO admin) throws DAOException {
 		try {
 			KeyHolder holder = new GeneratedKeyHolder();
 			jdbcTemplate.update(ADD_SQL, BeanParameterMapper.newInstance(admin), holder, new String[]{ "id" });

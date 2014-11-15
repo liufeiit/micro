@@ -20,5 +20,5 @@ public interface ArticleDAO {
 
 	List<ArticleDO> query(long catId, String type, String status, String title, int index, int size) throws DAOException;
 	
-	ArticleDO selectArticle(long id) throws DAOException;
+	ArticleDO selectArticle(long id, boolean withContent) throws DAOException;
 }

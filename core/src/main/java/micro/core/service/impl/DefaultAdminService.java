@@ -35,7 +35,7 @@ public class DefaultAdminService extends BaseService implements AdminService {
 		admin.setCreated(date);
 		admin.setUpdated(date);
 		try {
-			adminDAO.insertAdmin(admin);
+			adminDAO.insert(admin);
 		} catch (DAOException e) {
 			log.error("CreateAdmin Error.", e);
 			return Result.newError().with(ResultCode.Error_CreateUser);

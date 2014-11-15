@@ -47,8 +47,16 @@
 				</a>
 			</li>
 			
+			<li>
+				<a href="revenue_list.htm">
+					<i class="fa fa-bar-chart-o"></i>
+					<span>会员收入</span>
+					##<small class="badge pull-right bg-green">new</small>
+				</a>
+			</li>
+			
 			<li class="treeview">
-				<a href="apps.htm">
+				<a href="cat_list.htm">
 					<i class="fa fa-laptop"></i>
 					<span>管理</span>
 					<small class="badge pull-right bg-yellow">2</small>

@@ -10,7 +10,7 @@ import micro.core.dataobject.ArticleDO;
  */
 public interface ArticleService {
 	
-	Result getArticle(long id);
+	Result getArticle(long id, boolean withContent);
 	
 	Result updateArticle(ArticleDO article);
 	

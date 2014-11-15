@@ -25,9 +25,9 @@ import tulip.util.StringUtil;
 public class DefaultArticleService extends BaseService implements ArticleService {
 
 	@Override
-	public Result getArticle(long id) {
+	public Result getArticle(long id, boolean withContent) {
 		try {
-			ArticleDO article = articleDAO.selectArticle(id);
+			ArticleDO article = articleDAO.selectArticle(id, withContent);
 			if(article == null) {
 				return Result.newError().with(ResultCode.Error_Query);
 			}

@@ -10,7 +10,7 @@ import micro.core.dataobject.AdminDO;
  */
 public interface AdminDAO {
 
-	void insertAdmin(AdminDO admin) throws DAOException;
+	void insert(AdminDO admin) throws DAOException;
 	
 	AdminDO selectAdmin(String name) throws DAOException;
 }
