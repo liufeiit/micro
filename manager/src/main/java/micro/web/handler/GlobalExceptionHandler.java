@@ -29,6 +29,16 @@ public class GlobalExceptionHandler extends WebBase implements HandlerExceptionR
 	@Override
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
 			Exception ex) {
+		StringBuffer requestURL = request.getRequestURL();
+		String query = request.getQueryString();
+		if (StringUtil.isNotBlank(query)) {
+			requestURL.append("?").append(query);
+		}
+		if (handler != null) {
+			log.error(requestURL + ", handler : " + handler.getClass() + " Error.", ex);
+		} else {
+			log.error(requestURL + " Error.", ex);
+		}
 		return post("home.htm", new HashMap<String, Object>(), true, "系统维护中...", "跳转中...");
 	}
 	
