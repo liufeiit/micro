@@ -1,5 +1,5 @@
 <h4 >
-	亲爱的<label>$!{name}</label>，您好！欢迎登录微界后台管理系统！
+	亲爱的<label>$!{name}</label>，您好！欢迎登录点到得到后台管理系统！
 </h4>
 <link href="$cdn.name("css/datatables/dataTables.bootstrap.css")" rel="stylesheet" type="text/css" />
 

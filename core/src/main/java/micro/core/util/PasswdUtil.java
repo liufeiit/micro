@@ -37,6 +37,7 @@ public class PasswdUtil {
 		return result;
 	}
 	
+	//用户名15812345678 密码123456
 	//INSERT INTO `ec_core`.`manager` (`name`, `email`, `mobile`, `weixin`, `password`, `created`, `updated`) VALUES ('Qian.CHEN', 'qian.chen@126.com', '15255386280', 'qian20140714', 'woZhD5d0brZz-FEkAbMv8uOMxz4GVD4gZ2SRM3hpi20', now(), now());
 	public static void main(String[] args) {
 		System.out.println(signPwsswd("chenqian"));
