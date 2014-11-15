@@ -17,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import tulip.util.CollectionUtil;
+
 /**
  * 
  * @author 刘飞 E-mail:liufei_it@126.com
@@ -61,8 +63,10 @@ public class Article extends WebBase {
 		Result catResult = articleCatService.getAllArticleCat(true);
 		List<ArticleCatDO> catList = (List<ArticleCatDO>) catResult.get("catList");
 		Map<Long, String> catMapper = new HashMap<Long, String>();
-		for (ArticleCatDO cat : catList) {
-			catMapper.put(cat.getId(), cat.getName());
+		if(!CollectionUtil.isEmpty(catList)) {
+			for (ArticleCatDO cat : catList) {
+				catMapper.put(cat.getId(), cat.getName());
+			}
 		}
 		mv.addObject("catMapper", catMapper);
 		mv.addObject("catList", catList);
