@@ -2,6 +2,7 @@ package micro.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,6 +15,7 @@ import micro.web.WebBase;
  * @version 1.0.0
  * @since 2014年11月15日 下午9:37:55
  */
+@Controller
 public class Revenue extends WebBase {
 	
 	@RequestMapping(value = "/revenue_list.htm")
