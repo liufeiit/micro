@@ -2,13 +2,13 @@
 
 <form role="form" action="revenue_list.htm" method="get" >
 	<div class="row">
-        <div class="col-lg-9" style="margin-top:10px;margin-bottom:20px;margin-left:20px;">
+        <div class="col-lg-6" style="margin-top:10px;margin-bottom:20px;">
             <div class="input-group">
                 <span class="input-group-addon">账户</span>
                 <input class="form-control" type="text" name="account" value="$!{selected_account}" placeholder="输入搜索账户名称"/>
             </div>
         </div>
-        <div class="col-lg-3" style="margin-top:10px;margin-bottom:20px;">
+        <div class="col-lg-6" style="margin-top:10px;margin-bottom:20px;">
             <div class="input-group">
                 <button type="submit" class="btn btn-primary">查询</button>
             </div>
@@ -63,7 +63,7 @@
 	                    	#else
 	                    	<tr >
 	                    		<td colspan="10">
-	                    			没有查询到任何文章信息
+	                    			没有查询到任何收入相关信息
 	                            </td>
 	                        </tr>
 							#end
