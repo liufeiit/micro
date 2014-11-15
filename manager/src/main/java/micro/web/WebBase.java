@@ -1,4 +1,4 @@
-package micro.web.controller;
+package micro.web;
 
 import java.util.Map;
 
@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @version 1.0
  * @since 2014年8月25日 下午1:55:47
  */
-public class BaseController {
+public class WebBase {
 
 	protected final Log log = LogFactory.getLog(getClass());
 	

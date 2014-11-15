@@ -1,7 +1,11 @@
 package micro.web.handler;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import micro.web.WebBase;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,7 +20,7 @@ import tulip.util.StringUtil;
  * @version 1.0
  * @since 2014年9月1日 下午6:07:31
  */
-public class GlobalExceptionHandler implements HandlerExceptionResolver {
+public class GlobalExceptionHandler extends WebBase implements HandlerExceptionResolver {
 
 	private static final String URL = "url";
 	private static final String ERROR_MSG = "errorMsg";
@@ -24,6 +28,11 @@ public class GlobalExceptionHandler implements HandlerExceptionResolver {
 
 	@Override
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
+			Exception ex) {
+		return post("home.htm", new HashMap<String, Object>(), true, "系统维护中...", "跳转中...");
+	}
+	
+	public ModelAndView resolveException0(HttpServletRequest request, HttpServletResponse response, Object handler,
 			Exception ex) {
 		ModelAndView mav = new ModelAndView("error");
 		if (ex != null) {

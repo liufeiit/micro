@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import micro.core.dataobject.ArticleCatDO;
 import micro.core.service.Result;
+import micro.web.WebBase;
 
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @since 2014年11月13日 下午10:46:35
  */
 @Controller
-public class Category extends BaseController {
+public class Category extends WebBase {
 
 	@RequestMapping(value = "/cat_create_page.htm")
 	public ModelAndView article_create_page(HttpServletRequest request) {

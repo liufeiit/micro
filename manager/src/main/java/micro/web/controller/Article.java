@@ -10,6 +10,7 @@ import micro.core.dataobject.ArticleCatDO;
 import micro.core.dataobject.ArticleDO;
 import micro.core.service.PageQuery;
 import micro.core.service.Result;
+import micro.web.WebBase;
 
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @SuppressWarnings("unchecked")
 @Controller
-public class Article extends BaseController {
+public class Article extends WebBase {
 
 	@RequestMapping(value = "/article_detail.htm")
 	public ModelAndView article_detail(HttpServletRequest request) {

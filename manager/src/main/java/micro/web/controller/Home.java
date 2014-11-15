@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import micro.core.dataobject.AdminDO;
 import micro.core.service.Result;
+import micro.web.WebBase;
 import micro.web.handler.SessionManager;
 
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @since 2013年12月30日 下午10:26:04
  */
 @Controller
-public class Home extends BaseController {
+public class Home extends WebBase {
 	
 	@RequestMapping(value = "/home.htm")
 	public ModelAndView home(HttpServletRequest request) {
