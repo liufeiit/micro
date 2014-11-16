@@ -56,8 +56,14 @@
 		<property name="suffix" value=".vm"/>
 	</bean>
 	
+	<!-- 用于js css fonts -->
 	<bean id="cdn" class="tulip.web.module.CDNServer">
 		<property name="host" value="120.132.53.127"/>
+	</bean>
+	
+	<!-- 用于image -->
+	<bean id="cdnImg" class="tulip.web.module.CDNServer">
+		<property name="host" value="ec-blog.qiniudn.com"/>
 	</bean>
 	
 	<mvc:resources location="/WEB-INF/assets/images/" mapping="/image/**" cache-period="315569262"/>
