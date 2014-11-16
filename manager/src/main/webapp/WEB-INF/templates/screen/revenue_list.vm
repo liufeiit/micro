@@ -30,6 +30,7 @@
 	                            <th>PV</th>
 	                            <th>推荐奖励IP</th>
 	                            <th>活跃度奖励IP</th>
+	                            <th>账户余额</th>
 	                            <th>状态</th>
 	                            <th>操作</th>
 	                        </tr>
@@ -58,11 +59,13 @@
 	                                    </td>
 	                            		<td >
 	                                    </td>
+	                            		<td >
+	                                    </td>
 	                                </tr>
 	                    		#end
 	                    	#else
 	                    	<tr >
-	                    		<td colspan="10">
+	                    		<td colspan="11">
 	                    			没有查询到任何收入相关信息
 	                            </td>
 	                        </tr>

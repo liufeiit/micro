@@ -19,6 +19,8 @@ public class CalendarUtil {
 	public static final String S_YYYY_MM_DD = "yyyy-MM-dd";
 	public static final String S_YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
 	public static final String Y_M_D_Z = "yyyy-MM-dd'T'HH:mm:ssZZZ";
+	
+	public static final String DATE_YM_FORMAT = "yyyy_MM";
 
 	public static String formatDate(Date date, String pattern) {
 		if (date == null)

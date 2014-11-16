@@ -29,7 +29,7 @@
     <body style="background-color: #FFFFFF; margin: 0px auto; padding: 0px;width: 100%">
 		$!screen_placeholder
 		<div id="loading">
-			<img src="$cdnImg.name("admin.png")"/>
+			<img src="$cdnImg.name("ajax-loader1.gif")"/>
         </div>
     </body>
 </html>

@@ -67,6 +67,4 @@
 		<aop:pointcut id="txPointcut" expression="execution(* micro.core.dao.impl.*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
 	</aop:config>
-	
-	<import resource="classpath:configurer/scheduler.xml"/>
 </beans>

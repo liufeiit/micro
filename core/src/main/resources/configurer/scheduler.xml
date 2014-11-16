@@ -36,6 +36,7 @@
         <property name="jobDataAsMap">
             <map>
                 <entry key="dataSource" value-ref="dataSource"/>
+                <entry key="revenueDAO" value-ref="revenueDAO"/>
             </map>
         </property>
     </bean>

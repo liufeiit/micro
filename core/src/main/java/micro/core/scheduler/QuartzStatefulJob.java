@@ -2,6 +2,8 @@ package micro.core.scheduler;
 
 import javax.sql.DataSource;
 
+import micro.core.dao.RevenueDAO;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.quartz.JobExecutionContext;
@@ -25,6 +27,7 @@ public abstract class QuartzStatefulJob implements StatefulJob {
 	protected final String JOB_NAME = getClass().getSimpleName();
 	
 	protected DataSource dataSource;
+	protected RevenueDAO revenueDAO;
 	
 	@Override
 	public final void execute(JobExecutionContext context) throws JobExecutionException {
@@ -48,5 +51,9 @@ public abstract class QuartzStatefulJob implements StatefulJob {
 	
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
+	}
+	
+	public void setRevenueDAO(RevenueDAO revenueDAO) {
+		this.revenueDAO = revenueDAO;
 	}
 }

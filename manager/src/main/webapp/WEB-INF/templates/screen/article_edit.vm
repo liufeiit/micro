@@ -25,7 +25,7 @@
 	    						<optgroup label="请选择文章类型">
 	    							<option value="normal" #if($!{article.type} == "normal") selected="selected" #end >常规类型</option>
 	    							<option value="ad" #if($!{article.type} == "ad") selected="selected" #end >广告类型</option>
-	                            	<option value="private" #if($!{article.type} == "private") selected="selected" #end >私人类型</option>
+	                            	<option value="private" #if($!{article.type} == "private") selected="selected" #end >私有类型</option>
 	    							<option value="refer" #if($!{article.type} == "refer") selected="selected" #end >转载类型</option>
 	                            </optgroup>
 	                        </select>
@@ -68,10 +68,10 @@
 	                        </div>
 	                        <select class="form-control" name="status">
 	    						<optgroup label="请选择文章状态">
-	    							<option value="inactive" #if($!{article.status} == "inactive") selected="selected" #end>inactive</option>
-	    							<option value="active" #if($!{article.status} == "active") selected="selected" #end>active</option>
-	    							<option value="banned" #if($!{article.status} == "banned") selected="selected" #end>banned</option>
-	    							<option value="deleted" #if($!{article.status} == "deleted") selected="selected" #end>deleted</option>
+	    							<option value="inactive" #if($!{article.status} == "inactive") selected="selected" #end>审核中</option>
+	    							<option value="active" #if($!{article.status} == "active") selected="selected" #end>通过</option>
+	    							<option value="banned" #if($!{article.status} == "banned") selected="selected" #end>禁止</option>
+	    							<option value="deleted" #if($!{article.status} == "deleted") selected="selected" #end>删除</option>
 	                            </optgroup>
 	                        </select>
 	                    </div>

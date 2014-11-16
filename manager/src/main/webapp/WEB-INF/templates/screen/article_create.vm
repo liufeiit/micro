@@ -65,10 +65,10 @@
 	                        </div>
 	                        <select class="form-control" name="status">
 	    						<optgroup label="请选择文章状态">
-	    							<option value="inactive" selected="selected">inactive</option>
-	    							<option value="active">active</option>
-	    							<option value="banned">banned</option>
-	    							<option value="deleted">deleted</option>
+	    							<option value="inactive" selected="selected">审核中</option>
+	    							<option value="active">通过</option>
+	    							<option value="banned">禁止</option>
+	    							<option value="deleted">删除</option>
 	                            </optgroup>
 	                        </select>
 	                    </div>

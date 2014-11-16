@@ -71,4 +71,6 @@
 	<mvc:resources location="/WEB-INF/assets/css/" mapping="/css/**" cache-period="315569263"/>
 	<mvc:resources location="/WEB-INF/assets/fonts/" mapping="/fonts/**" cache-period="315569265"/>
 	
+	<import resource="classpath:configurer/scheduler.xml"/>
+	
 </beans>

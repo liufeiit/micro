@@ -13,4 +13,14 @@ public interface Static {
 	int MONTH = 2;
 	int DAY_OF_MONTH = 3;
 	int HOUR_OF_DAY = 4;
+	
+	
+	double PER_IP_PRICE = 0.01D;
+	
+	double PER_PV_PRICE = 0D;
+	
+	double REFEREE_AWARD_PERCENT = 0.2D;
+	
+	double ACTIVITY_AWARD_PERCENT = 0.2D;
+	
 }
