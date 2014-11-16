@@ -18,7 +18,7 @@ import tulip.data.jdbc.mapper.BeanParameterMapper;
 import tulip.util.CollectionUtil;
 
 /**
- * user_referee表中referee_id推荐user_id
+ * user_referee表中 referee_id推荐user_id
  * 
  * @author 刘飞 E-mail:liufei_it@126.com
  * @version 1.0.0
@@ -26,6 +26,21 @@ import tulip.util.CollectionUtil;
  */
 @Repository("revenueDAO")
 public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, RevenueDAO {
+
+	/**
+	 * 是否有推荐人，也就是是否是被推荐的人
+	 */
+	@Override
+	public boolean hasReferee(long userId) {
+		try {
+			return !CollectionUtil.isEmpty(jdbcTemplate.queryForList(
+					"SELECT referee_id FROM user_referee where user_id = :user_id;",
+					BeanParameterMapper.newSingleParameterMapper("user_id", userId), Long.class));
+		} catch (DataAccessException e) {
+			log.error("Check User Has Referee Error.", e);
+		}
+		return false;
+	}
 
 	/**
 	 * 推荐奖励，自己的下线（被我推荐的人）给的提成IP
@@ -85,8 +100,13 @@ public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, Revenue
 	@Override
 	public long countUserIP(int nextMonth, long userId) {
 		try {
-			return jdbcTemplate.queryForObject(String.format(COUNT_USER_IP_SQL_Template, getTableName(nextMonth)),
+
+			long ip = jdbcTemplate.queryForObject(String.format(COUNT_USER_IP_SQL_Template, getTableName(nextMonth)),
 					BeanParameterMapper.newSingleParameterMapper("userId", userId), long.class);
+			if (hasReferee(userId)) {
+				return new Double(ip * (1.0D - Static.REFEREE_AWARD_PERCENT)).longValue();
+			}
+			return ip;
 		} catch (DataAccessException e) {
 			log.error("Count IP Error.", e);
 		}

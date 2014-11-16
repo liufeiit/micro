@@ -28,4 +28,6 @@ public interface RevenueDAO {
 	long countArticleIP(int nextMonth, long articleId);
 
 	long countArticlePV(int nextMonth, long articleId);
+
+	boolean hasReferee(long userId);
 }
