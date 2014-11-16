@@ -25,6 +25,8 @@
 	    						<optgroup label="请选择文章类型">
 	    							<option value="normal" #if($!{article.type} == "normal") selected="selected" #end >常规类型</option>
 	    							<option value="ad" #if($!{article.type} == "ad") selected="selected" #end >广告类型</option>
+	                            	<option value="private" #if($!{article.type} == "private") selected="selected" #end >私人类型</option>
+	    							<option value="refer" #if($!{article.type} == "refer") selected="selected" #end >转载类型</option>
 	                            </optgroup>
 	                        </select>
 	                    </div>

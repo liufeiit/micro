@@ -23,6 +23,8 @@
 						<option value="" #if($!{selected_type} == "") selected="selected" #end >全部</option>
 						<option value="normal" #if($!{selected_type} == "normal") selected="selected" #end >常规类型</option>
 						<option value="ad" #if($!{selected_type} == "ad") selected="selected" #end >广告类型</option>
+                    	<option value="private" #if($!{selected_type} == "private") selected="selected" #end >私人类型</option>
+						<option value="refer" #if($!{selected_type} == "refer") selected="selected" #end >转载类型</option>
                     </optgroup>
                 </select>
             </div>
@@ -77,6 +79,10 @@
 	                            			常规类型
 	                            			#elseif($!{article.type} == "ad")
 	                            			广告类型
+	                            			#elseif($!{article.type} == "private")
+	                            			私人类型
+	                            			#elseif($!{article.type} == "refer")
+	                            			转载类型
 	                            			#end
 	                                    </td>
 	                            		<td >
