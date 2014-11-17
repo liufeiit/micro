@@ -52,38 +52,28 @@
 	            <div class="box-body">
 	            
 	            	<div class="form-group">
-	                    <label for="type">IP总数</label>
-						<div class="input-group">
-							<label>$!{user.lastMonthIncome.uip}</label>
-	                    </div>
+	                    <label for="type">IP总数 : </label>
+	                    <label>$!{user.lastMonthIncome.uip}</label>
 	                </div>
 		                                    
 		        	<div class="form-group">
-	                    <label for="catId">PV总数</label>
-						<div class="input-group">
-							<label>$!{user.lastMonthIncome.pv}</label>
-	                    </div>
+	                    <label for="catId">PV总数 : </label>
+	                    <label>$!{user.lastMonthIncome.pv}</label>
 	                </div>
 	                
 	                <div class="form-group">
-	                    <label for="catId">推荐奖励IP</label>
-						<div class="input-group">
-							<label>$!{user.lastMonthIncome.referee}</label>
-	                    </div>
+	                    <label for="catId">推荐奖励IP : </label>
+						<label>$!{user.lastMonthIncome.referee}</label>
 	                </div>
 	                
 	                <div class="form-group">
-	                    <label for="catId">活跃度奖励IP</label>
-						<div class="input-group">
-							<label>$!{user.lastMonthIncome.activity}</label>
-	                    </div>
+	                    <label for="catId">活跃度奖励IP : </label>
+						<label>$!{user.lastMonthIncome.activity}</label>
 	                </div>
 	                
 	                <div class="form-group">
-	                    <label for="catId">总收入</label>
-						<div class="input-group">
-							<label>$!{user.lastMonthIncome.totalIncome}</label>
-	                    </div>
+	                    <label for="catId">总收入 : </label>
+						<label>$!{user.lastMonthIncome.totalIncome}</label>
 	                </div>
 	                
 	            </div>
@@ -98,38 +88,28 @@
 	            <div class="box-body">
 	            
 		            <div class="form-group">
-	                    <label for="type">IP总数</label>
-						<div class="input-group">
-							<label>$!{user.currentIncome.uip}</label>
-	                    </div>
+	                    <label for="type">IP总数 : </label>
+						<label>$!{user.currentIncome.uip}</label>
 	                </div>
 		                                    
 		        	<div class="form-group">
-	                    <label for="catId">PV总数</label>
-						<div class="input-group">
-							<label>$!{user.currentIncome.pv}</label>
-	                    </div>
+	                    <label for="catId">PV总数 : </label>
+						<label>$!{user.currentIncome.pv}</label>
 	                </div>
 	                
 	                <div class="form-group">
-	                    <label for="catId">推荐奖励IP</label>
-						<div class="input-group">
-							<label>$!{user.currentIncome.referee}</label>
-	                    </div>
+	                    <label for="catId">推荐奖励IP : </label>
+						<label>$!{user.currentIncome.referee}</label>
 	                </div>
 	                
 	                <div class="form-group">
-	                    <label for="catId">活跃度奖励IP</label>
-						<div class="input-group">
-							<label>$!{user.currentIncome.activity}</label>
-	                    </div>
+	                    <label for="catId">活跃度奖励IP : </label>
+						<label>$!{user.currentIncome.activity}</label>
 	                </div>
 	                
 	                <div class="form-group">
-	                    <label for="catId">总收入</label>
-						<div class="input-group">
-							<label>$!{user.currentIncome.totalIncome}</label>
-	                    </div>
+	                    <label for="catId">总收入 : </label>
+						<label>$!{user.currentIncome.totalIncome}</label>
 	                </div>
 	                
 	            </div>
