@@ -66,9 +66,9 @@ public class Revenue extends WebBase {
 	
 	@RequestMapping(value = "/revenue_user.htm")
 	public ModelAndView revenue_user(HttpServletRequest request) {
-		ModelAndView mv = returnView(request, "revenue_detail", "收入", "会员收入");
+		ModelAndView mv = returnView(request, "revenue_user", "转账", "会员转账");
 		long userId = NumberUtils.toLong(request.getParameter("uid"), 0L);
-		Result result = revenueService.query(userId, new PageQuery(1), true);
+		Result result = revenueService.query(userId, new PageQuery(1), false);
 		boolean success = result.isSuccess();
 		mv.addObject("hasUser", success);
 		if(success) {
