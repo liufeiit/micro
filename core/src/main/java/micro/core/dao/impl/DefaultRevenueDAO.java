@@ -121,28 +121,24 @@ public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, Revenue
 		}
 		return false;
 	}
-
+	
 	/**
 	 * 推荐奖励，自己的下线（被我推荐的人）给的提成IP
 	 */
 	@Override
 	public long referee_award(int nextMonth, long userId) {
 		try {
-			List<Long> userList = jdbcTemplate.queryForList(
-					"SELECT user_id FROM user_referee where referee_id = :referee_id;",
+			String tableName = getTableName(nextMonth);
+			if(!isExistTable(tableName)) {
+				createTable(tableName);
+			}
+			Long ip = jdbcTemplate.queryForObject(String.format(Referee_Award_SQL_Template, tableName),
 					BeanParameterMapper.newSingleParameterMapper("referee_id", userId), Long.class);
-			if (CollectionUtil.isEmpty(userList)) {
+			if(ip == null || ip <= 0L) {
 				return 0L;
 			}
-			long ip_all = 0L;
-			for (Long uid : userList) {
-				if (uid == null || uid <= 0L) {
-					continue;
-				}
-				ip_all += countUserIP(nextMonth, uid);
-			}
-			return new Double(ip_all * Static.REFEREE_AWARD_PERCENT).longValue();
-		} catch (DataAccessException e) {
+			return new Double(ip * Static.REFEREE_AWARD_PERCENT).longValue();
+		} catch (Exception e) {
 			log.error("Query Referee User Error.", e);
 		}
 		return 0L;
@@ -154,21 +150,17 @@ public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, Revenue
 	@Override
 	public long activity_award(int nextMonth, long userId) {
 		try {
-			List<Long> articleList = jdbcTemplate.queryForList(
-					"SELECT content_id FROM content WHERE creator = :userId AND type = 'private';",
+			String tableName = getTableName(nextMonth);
+			if(!isExistTable(tableName)) {
+				createTable(tableName);
+			}
+			Long ip = jdbcTemplate.queryForObject(String.format(Activity_Award_SQL_Tempplate, tableName),
 					BeanParameterMapper.newSingleParameterMapper("userId", userId), Long.class);
-			if (CollectionUtil.isEmpty(articleList)) {
+			if(ip == null || ip <= 0L) {
 				return 0L;
 			}
-			long ip_all = 0L;
-			for (Long aid : articleList) {
-				if (aid == null || aid <= 0L) {
-					continue;
-				}
-				ip_all += countArticleIP(nextMonth, aid);
-			}
-			return new Double(ip_all * Static.ACTIVITY_AWARD_PERCENT).longValue();
-		} catch (DataAccessException e) {
+			return new Double(ip * Static.ACTIVITY_AWARD_PERCENT).longValue();
+		} catch (Exception e) {
 			log.error("Query Activity Error.", e);
 		}
 		return 0L;
