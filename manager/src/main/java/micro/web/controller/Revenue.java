@@ -62,4 +62,20 @@ public class Revenue extends WebBase {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(value = "/revenue_user.htm")
+	public ModelAndView revenue_user(HttpServletRequest request) {
+		ModelAndView mv = returnView(request, "revenue_detail", "收入", "会员收入");
+		long userId = NumberUtils.toLong(request.getParameter("uid"), 0L);
+		Result result = revenueService.query(userId, new PageQuery(1), true);
+		boolean success = result.isSuccess();
+		mv.addObject("hasUser", success);
+		if(success) {
+			List<UserDO> userList = (List<UserDO>) result.get("userList");
+			if(!CollectionUtil.isEmpty(userList)) {
+				mv.addObject("user", userList.get(0));
+			}
+		}
+		return mv;
+	}
 }

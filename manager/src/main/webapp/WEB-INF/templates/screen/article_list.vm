@@ -35,10 +35,10 @@
                 <select name="status" class="form-control">
 					<optgroup label="请选择状态">
 						<option value="" #if($!{selected_status} == "") selected="selected" #end>全部</option>
-						<option value="inactive" #if($!{selected_status} == "inactive") selected="selected" #end>inactive</option>
-						<option value="active" #if($!{selected_status} == "active") selected="selected" #end>active</option>
-						<option value="banned" #if($!{selected_status} == "banned") selected="selected" #end>banned</option>
-						<option value="deleted" #if($!{selected_status} == "deleted") selected="selected" #end>deleted</option>
+						<option value="inactive" #if($!{selected_status} == "inactive") selected="selected" #end>审核中</option>
+						<option value="active" #if($!{selected_status} == "active") selected="selected" #end>通过</option>
+						<option value="banned" #if($!{selected_status} == "banned") selected="selected" #end>禁止</option>
+						<option value="deleted" #if($!{selected_status} == "deleted") selected="selected" #end>删除</option>
                     </optgroup>
                 </select>
             </div>

@@ -54,8 +54,7 @@
 	                            			#end
 	                                    </td>
 	                            		<td >
-	                            			<a href="#">转账</a><br/>
-	                            			<a href="#">锁定账户</a><br/>
+	                            			<a href="revenue_user.htm?uid=$!{revenue.id}">转账</a>
 	                                    </td>
 	                                </tr>
 	                    		#end

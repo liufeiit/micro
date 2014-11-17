@@ -54,5 +54,5 @@ public interface ArticleMapper {
 	
 	String DELETE_CONTENT = "DELETE FROM article WHERE id = :id;";
 	
-	String UPDATE_CONTENT = "UPDATE content SET content = :content, gmt_updated = NOW() WHERE id = :id;";
+	String UPDATE_CONTENT = "UPDATE article SET content = :content, gmt_updated = NOW() WHERE id = :id;";
 }
