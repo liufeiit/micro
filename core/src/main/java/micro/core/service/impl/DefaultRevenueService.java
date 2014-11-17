@@ -46,8 +46,8 @@ public class DefaultRevenueService extends BaseService implements RevenueService
 				if(!CollectionUtil.isEmpty(users)) {
 					if(withIncome) {
 						for (UserDO user : users) {
-							user.setCurrentIncome(revenueDAO.queryIncome(0, userId));
-							user.setLastMonthIncome(revenueDAO.sumIncome(-1, userId));
+							user.setCurrentIncome(revenueDAO.sumIncome(0, userId));
+							user.setLastMonthIncome(revenueDAO.queryIncome(-1, userId));
 						}
 					}
 					userList.addAll(users);

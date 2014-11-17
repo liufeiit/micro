@@ -175,14 +175,17 @@ public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, Revenue
 	@Override
 	public long countUserIP(int nextMonth, long userId) {
 		try {
-
-			long ip = jdbcTemplate.queryForObject(String.format(COUNT_USER_IP_SQL_Template, getTableName(nextMonth)),
+			String tableName = getTableName(nextMonth);
+			if(!isExistTable(tableName)) {
+				createTable(tableName);
+			}
+			long ip = jdbcTemplate.queryForObject(String.format(COUNT_USER_IP_SQL_Template, tableName),
 					BeanParameterMapper.newSingleParameterMapper("userId", userId), long.class);
 			if (hasReferee(userId)) {
 				return new Double(ip * (1.0D - Static.REFEREE_AWARD_PERCENT)).longValue();
 			}
 			return ip;
-		} catch (DataAccessException e) {
+		} catch (Exception e) {
 			log.error("Count IP Error.", e);
 		}
 		return 0L;
@@ -194,10 +197,14 @@ public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, Revenue
 	@Override
 	public long countUserPV(int nextMonth, long userId) {
 		try {
-			return jdbcTemplate.queryForObject(String.format(COUNT_USER_PV_SQL_Template, getTableName(nextMonth)),
+			String tableName = getTableName(nextMonth);
+			if(!isExistTable(tableName)) {
+				createTable(tableName);
+			}
+			return jdbcTemplate.queryForObject(String.format(COUNT_USER_PV_SQL_Template, tableName),
 					BeanParameterMapper.newSingleParameterMapper("userId", userId), long.class);
-		} catch (DataAccessException e) {
-			log.error("Count IP Error.", e);
+		} catch (Exception e) {
+			log.error("Count PV Error.", e);
 		}
 		return 0L;
 	}
@@ -208,9 +215,13 @@ public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, Revenue
 	@Override
 	public long countArticleIP(int nextMonth, long articleId) {
 		try {
-			return jdbcTemplate.queryForObject(String.format(COUNT_ARTICLE_IP_SQL_Template, getTableName(nextMonth)),
+			String tableName = getTableName(nextMonth);
+			if(!isExistTable(tableName)) {
+				createTable(tableName);
+			}
+			return jdbcTemplate.queryForObject(String.format(COUNT_ARTICLE_IP_SQL_Template, tableName),
 					BeanParameterMapper.newSingleParameterMapper("content_id", articleId), long.class);
-		} catch (DataAccessException e) {
+		} catch (Exception e) {
 			log.error("Count IP Error.", e);
 		}
 		return 0L;
@@ -222,10 +233,14 @@ public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, Revenue
 	@Override
 	public long countArticlePV(int nextMonth, long articleId) {
 		try {
-			return jdbcTemplate.queryForObject(String.format(COUNT_ARTICLE_PV_SQL_Template, getTableName(nextMonth)),
+			String tableName = getTableName(nextMonth);
+			if(!isExistTable(tableName)) {
+				createTable(tableName);
+			}
+			return jdbcTemplate.queryForObject(String.format(COUNT_ARTICLE_PV_SQL_Template, tableName),
 					BeanParameterMapper.newSingleParameterMapper("content_id", articleId), long.class);
-		} catch (DataAccessException e) {
-			log.error("Count IP Error.", e);
+		} catch (Exception e) {
+			log.error("Count PV Error.", e);
 		}
 		return 0L;
 	}
@@ -235,7 +250,7 @@ public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, Revenue
 		try {
 			return !CollectionUtil.isEmpty(jdbcTemplate.queryForList(Test_RevenueTable_Exist,
 					BeanParameterMapper.newSingleParameterMapper("tableName", tableName), String.class));
-		} catch (DataAccessException e) {
+		} catch (Exception e) {
 			log.error("Test RevenueTable Exist Error.", e);
 			throw new DAOException("Test RevenueTable Exist Error.", e);
 		}

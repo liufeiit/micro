@@ -31,5 +31,5 @@ public interface RevenueMapper {
 	
 	String Query_User_List_SQL = "SELECT * FROM user ORDER BY created DESC LIMIT :start, :size;";
 	
-	String Query_Income = "SELECT * FROM user_income WHERE user_id = :user_id AND year_month = :year_month";
+	String Query_Income = "SELECT * FROM user_income WHERE user_id = :user_id AND 'year_month' = :year_month";
 }
