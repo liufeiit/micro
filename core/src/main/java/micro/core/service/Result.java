@@ -48,9 +48,9 @@ public class Result implements Serializable {
 		return data.get(key);
 	}
 	
-	public Result with(ResultCode errorCode) {
-		errorCode(errorCode.code);
-		message(errorCode.description);
+	public Result with(ResultCode resultCode) {
+		errorCode(resultCode.code);
+		message(resultCode.description);
 		return this;
 	}
 

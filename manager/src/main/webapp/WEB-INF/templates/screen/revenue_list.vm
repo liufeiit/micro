@@ -26,10 +26,7 @@
 	                            <th>账户名</th>
 	                            <th>全名</th>
 	                            <th>手机号</th>
-	                            <th>IP</th>
-	                            <th>PV</th>
-	                            <th>推荐奖励IP</th>
-	                            <th>活跃度奖励IP</th>
+	                            <th>邮箱</th>
 	                            <th>账户余额</th>
 	                            <th>状态</th>
 	                            <th>操作</th>
@@ -65,7 +62,7 @@
 	                    		#end
 	                    	#else
 	                    	<tr >
-	                    		<td colspan="11">
+	                    		<td colspan="8">
 	                    			没有查询到任何收入相关信息
 	                            </td>
 	                        </tr>

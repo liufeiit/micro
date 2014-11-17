@@ -27,4 +27,9 @@ public interface RevenueMapper {
 	
 	String COUNT_ARTICLE_PV_SQL_Template = "SELECT COUNT(ip) as PV FROM %s WHERE content_id = :content_id";
 	
+	String Query_User = "SELECT * FROM user WHERE user_id = :user_id";
+	
+	String Query_User_List_SQL = "SELECT * FROM user ORDER BY created DESC LIMIT :start, :size;";
+	
+	String Query_Income = "SELECT * FROM user_income WHERE user_id = :user_id AND year_month = :year_month";
 }

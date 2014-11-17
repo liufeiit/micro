@@ -3,11 +3,15 @@ package micro.core.dao.impl;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import micro.core.dao.BaseDAO;
 import micro.core.dao.DAOException;
 import micro.core.dao.RevenueDAO;
 import micro.core.dao.statement.RevenueMapper;
+import micro.core.dataobject.UserDO;
+import micro.core.dataobject.UserIncomeDO;
+import micro.core.service.PageQuery;
 import micro.core.util.CalendarUtil;
 import micro.core.util.Static;
 
@@ -15,6 +19,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import tulip.data.jdbc.mapper.BeanParameterMapper;
+import tulip.data.jdbc.mapper.BeanRowMapper;
 import tulip.util.CollectionUtil;
 
 /**
@@ -26,6 +31,76 @@ import tulip.util.CollectionUtil;
  */
 @Repository("revenueDAO")
 public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, RevenueDAO {
+
+	@Override
+	public List<UserDO> queryUser(PageQuery query) throws DAOException {
+		try {
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("start", query.getIndex());
+			paramMap.put("size", query.getSize());
+			return jdbcTemplate.query(Query_User_List_SQL, 
+					paramMap, 
+					BeanRowMapper.newInstance(UserDO.class));
+		} catch (DataAccessException e) {
+			log.error("Query User Error.", e);
+			throw new DAOException("Query User Error.", e);
+		}
+	}
+	
+	@Override
+	public UserDO queryUser(long userId) throws DAOException {
+		try {
+			return jdbcTemplate.queryForObject(Query_User,
+					BeanParameterMapper.newSingleParameterMapper("user_id", userId),
+					BeanRowMapper.newInstance(UserDO.class));
+		} catch (DataAccessException e) {
+			log.error("Query User Error.", e);
+			throw new DAOException("Query User Error.", e);
+		}
+	}
+
+	/**
+	 * 主要是直接查询收入记录
+	 */
+	@Override
+	public UserIncomeDO queryIncome(int month, long userId) throws DAOException {
+		try {
+			Calendar calendar = Calendar.getInstance();
+			calendar.add(Calendar.MONTH, month);
+			String yearMonth = CalendarUtil.formatDate(calendar.getTime(), CalendarUtil.DATE_YM_DASH_FORMAT);
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("user_id", userId);
+			paramMap.put("year_month", yearMonth);
+			return jdbcTemplate.queryForObject(Query_Income, paramMap, BeanRowMapper.newInstance(UserIncomeDO.class));
+		} catch (DataAccessException e) {
+			log.error("Query User Error.", e);
+			throw new DAOException("Query User Error.", e);
+		}
+	}
+
+	/**
+	 * 主要是直接计算收入记录
+	 */
+	@Override
+	public UserIncomeDO sumIncome(int month, long userId) throws DAOException {
+		long ip = countUserIP(month, userId);
+		long pv = countUserPV(month, userId);
+		long referee_award = referee_award(month, userId);
+		long activity_award = activity_award(month, userId);
+		double totalIncome = (ip + referee_award + activity_award) * Static.PER_IP_PRICE;
+		UserIncomeDO incomeDO = new UserIncomeDO();
+		incomeDO.setActivity(activity_award);
+		incomeDO.setPv(pv);
+		incomeDO.setReferee(referee_award);
+		incomeDO.setTotalIncome(totalIncome);
+		incomeDO.setUip(ip);
+		incomeDO.setUserId(userId);
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.MONTH, month);
+		String yearMonth = CalendarUtil.formatDate(calendar.getTime(), CalendarUtil.DATE_YM_DASH_FORMAT);
+		incomeDO.setYearMonth(yearMonth);
+		return incomeDO;
+	}
 
 	/**
 	 * 是否有推荐人，也就是是否是被推荐的人

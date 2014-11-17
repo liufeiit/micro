@@ -3,6 +3,7 @@ package micro.core.service;
 import micro.core.dao.ArticleCatDAO;
 import micro.core.dao.ArticleDAO;
 import micro.core.dao.AdminDAO;
+import micro.core.dao.RevenueDAO;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -37,6 +38,9 @@ public abstract class BaseService implements InitializingBean, BeanNameAware, Ap
 	@Autowired
 	@Qualifier(value = "articleCatDAO")
 	protected ArticleCatDAO articleCatDAO;
+	@Autowired
+	@Qualifier(value = "revenueDAO")
+	protected RevenueDAO revenueDAO;
 
 	protected ApplicationContext application;
 	protected ApplicationEventPublisher publisher;

@@ -1,7 +1,5 @@
 package micro.core.dataobject;
 
-import java.math.BigDecimal;
-
 import tulip.data.annotation.Column;
 
 /**
@@ -27,7 +25,7 @@ public class UserIncomeDO extends BaseDO {
 	@Column(name = "activity_award")
 	private long activity;
 	@Column(name = "total_income")
-	private BigDecimal totalIncome = new BigDecimal(0.00);
+	private double totalIncome;
 
 	/**
 	 * @return the userId
@@ -122,7 +120,7 @@ public class UserIncomeDO extends BaseDO {
 	/**
 	 * @return the totalIncome
 	 */
-	public BigDecimal getTotalIncome() {
+	public double getTotalIncome() {
 		return totalIncome;
 	}
 
@@ -130,7 +128,7 @@ public class UserIncomeDO extends BaseDO {
 	 * @param totalIncome
 	 *            the totalIncome to set
 	 */
-	public void setTotalIncome(BigDecimal totalIncome) {
+	public void setTotalIncome(double totalIncome) {
 		this.totalIncome = totalIncome;
 	}
 }

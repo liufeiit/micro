@@ -8,6 +8,7 @@ import micro.core.dataobject.AdminDO;
 import micro.core.service.ArticleCatService;
 import micro.core.service.ArticleService;
 import micro.core.service.AdminService;
+import micro.core.service.RevenueService;
 import micro.web.handler.SessionManager;
 
 import org.apache.commons.logging.Log;
@@ -35,6 +36,9 @@ public class WebBase {
 	@Autowired
 	@Qualifier(value = "articleCatService")
 	protected ArticleCatService articleCatService;
+	@Autowired
+	@Qualifier(value = "revenueService")
+	protected RevenueService revenueService;
 	
 	protected ModelAndView post(String action, Map<String, Object> data, String title) {
 		return post(action, data, false, null, title);

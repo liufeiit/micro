@@ -1,5 +1,11 @@
 package micro.core.dao;
 
+import java.util.List;
+
+import micro.core.dataobject.UserDO;
+import micro.core.dataobject.UserIncomeDO;
+import micro.core.service.PageQuery;
+
 /**
  * 用户收入信息。
  * 
@@ -30,4 +36,12 @@ public interface RevenueDAO {
 	long countArticlePV(int nextMonth, long articleId);
 
 	boolean hasReferee(long userId);
+
+	UserDO queryUser(long userId) throws DAOException;
+
+	UserIncomeDO queryIncome(int month, long userId) throws DAOException;
+
+	UserIncomeDO sumIncome(int month, long userId) throws DAOException;
+
+	List<UserDO> queryUser(PageQuery query) throws DAOException;
 }
