@@ -44,16 +44,26 @@
 	<bean id="touchStatsTableJobDetail" parent="baseJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
         <property name="jobClass" value="micro.core.scheduler.TouchStatsTableJob"/>
     </bean>
+    
+    <bean id="revenueJobDetail" parent="baseJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="micro.core.scheduler.RevenueJob"/>
+    </bean>
 	
 	<bean id="touchStatsTableJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
 		<property name="jobDetail" ref="touchStatsTableJobDetail"/>
-	    <property name="cronExpression" value="0 15 5 ? * *"/>
+	    <property name="cronExpression" value="0 0 23 L * ?"/>
+	</bean>
+	
+	<bean id="revenueJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="revenueJobDetail"/>
+	    <property name="cronExpression" value="0 0 1 1 * ?"/>
 	</bean>
 	
 	<bean id="microSystemScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" autowire="no">
 		<property name="triggers">
 			<list>
-				<ref bean="touchStatsTableJobTrigger"/>
+				<ref bean="touchStatsTableJobTrigger"/><!--  每月最后一天23点执行一次 -->
+				<ref bean="revenueJobTrigger"/><!--  每月1号凌晨1点执行一次 -->
 			</list>
 		</property>
 		<property name="autoStartup" value="true"/>
