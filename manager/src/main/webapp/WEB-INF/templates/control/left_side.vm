@@ -50,7 +50,7 @@
 			<li>
 				<a href="revenue_list.htm">
 					<i class="fa fa-bar-chart-o"></i>
-					<span>会员收入</span>
+					<span>会员列表</span>
 					##<small class="badge pull-right bg-green">new</small>
 				</a>
 			</li>

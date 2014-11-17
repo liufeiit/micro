@@ -32,17 +32,18 @@ public class Revenue extends WebBase {
 		long userId = NumberUtils.toLong(request.getParameter("uid"), 0L);
 		mv.addObject("selected_uid", userId);
 		int page = NumberUtils.toInt(request.getParameter("page"), 1);
+		Result result = revenueService.query(userId, new PageQuery(page), false);
+		boolean success = result.isSuccess();
 		if(page > 1) {
 			mv.addObject("prePage", page - 1);
 			mv.addObject("currentPage", page);
-			mv.addObject("nextPage", page + 1);
+			mv.addObject("nextPage", success ? (page + 1) : (page));
 		} else {
 			mv.addObject("prePage", 1);
 			mv.addObject("currentPage", 1);
 			mv.addObject("nextPage", 2);
 		}
-		Result result = revenueService.query(userId, new PageQuery(page), false);
-		mv.addObject("hasRevenue", result.isSuccess());
+		mv.addObject("hasRevenue", success);
 		mv.addObject("revenueList", result.get("userList"));
 		return mv;
 	}

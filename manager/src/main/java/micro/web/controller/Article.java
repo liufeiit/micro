@@ -51,15 +51,6 @@ public class Article extends WebBase {
 		String title = request.getParameter("title");
 		mv.addObject("selected_title", title);
 		int page = NumberUtils.toInt(request.getParameter("page"), 1);
-		if(page > 1) {
-			mv.addObject("prePage", page - 1);
-			mv.addObject("currentPage", page);
-			mv.addObject("nextPage", page + 1);
-		} else {
-			mv.addObject("prePage", 1);
-			mv.addObject("currentPage", 1);
-			mv.addObject("nextPage", 2);
-		}
 		Result catResult = articleCatService.getAllArticleCat(true);
 		List<ArticleCatDO> catList = (List<ArticleCatDO>) catResult.get("catList");
 		Map<Long, String> catMapper = new HashMap<Long, String>();
@@ -72,6 +63,15 @@ public class Article extends WebBase {
 		mv.addObject("catList", catList);
 		Result result = articleService.query(catId, type, status, title, new PageQuery(page));
 		boolean hasArticle = result.isSuccess();
+		if(page > 1) {
+			mv.addObject("prePage", page - 1);
+			mv.addObject("currentPage", page);
+			mv.addObject("nextPage", hasArticle ? (page + 1) : (page));
+		} else {
+			mv.addObject("prePage", 1);
+			mv.addObject("currentPage", 1);
+			mv.addObject("nextPage", 2);
+		}
 		mv.addObject("hasArticle", hasArticle);
 		mv.addObject("articleList", result.get("articleList"));
 		return mv;
