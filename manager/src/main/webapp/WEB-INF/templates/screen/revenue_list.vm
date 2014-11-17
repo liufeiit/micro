@@ -36,8 +36,8 @@
 	                        #if($!{hasRevenue})
 	                    		#foreach($revenue in $revenueList)
 	                    			<tr >
-	                            		<td ><a href="revenue_detail.htm?uid=$!{revenue.id}">$!{revenue.id}</a></td>
-	                            		<td >$!{revenue.name}</td>
+	                            		<td >$!{revenue.id}</td>
+	                            		<td ><a href="revenue_detail.htm?uid=$!{revenue.id}" target="_self">$!{revenue.name}</a></td>
 	                            		<td >$!{revenue.fullname}</td>
 	                            		<td >$!{revenue.mobile}</td>
 	                            		<td >$!{revenue.email}</td>

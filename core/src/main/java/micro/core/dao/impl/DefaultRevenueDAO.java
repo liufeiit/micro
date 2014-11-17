@@ -71,7 +71,12 @@ public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, Revenue
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("user_id", userId);
 			paramMap.put("year_month", yearMonth);
-			return jdbcTemplate.queryForObject(Query_Income, paramMap, BeanRowMapper.newInstance(UserIncomeDO.class));
+			UserIncomeDO income = jdbcTemplate.queryForObject(Query_Income, paramMap, BeanRowMapper.newInstance(UserIncomeDO.class));
+			if(income == null) {
+				income = new UserIncomeDO();
+				income.setYearMonth(yearMonth);
+			}
+			return income;
 		} catch (DataAccessException e) {
 			log.error("Query User Error.", e);
 			throw new DAOException("Query User Error.", e);
