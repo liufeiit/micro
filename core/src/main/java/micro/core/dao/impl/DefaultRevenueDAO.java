@@ -179,8 +179,11 @@ public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, Revenue
 			if(!isExistTable(tableName)) {
 				createTable(tableName);
 			}
-			long ip = jdbcTemplate.queryForObject(String.format(COUNT_USER_IP_SQL_Template, tableName),
-					BeanParameterMapper.newSingleParameterMapper("userId", userId), long.class);
+			Long ip = jdbcTemplate.queryForObject(String.format(COUNT_USER_IP_SQL_Template, tableName),
+					BeanParameterMapper.newSingleParameterMapper("userId", userId), Long.class);
+			if(ip == null || ip <= 0L) {
+				return 0L;
+			}
 			if (hasReferee(userId)) {
 				return new Double(ip * (1.0D - Static.REFEREE_AWARD_PERCENT)).longValue();
 			}
@@ -201,8 +204,12 @@ public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, Revenue
 			if(!isExistTable(tableName)) {
 				createTable(tableName);
 			}
-			return jdbcTemplate.queryForObject(String.format(COUNT_USER_PV_SQL_Template, tableName),
-					BeanParameterMapper.newSingleParameterMapper("userId", userId), long.class);
+			Long pv = jdbcTemplate.queryForObject(String.format(COUNT_USER_PV_SQL_Template, tableName),
+					BeanParameterMapper.newSingleParameterMapper("userId", userId), Long.class);
+			if(pv == null || pv <= 0L) {
+				return 0L;
+			}
+			return pv;
 		} catch (Exception e) {
 			log.error("Count PV Error.", e);
 		}
@@ -219,8 +226,12 @@ public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, Revenue
 			if(!isExistTable(tableName)) {
 				createTable(tableName);
 			}
-			return jdbcTemplate.queryForObject(String.format(COUNT_ARTICLE_IP_SQL_Template, tableName),
+			Long ip = jdbcTemplate.queryForObject(String.format(COUNT_ARTICLE_IP_SQL_Template, tableName),
 					BeanParameterMapper.newSingleParameterMapper("content_id", articleId), long.class);
+			if(ip == null || ip <= 0L) {
+				return 0L;
+			}
+			return ip;
 		} catch (Exception e) {
 			log.error("Count IP Error.", e);
 		}
@@ -237,8 +248,12 @@ public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, Revenue
 			if(!isExistTable(tableName)) {
 				createTable(tableName);
 			}
-			return jdbcTemplate.queryForObject(String.format(COUNT_ARTICLE_PV_SQL_Template, tableName),
-					BeanParameterMapper.newSingleParameterMapper("content_id", articleId), long.class);
+			Long pv = jdbcTemplate.queryForObject(String.format(COUNT_ARTICLE_PV_SQL_Template, tableName),
+					BeanParameterMapper.newSingleParameterMapper("content_id", articleId), Long.class);
+			if(pv == null || pv <= 0L) {
+				return 0L;
+			}
+			return pv;
 		} catch (Exception e) {
 			log.error("Count PV Error.", e);
 		}
