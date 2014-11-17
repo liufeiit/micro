@@ -5,7 +5,7 @@
         <div class="col-lg-6" style="margin-top:10px;margin-bottom:20px;">
             <div class="input-group">
                 <span class="input-group-addon">账户</span>
-                <input class="form-control" type="text" name="account" value="$!{selected_account}" placeholder="输入搜索账户名称"/>
+                <input class="form-control" type="text" name="uid" value="$!{selected_uid}" placeholder="输入搜索账户名称"/>
             </div>
         </div>
         <div class="col-lg-6" style="margin-top:10px;margin-bottom:20px;">
@@ -36,27 +36,26 @@
 	                        #if($!{hasRevenue})
 	                    		#foreach($revenue in $revenueList)
 	                    			<tr >
-	                            		<td >
+	                            		<td >$!{revenue.id}</td>
+	                            		<td >$!{revenue.name}</td>
+	                            		<td >$!{revenue.fullname}</td>
+	                            		<td >$!{revenue.mobile}</td>
+	                            		<td >$!{revenue.email}</td>
+	                            		<td >$!{revenue.accountBalance}</td>
+	                            		<td id="user-status-$!{revenue.id}">
+	                            			#if($!{revenue.status} == "active")
+	                            				已激活
+	                            			#elseif($!{revenue.status} == "locked")
+	                            				已锁定
+	                            			#elseif($!{revenue.status} == "banned")
+	                            				已禁止
+	                            			#elseif($!{revenue.status} == "deleted")
+	                            				已删除
+	                            			#end
 	                                    </td>
 	                            		<td >
-	                                    </td>
-	                            		<td >
-	                                    </td>
-	                            		<td >
-	                                    </td>
-	                            		<td >
-	                                    </td>
-	                            		<td >
-	                                    </td>
-	                            		<td >
-	                                    </td>
-	                            		<td >
-	                                    </td>
-	                            		<td >
-	                                    </td>
-	                            		<td >
-	                                    </td>
-	                            		<td >
+	                            			<a href="#">转账</a><br/>
+	                            			<a href="#">锁定账户</a><br/>
 	                                    </td>
 	                                </tr>
 	                    		#end
@@ -73,9 +72,9 @@
 	            </div>
 	            <div class="box-footer clearfix">
                 	<ul class="pagination pagination-sm no-margin pull-right">
-                        <li><a href="">&laquo;</a></li>
-                        <li><a href="">1</a></li>
-                        <li><a href="">&raquo;</a></li>
+                        <li><a href="revenue_list.htm?uid=$!{selected_uid}&page=$!{prePage}">&laquo;</a></li>
+                        <li><a href="revenue_list.htm?uid=$!{selected_uid}&page=$!{currentPage}">$!{currentPage}</a></li>
+                        <li><a href="revenue_list.htm?uid=$!{selected_uid}&page=$!{nextPage}">&raquo;</a></li>
                     </ul>
                 </div>
 	        </div>
