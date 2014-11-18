@@ -26,6 +26,17 @@ import tulip.util.CollectionUtil;
 @Controller
 public class Revenue extends WebBase {
 	
+	public static void main(String[] args) {
+		String s1 = "123";
+		String s2 = "123";
+		String s3 = new String("123");
+		String s4 = s1.intern();
+		System.out.println("s1 == s2 : " + (s1 == s2));
+		System.out.println("s1 == s3 : " + (s1 == s3));
+		System.out.println("s1 == s4 : " + (s1 == s4));
+		System.out.println("s1 == s3 : " + (s1 == s4));
+	}
+	
 	@RequestMapping(value = "/revenue_list.htm")
 	public ModelAndView revenue_list(HttpServletRequest request) {
 		ModelAndView mv = returnView(request, "revenue_list", "收入", "收入列表");

@@ -117,10 +117,10 @@
 	</div>
 </form>
 <script src="$cdn.name("js/plugins/ckeditor/ckeditor.js")" type="text/javascript"></script>
-##<script src="$cdn.name("js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")" type="text/javascript"></script>
+<script src="$cdn.name("js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")" type="text/javascript"></script>
 <script type="text/javascript">
     $(function() {
         CKEDITOR.replace("content");
-        //$(".textarea").wysihtml5();
+        //$("#content").wysihtml5();
     });
 </script>

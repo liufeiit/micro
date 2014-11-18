@@ -8,13 +8,15 @@
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <script src="$cdn.name("js/jquery.min.js")"></script>
 		<script type="text/javascript">
-            $(document).ready(function() {
+            //$(document).ready(function() {
+				
+            //});
+			window.onload = function() {
 				#if($!alert)
 					alert("$!alertMsg");
 				#end
 				document.posting.submit();
-            });
-			// window.onload = function() {}
+			}
 		</script>
 		<style type="text/css">
 			#loading {
