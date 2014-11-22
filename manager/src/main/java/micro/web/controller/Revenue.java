@@ -1,5 +1,6 @@
 package micro.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,25 @@ public class Revenue extends WebBase {
 		System.out.println("s1 == s3 : " + (s1 == s3));
 		System.out.println("s1 == s4 : " + (s1 == s4));
 		System.out.println("s1 == s3 : " + (s1 == s4));
+		
+		List<String> l = new ArrayList<String>();
+		l.add("A");
+		String str = "1";
+		long l1 = 100L;
+		pop(l, str, l1);
+		for (String string : l) {
+			System.out.println(">>>> " + string);
+		}
+		System.out.println("???? " + str);
+		System.out.println("LLLL " + l1);
+	}
+	
+	private static void pop(List<String> l, String str, long l1) {
+		str.replaceAll("1", "2");
+		l.add("B");
+		l1 = 10000L;
+		l = new ArrayList<String>();
+		l.add("C");
 	}
 	
 	@RequestMapping(value = "/revenue_list.htm")
