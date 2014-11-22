@@ -1,4 +1,7 @@
-<aside class="left-side sidebar-offcanvas">
+<!--[if IE]>
+	<link href="$cdn.name("css/ie.css")" rel="stylesheet" type="text/css" />
+<![endif]-->
+<aside class="left-side sidebar-offcanvas micro-head">
 	<section class="sidebar">
 		<div class="user-panel">
 			<div class="pull-left image">

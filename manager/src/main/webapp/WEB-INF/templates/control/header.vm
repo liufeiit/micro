@@ -1,3 +1,6 @@
+<!--[if IE]>
+	<link href="$cdn.name("css/ie.css")" rel="stylesheet" type="text/css" />
+<![endif]-->
 <header class="header" 
 #*
 style="position:fixed;z-index:99;"
@@ -14,7 +17,7 @@ style="position:fixed;z-index:99;"
 		<div class="navbar-left">
 			
         </div>
-		<div class="navbar-right">
+		<div class="navbar-right micro-user">
 			<ul class="nav navbar-nav">
 				
 				#* 消息提示下拉菜单
