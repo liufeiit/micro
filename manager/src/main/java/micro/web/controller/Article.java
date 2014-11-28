@@ -88,14 +88,17 @@ public class Article extends WebBase {
 
 	@RequestMapping(value = "/article_create.htm")
 	public ModelAndView article_create(HttpServletRequest request) {
+		long catId = NumberUtils.toLong(request.getParameter("catId"), 0L);
+		String content = request.getParameter("content");
+		String title = request.getParameter("title");
 		ArticleDO article = new ArticleDO();
-		article.setCatId(NumberUtils.toLong(request.getParameter("catId"), 0L));
+		article.setCatId(catId);
 		article.setClicks(0L);
-		article.setContent(request.getParameter("content"));
+		article.setContent(content);
 		article.setCreator(getAdminId(request));
 		article.setPosition(NumberUtils.toInt(request.getParameter("position"), 0));
 		article.setStatus(request.getParameter("status"));
-		article.setTitle(request.getParameter("title"));
+		article.setTitle(title);
 		article.setType(request.getParameter("type"));
 		Result result = articleService.addArticle(article);
 		Map<String, Object> data = new HashMap<String, Object>();
