@@ -91,6 +91,7 @@ public class Article extends WebBase {
 		long catId = NumberUtils.toLong(request.getParameter("catId"), 0L);
 		String content = request.getParameter("content");
 		String title = request.getParameter("title");
+		
 		ArticleDO article = new ArticleDO();
 		article.setCatId(catId);
 		article.setClicks(0L);
