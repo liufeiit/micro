@@ -58,7 +58,7 @@
 	
 	<!-- 用于js css fonts -->
 	<bean id="cdn" class="tulip.web.module.CDNServer">
-		<property name="host" value="120.132.53.127"/>
+		<property name="host" value="admin.diandaodedao.com"/>
 	</bean>
 	
 	<!-- 用于image -->
