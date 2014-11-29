@@ -1,5 +1,6 @@
 package micro.web.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,11 +11,14 @@ import micro.core.dataobject.ArticleCatDO;
 import micro.core.dataobject.ArticleDO;
 import micro.core.service.PageQuery;
 import micro.core.service.Result;
+import micro.core.util.QiniuUtils;
 import micro.web.WebBase;
 
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import tulip.util.CollectionUtil;
@@ -87,7 +91,8 @@ public class Article extends WebBase {
 	}
 
 	@RequestMapping(value = "/article_create.htm")
-	public ModelAndView article_create(HttpServletRequest request) {
+	public ModelAndView article_create(HttpServletRequest request, 
+			@RequestParam("cover") MultipartFile cover) {
 		long catId = NumberUtils.toLong(request.getParameter("catId"), 0L);
 		String content = request.getParameter("content");
 		String title = request.getParameter("title");
@@ -101,6 +106,16 @@ public class Article extends WebBase {
 		article.setStatus(request.getParameter("status"));
 		article.setTitle(title);
 		article.setType(request.getParameter("type"));
+		
+		if (cover != null && !cover.isEmpty()) {
+			try {
+				String uri = QiniuUtils.upload(cover.getOriginalFilename(), cover.getInputStream());
+				article.setCover(uri);
+			} catch (IOException e) {
+				log.error("Upload Cover Error.", e);
+			}
+		}
+		
 		Result result = articleService.addArticle(article);
 		Map<String, Object> data = new HashMap<String, Object>();
 		if (result.isSuccess()) {

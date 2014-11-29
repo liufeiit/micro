@@ -5,9 +5,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import micro.core.dataobject.AdminDO;
+import micro.core.service.AdminService;
 import micro.core.service.ArticleCatService;
 import micro.core.service.ArticleService;
-import micro.core.service.AdminService;
 import micro.core.service.RevenueService;
 import micro.web.handler.SessionManager;
 
@@ -15,6 +15,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -39,6 +40,9 @@ public class WebBase {
 	@Autowired
 	@Qualifier(value = "revenueService")
 	protected RevenueService revenueService;
+	@Autowired
+	@Qualifier(value = "multipartResolver")
+	protected CommonsMultipartResolver multipartResolver;
 	
 	protected ModelAndView post(String action, Map<String, Object> data, String title) {
 		return post(action, data, false, null, title);

@@ -39,6 +39,23 @@ public class ArticleDO extends BaseDO {
 
 	@Column(name = "creator")
 	private long creator;
+	
+	@Column(name = "url")
+	private String cover;
+
+	/**
+	 * @return the cover
+	 */
+	public String getCover() {
+		return cover;
+	}
+
+	/**
+	 * @param cover the cover to set
+	 */
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
 
 	/**
 	 * @return the id

@@ -55,4 +55,13 @@ public interface ArticleMapper {
 	String DELETE_CONTENT = "DELETE FROM article WHERE id = :id;";
 	
 	String UPDATE_CONTENT = "UPDATE article SET content = :content, gmt_updated = NOW() WHERE id = :id;";
+	
+	String COVER_MEDIA_INSERT = "INSERT INTO `ec_core`.`media` "
+			+ "(`entity_type_id`, `url`, `created`, `updated`) "
+			+ "VALUES (2, :url, NOW(), NOW());";
+	
+	String CONTENT_MEDIA_INSERT = "INSERT INTO `ec_core`.`content_media` "
+			+ "(`content_id`, `media_id`, `is_cover`) VALUES "
+			+ "(:content_id, :media_id, 1);";
+	
 }

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import tulip.data.jdbc.mapper.BeanParameterMapper;
 import tulip.data.jdbc.mapper.BeanRowMapper;
+import tulip.util.StringUtil;
 
 /**
  * 
@@ -30,15 +31,30 @@ public class DefaultArticleDAO extends BaseDAO implements ArticleDAO, ArticleMap
 	@Override
 	public void insert(ArticleDO article) throws DAOException {
 		try {
-			KeyHolder holder = new GeneratedKeyHolder();
-			jdbcTemplate.update(INSERT_SQL, BeanParameterMapper.newInstance(article), holder,
+			//1.保存文章信息
+			KeyHolder h1 = new GeneratedKeyHolder();
+			jdbcTemplate.update(INSERT_SQL, BeanParameterMapper.newInstance(article), h1,
 					new String[] { "content_id" });
-			Number id = holder.getKey();
+			Number id = h1.getKey();
 			Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("id", id);
 			paramMap.put("content", article.getContent());
+			//2.保存文章内容
 			jdbcTemplate.update(INSERT_CONTENT, paramMap);
 			article.setId(id.longValue());
+			
+			if(StringUtil.isNotBlank(article.getCover())) {
+				KeyHolder h2 = new GeneratedKeyHolder();
+				//3.保存文章封面内容
+				jdbcTemplate.update(COVER_MEDIA_INSERT, BeanParameterMapper.newInstance(article), h2,
+						new String[] { "media_id" });
+				Number media_id = h2.getKey();
+				paramMap.put("content_id", article.getId());
+				paramMap.put("media_id", media_id.longValue());
+				//4.保存文章与封面的关联信息
+				jdbcTemplate.update(CONTENT_MEDIA_INSERT, paramMap);
+			}
+			
 		} catch (DataAccessException e) {
 			log.error("Insert Error.", e);
 			throw new DAOException("Insert Error.", e);
@@ -50,6 +66,7 @@ public class DefaultArticleDAO extends BaseDAO implements ArticleDAO, ArticleMap
 		try {
 			jdbcTemplate.update(DELETE_SQL, BeanParameterMapper.newSingleParameterMapper("content_id", id));
 			jdbcTemplate.update(DELETE_CONTENT, BeanParameterMapper.newSingleParameterMapper("id", id));
+			
 		} catch (DataAccessException e) {
 			log.error("Delete Error.", e);
 			throw new DAOException("Delete Error.", e);
@@ -96,7 +113,7 @@ public class DefaultArticleDAO extends BaseDAO implements ArticleDAO, ArticleMap
 					BeanParameterMapper.newSingleParameterMapper("content_id", id),
 					BeanRowMapper.newInstance(ArticleDO.class));
 			if (article != null && withContent) {
-				//后面可以考虑使用key-value缓存
+				// 后面可以考虑使用key-value缓存
 				article.setContent(jdbcTemplate.queryForObject(QUERY_CONTENT,
 						BeanParameterMapper.newSingleParameterMapper("id", id), String.class));
 			}
