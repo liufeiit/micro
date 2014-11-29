@@ -66,4 +66,8 @@ public interface ArticleMapper {
 	
 	String Query_Cover = "SELECT url FROM media WHERE media_id in "
 			+ "(SELECT media_id FROM content_media WHERE content_id = :content_id and is_cover = 1);";
+	
+	String UPDATE_COVER = "UPDATE media SET url = :url WHERE media_id IN "
+			+ "(SELECT media_id FROM content_media WHERE content_id = :content_id and is_cover = 1);";
+	
 }

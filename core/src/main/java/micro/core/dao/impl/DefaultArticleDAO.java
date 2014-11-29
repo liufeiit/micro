@@ -82,8 +82,6 @@ public class DefaultArticleDAO extends BaseDAO implements ArticleDAO, ArticleMap
 			paramMap.put("content", article.getContent());
 			jdbcTemplate.update(UPDATE_CONTENT, paramMap);
 			if(StringUtil.isNotBlank(article.getCover())) {
-				String UPDATE_COVER = "UPDATE media SET url = :url WHERE media_id IN "
-						+ "(SELECT media_id FROM content_media WHERE content_id = :content_id and is_cover = 1);";
 				paramMap.put("url", article.getCover());
 				paramMap.put("content_id", article.getId());
 				jdbcTemplate.update(UPDATE_COVER, paramMap);
