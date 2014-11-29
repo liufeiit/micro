@@ -46,7 +46,7 @@ public class DefaultRevenueService extends BaseService implements RevenueService
 					user.setCurrentIncome(revenueDAO.sumIncome(0, userId));
 					user.setLastMonthIncome(revenueDAO.queryIncome(-1, userId));
 				}
-				return Result.newError().with(ResultCode.Success).with("user", user);
+				return Result.newSuccess().with(ResultCode.Success).with("user", user);
 			}
 		} catch (DAOException e) {
 			log.error("Query User Error.", e);
