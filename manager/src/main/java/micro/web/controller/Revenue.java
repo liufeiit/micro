@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
  * @version 1.0.0
  * @since 2014年11月15日 下午9:37:55
  */
-@SuppressWarnings("unchecked")
 @Controller
 public class Revenue extends WebBase {
 	
