@@ -26,7 +26,7 @@
 		                    		<td >$!{user.fullname}</td>
 		                    		<td >$!{user.mobile}</td>
 		                    		<td >$!{user.email}</td>
-		                    		<td >$!{user.accountBalance}</td>
+		                    		<td >$!{user.accountBalance} RMB</td>
 		                    		<td >
 		                    			#if($!{user.status} == "active")
 		                    				已激活
@@ -42,7 +42,7 @@
 		                        
 		                        <tr>
 		                        	<td colspan="7">
-		                        		转账金额(可用金额 $!{user.accountBalance}) : <input name="income" type="text" class="form-control" id="income" placeholder="可用金额 $!{user.accountBalance}"/>
+		                        		转账金额(可用金额 $!{user.accountBalance} RMB) : <input name="income" type="text" class="form-control" id="income" placeholder="可用金额 $!{user.accountBalance} RMB"/>
 		                        	</td>
 		                        </tr>
 		                    </tbody>

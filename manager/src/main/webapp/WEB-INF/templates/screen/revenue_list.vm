@@ -41,7 +41,7 @@
 	                            		<td >$!{revenue.fullname}</td>
 	                            		<td >$!{revenue.mobile}</td>
 	                            		<td >$!{revenue.email}</td>
-	                            		<td >$!{revenue.accountBalance}</td>
+	                            		<td >$!{revenue.accountBalance} RMB</td>
 	                            		<td id="user-status-$!{revenue.id}">
 	                            			#if($!{revenue.status} == "active")
 	                            				已激活

@@ -25,7 +25,7 @@
 	                    		<td >$!{user.fullname}</td>
 	                    		<td >$!{user.mobile}</td>
 	                    		<td >$!{user.email}</td>
-	                    		<td >$!{user.accountBalance}</td>
+	                    		<td >$!{user.accountBalance} RMB</td>
 	                    		<td >
 	                    			#if($!{user.status} == "active")
 	                    				已激活
