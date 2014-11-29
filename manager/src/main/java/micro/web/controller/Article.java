@@ -139,7 +139,8 @@ public class Article extends WebBase {
 	}
 
 	@RequestMapping(value = "/article_edit.htm")
-	public ModelAndView article_edit(HttpServletRequest request) {
+	public ModelAndView article_edit(HttpServletRequest request, 
+			@RequestParam("cover") MultipartFile cover) {
 		ArticleDO article = new ArticleDO();
 		long id = NumberUtils.toLong(request.getParameter("id"), 0L);
 		article.setId(id);
@@ -151,6 +152,14 @@ public class Article extends WebBase {
 		article.setStatus(request.getParameter("status"));
 		article.setTitle(request.getParameter("title"));
 		article.setType(request.getParameter("type"));
+		if (cover != null && !cover.isEmpty()) {
+			try {
+				String uri = QiniuUtils.upload(cover.getOriginalFilename(), cover.getInputStream());
+				article.setCover(uri);
+			} catch (IOException e) {
+				log.error("Upload Cover Error.", e);
+			}
+		}
 		Result result = articleService.updateArticle(article);
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("id", id);

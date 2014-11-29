@@ -64,4 +64,6 @@ public interface ArticleMapper {
 			+ "(`content_id`, `media_id`, `is_cover`) VALUES "
 			+ "(:content_id, :media_id, 1);";
 	
+	String Query_Cover = "SELECT url FROM media WHERE media_id in "
+			+ "(SELECT media_id FROM content_media WHERE content_id = :content_id and is_cover = 1);";
 }

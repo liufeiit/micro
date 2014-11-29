@@ -8,6 +8,11 @@
 	            <div class="box-body">
 	            	<div class="timeline-item">
                         <div class="timeline-body">
+                            <img src="$!{article.cover}?imageView/1/w/1000/h/500"/>
+                        </div>
+                    </div>
+	            	<div class="timeline-item">
+                        <div class="timeline-body">
                             $!{article.content}
                         </div>
                     </div>
