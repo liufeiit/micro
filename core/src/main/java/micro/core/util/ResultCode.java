@@ -22,6 +22,10 @@ public enum ResultCode {
 	
 	Error_Update						(-3001, 	"数据更新失败"),
 	
+	Revenue_Exception					(-5001, 	"转账异常！"),
+	Revenue_Success						(-5001, 	"转账成功！"),
+	Revenue_Error						(-5001, 	"转账失败！"),
+	
 	Error_Insert						(-3002, 	"添加数据失败"),
 	
 	Error_Permission					(-9000, 	"非法权限"),

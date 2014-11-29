@@ -9,4 +9,8 @@ package micro.core.service;
 public interface RevenueService {
 
 	Result query(long userId, PageQuery query, boolean withIncome);
+
+	Result revenue(long userId, double income);
+
+	Result queryUser(long userId, boolean withIncome);
 }

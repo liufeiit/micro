@@ -15,6 +15,7 @@
 	                            <th>邮箱</th>
 	                            <th>账户余额</th>
 	                            <th>状态</th>
+	                            <th>操作</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
@@ -36,6 +37,9 @@
 	                    				已删除
 	                    			#end
 	                            </td>
+	                            <td >
+                        			<a href="revenue_user.htm?uid=$!{user.id}">转账</a>
+                                </td>
 	                        </tr>
 	                    </tbody>
 						

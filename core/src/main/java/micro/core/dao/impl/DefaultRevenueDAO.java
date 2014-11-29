@@ -33,6 +33,24 @@ import tulip.util.CollectionUtil;
 public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, RevenueDAO {
 
 	@Override
+	public boolean revenue(long userId, double income) throws DAOException {
+		try {
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("userId", userId);
+			paramMap.put("income", income);
+			int ret = jdbcTemplate.update("UPDATE user SET account_balance = account_balance - :income "
+					+ "WHERE user_id = :userId AND account_balance - :income >= 0;", paramMap);
+			if(ret > 0) {
+				return true;
+			}
+			return false;
+		} catch (DataAccessException e) {
+			log.error("Revenue Error.", e);
+			throw new DAOException("Revenue Error.", e);
+		}
+	}
+	
+	@Override
 	public List<UserDO> queryUser(PageQuery query) throws DAOException {
 		try {
 			Map<String, Object> paramMap = new HashMap<String, Object>();

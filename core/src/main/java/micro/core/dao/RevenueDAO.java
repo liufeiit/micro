@@ -44,4 +44,6 @@ public interface RevenueDAO {
 	UserIncomeDO sumIncome(int month, long userId) throws DAOException;
 
 	List<UserDO> queryUser(PageQuery query) throws DAOException;
+
+	boolean revenue(long userId, double income) throws DAOException;
 }

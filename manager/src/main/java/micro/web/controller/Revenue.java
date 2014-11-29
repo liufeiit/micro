@@ -1,7 +1,7 @@
 package micro.web.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,8 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import tulip.util.CollectionUtil;
-
 /**
  * 
  * @author 刘飞 E-mail:liufei_it@126.com
@@ -27,41 +25,11 @@ import tulip.util.CollectionUtil;
 @Controller
 public class Revenue extends WebBase {
 	
-	public static void main(String[] args) {
-		String s1 = "123";
-		String s2 = "123";
-		String s3 = new String("123");
-		String s4 = s1.intern();
-		System.out.println("s1 == s2 : " + (s1 == s2));
-		System.out.println("s1 == s3 : " + (s1 == s3));
-		System.out.println("s1 == s4 : " + (s1 == s4));
-		System.out.println("s1 == s3 : " + (s1 == s4));
-		
-		List<String> l = new ArrayList<String>();
-		l.add("A");
-		String str = "1";
-		long l1 = 100L;
-		pop(l, str, l1);
-		for (String string : l) {
-			System.out.println(">>>> " + string);
-		}
-		System.out.println("???? " + str);
-		System.out.println("LLLL " + l1);
-	}
-	
-	private static void pop(List<String> l, String str, long l1) {
-		str.replaceAll("1", "2");
-		l.add("B");
-		l1 = 10000L;
-		l = new ArrayList<String>();
-		l.add("C");
-	}
-	
 	@RequestMapping(value = "/revenue_list.htm")
 	public ModelAndView revenue_list(HttpServletRequest request) {
 		ModelAndView mv = returnView(request, "revenue_list", "收入", "收入列表");
 		long userId = NumberUtils.toLong(request.getParameter("uid"), 0L);
-		mv.addObject("selected_uid", userId);
+		mv.addObject("selected_uid", userId > 0L ? String.valueOf(userId) : "");
 		int page = NumberUtils.toInt(request.getParameter("page"), 1);
 		Result result = revenueService.query(userId, new PageQuery(page), false);
 		boolean success = result.isSuccess();
@@ -83,15 +51,13 @@ public class Revenue extends WebBase {
 	public ModelAndView revenue_detail(HttpServletRequest request) {
 		ModelAndView mv = returnView(request, "revenue_detail", "收入", "会员收入");
 		long userId = NumberUtils.toLong(request.getParameter("uid"), 0L);
-		Result result = revenueService.query(userId, new PageQuery(1), true);
-		boolean success = result.isSuccess();
-		mv.addObject("hasUser", success);
-		if(success) {
-			List<UserDO> userList = (List<UserDO>) result.get("userList");
-			if(!CollectionUtil.isEmpty(userList)) {
-				mv.addObject("user", userList.get(0));
-			}
+		if(userId <= 0L) {
+			mv.addObject("hasUser", false);
+			return mv;
 		}
+		Result result = revenueService.queryUser(userId, true);
+		mv.addObject("hasUser", result.isSuccess());
+		mv.addObject("user", result.get("user"));
 		return mv;
 	}
 	
@@ -99,15 +65,41 @@ public class Revenue extends WebBase {
 	public ModelAndView revenue_user(HttpServletRequest request) {
 		ModelAndView mv = returnView(request, "revenue_user", "转账", "会员转账");
 		long userId = NumberUtils.toLong(request.getParameter("uid"), 0L);
-		Result result = revenueService.query(userId, new PageQuery(1), false);
-		boolean success = result.isSuccess();
-		mv.addObject("hasUser", success);
-		if(success) {
-			List<UserDO> userList = (List<UserDO>) result.get("userList");
-			if(!CollectionUtil.isEmpty(userList)) {
-				mv.addObject("user", userList.get(0));
-			}
+		if(userId <= 0L) {
+			mv.addObject("hasUser", false);
+			return mv;
 		}
+		Result result = revenueService.queryUser(userId, false);
+		mv.addObject("hasUser", result.isSuccess());
+		mv.addObject("user", result.get("user"));
 		return mv;
+	}
+	
+	@RequestMapping(value = "/revenue.htm")
+	public ModelAndView revenue(HttpServletRequest request) {
+		Map<String, Object> data = new HashMap<String, Object>();
+		long userId = NumberUtils.toLong(request.getParameter("uid"), 0L);
+		if(userId <= 0L) {
+			data.put("uid", userId);
+			return post("revenue_user.htm", data, true, "请输入用户ID！", "处理中...");
+		}
+		Result result = revenueService.queryUser(userId, false);
+		if(result.isSuccess()) {
+			UserDO user = (UserDO) result.get("user");
+			if(user == null) {
+				data.put("uid", userId);
+				return post("revenue_user.htm", data, true, "用户信息查询失败！", "处理中...");
+			}
+			double income = NumberUtils.toDouble(request.getParameter("income"), 0.0D);
+			if(income <= 0.0D || (user.getAccountBalance() - income < 0.0D)) {
+				data.put("uid", userId);
+				return post("revenue_user.htm", data, true, "请输入有效金额！", "处理中...");
+			}
+			result = revenueService.revenue(userId, income);
+			data.put("uid", userId);
+			return post("revenue_user.htm", data, true, result.getMessage(), "处理中...");
+		}
+		data.put("uid", userId);
+		return post("revenue_user.htm", data, true, "转账失败！", "处理中...");
 	}
 }
