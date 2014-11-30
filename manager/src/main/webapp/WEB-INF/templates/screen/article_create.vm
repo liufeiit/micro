@@ -113,7 +113,7 @@
 	                </div>
 	                
 		            <div class="form-group">
-	                    <textarea id="content" name="content" rows="30" cols="80"></textarea>
+	                    <textarea id="content" name="content" rows="30" cols="80" style="visibility:hidden;"></textarea>
 	                </div>
 	                
 	            </div>
@@ -126,11 +126,44 @@
 		</div>
 	</div>
 </form>
+
 <script src="$cdn.name("js/plugins/ckeditor/ckeditor.js")" type="text/javascript"></script>
-<script src="$cdn.name("js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")" type="text/javascript"></script>
 <script type="text/javascript">
     $(function() {
         CKEDITOR.replace("content");
-        //$("#content").wysihtml5();
     });
 </script>
+
+#*
+
+<script src="$cdn.name("js/plugins/ckeditor/ckeditor.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        CKEDITOR.replace("content");
+    });
+</script>
+
+<script src="$cdn.name("js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#content").wysihtml5();
+    });
+</script>
+
+<script src="$cdn.name("js/plugins/kindeditor/kindeditor-min.js")" type="text/javascript"></script>
+<script src="$cdn.name("js/plugins/kindeditor/zh_CN.js")" type="text/javascript"></script>
+<link href="$cdn.name("css/kindeditor/default.css")" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    var editor;
+	KindEditor.ready(function(K) {
+		editor = K.create('textarea[name="content"]', {
+			allowFileManager : true,
+			autoHeightMode : true,
+			afterCreate : function() {
+				this.loadPlugin('autoheight');
+			}
+		});
+	});
+</script>
+
+*#

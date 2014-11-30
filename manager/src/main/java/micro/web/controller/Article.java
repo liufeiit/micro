@@ -1,11 +1,13 @@
 package micro.web.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import micro.core.dataobject.ArticleCatDO;
 import micro.core.dataobject.ArticleDO;
@@ -22,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import tulip.util.CollectionUtil;
+import tulip.util.StringUtil;
 
 /**
  * 
@@ -88,6 +91,51 @@ public class Article extends WebBase {
 		mv.addObject("hasCat", result.isSuccess());
 		mv.addObject("catList", result.get("catList"));
 		return mv;
+	}
+	
+	@RequestMapping(value = "/editor_upload.htm")
+	public void editor_upload(
+			HttpServletRequest request, 
+			HttpServletResponse response,
+			@RequestParam("upload") MultipartFile upload) {
+		String callback = request.getParameter("CKEditorFuncNum"); 
+		String uri = null;
+		try {
+			uri = QiniuUtils.upload(upload.getOriginalFilename(), upload.getInputStream());
+		} catch (Exception e) {
+			log.error("Qiniu Upload Error.", e);
+		}
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();  
+			if(StringUtil.isBlank(uri)) {
+				StringBuffer ret = new StringBuffer()
+				.append("<script type=\"text/javascript\">")
+				.append("alert('上传失败 : " + uri + "');")
+				.append("</script>")
+				;
+		        out.print(ret.toString());
+		        return;
+			} 
+			StringBuffer ret = new StringBuffer()
+			.append("<script type=\"text/javascript\">")
+			//.append("window.parent.document.getElementById('cke_68_previewImage').style.display = '';")
+			.append("window.parent.document.getElementById('cke_68_previewImage').src = '" + uri + "';")
+			.append("window.parent.document.getElementById('cke_73_textInput').value = '" + uri + "';")
+			.append("window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + uri + "','');")
+			.append("alert('上传成功 : " + uri + "');")
+			.append("</script>")
+			;
+	        out.print(ret.toString());    
+		} catch (Exception e) {
+			log.error("Ckeditor Upload Error.", e);
+		} finally {
+			if(out != null) {
+				out.flush();
+				out.close();
+				out = null;
+			}
+		}
 	}
 
 	@RequestMapping(value = "/article_create.htm")

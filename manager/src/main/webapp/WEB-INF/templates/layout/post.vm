@@ -5,6 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=8" />
         <meta charset="UTF-8">
         <title>统计分析系统 - $!{title}</title>
+        <link rel="Shortcut Icon" href="$cdnImg.name("favicon.ico")" />
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!--[if gte IE 9]>
 			<script src="$cdn.name("js/jquery-2.1.1.min.js")" type="text/javascript"></script>

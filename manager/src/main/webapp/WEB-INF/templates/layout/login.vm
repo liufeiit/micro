@@ -5,6 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=8" />
         <meta charset="UTF-8">
         <title>点到得到后台管理 - 登录</title>
+        <link rel="Shortcut Icon" href="$cdnImg.name("favicon.ico")" />
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 		<link href="$cdn.name("css/login.css")" rel="stylesheet" type="text/css" />
         

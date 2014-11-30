@@ -35,4 +35,12 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Make dialogs simpler.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+	
+	//config.filebrowserImageBrowseUrl = 'editor_upload.htm';
+	//config.filebrowserFlashBrowseUrl = 'editor_upload.htm';
+	config.filebrowserUploadUrl = 'editor_upload.htm';
+	//config.filebrowserImageUploadUrl = 'editor_upload.htm';
+	//config.filebrowserFlashUploadUrl = 'editor_upload.htm';
+	config.filebrowserWindowWidth = '800';  //“浏览服务器”弹出框的size设置
+	config.filebrowserWindowHeight = '500';
 };
