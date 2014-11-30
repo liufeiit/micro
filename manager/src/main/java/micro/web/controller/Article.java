@@ -111,7 +111,7 @@ public class Article extends WebBase {
 			if(StringUtil.isBlank(uri)) {
 				StringBuffer ret = new StringBuffer()
 				.append("<script type=\"text/javascript\">")
-				.append("alert('上传失败 : " + uri + "');")
+				.append("alert('上传失败！');")
 				.append("</script>")
 				;
 		        out.print(ret.toString());
@@ -123,7 +123,7 @@ public class Article extends WebBase {
 			.append("window.parent.document.getElementById('cke_68_previewImage').src = '" + uri + "';")
 			.append("window.parent.document.getElementById('cke_73_textInput').value = '" + uri + "';")
 			.append("window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + uri + "','');")
-			.append("alert('上传成功 : " + uri + "');")
+			//.append("alert('上传成功 : " + uri + "');")
 			.append("</script>")
 			;
 	        out.print(ret.toString());    
