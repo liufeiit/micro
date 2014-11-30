@@ -30,7 +30,7 @@ public interface ArticleMapper {
 			+ "AND title LIKE :title "
 			+ "AND status LIKE :status "
 			
-			+ "limit :start, :size";
+			+ " ORDER BY created DESC limit :start, :size";
 	
 	String QUERY_CAT_SQL = "SELECT content_id, type, title, "
 			+ "content_category_id, status, position, clicks, creator, "
@@ -40,7 +40,7 @@ public interface ArticleMapper {
 			+ "AND title LIKE :title "
 			+ "AND status LIKE :status "
 			
-			+ "limit :start, :size";
+			+ " ORDER BY created DESC limit :start, :size";
 	
 	String SELECT_ONE_SQL = "SELECT content_id, type, title, "
 			+ "content_category_id, status, position, clicks, creator, "
