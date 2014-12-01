@@ -41,6 +41,6 @@ CKEDITOR.editorConfig = function( config ) {
 	config.filebrowserUploadUrl = 'editor_upload.htm';
 	//config.filebrowserImageUploadUrl = 'editor_upload.htm';
 	//config.filebrowserFlashUploadUrl = 'editor_upload.htm';
-	config.filebrowserWindowWidth = '800';  //“浏览服务器”弹出框的size设置
+	config.filebrowserWindowWidth = '800';
 	config.filebrowserWindowHeight = '500';
 };

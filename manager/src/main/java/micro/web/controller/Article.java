@@ -93,21 +93,42 @@ public class Article extends WebBase {
 		return mv;
 	}
 	
+	private boolean isImageFile(MultipartFile file) {
+		if (file == null || file.isEmpty()) {
+			return false;
+		}
+		String contentType = file.getContentType();
+		if (contentType.equals("image/pjpeg") 
+			|| contentType.equals("image/jpeg") 
+			|| contentType.equals("image/png")
+			|| contentType.equals("image/gif") 
+			|| contentType.equals("image/bmp")
+			|| contentType.equals("image/x-png")
+			) {
+			return true;
+		}
+		return false;
+	}
+	
 	@RequestMapping(value = "/editor_upload.htm")
 	public void editor_upload(
 			HttpServletRequest request, 
 			HttpServletResponse response,
 			@RequestParam("upload") MultipartFile upload) {
-		String callback = request.getParameter("CKEditorFuncNum"); 
-		String uri = null;
-		try {
-			uri = QiniuUtils.upload(upload.getOriginalFilename(), upload.getInputStream());
-		} catch (Exception e) {
-			log.error("Qiniu Upload Error.", e);
-		}
 		PrintWriter out = null;
 		try {
-			out = response.getWriter();  
+			out = response.getWriter();
+			if(!isImageFile(upload)) {
+				out.print("<font color=\"red\"size=\"2\">*文件格式不正确（必须为.jpg/.gif/.bmp/.png文件）</font>");
+				return;
+			}
+			String callback = request.getParameter("CKEditorFuncNum"); 
+			String uri = null;
+			try {
+				uri = QiniuUtils.upload(upload.getOriginalFilename(), upload.getInputStream());
+			} catch (Exception e) {
+				log.error("Qiniu Upload Error.", e);
+			}
 			if(StringUtil.isBlank(uri)) {
 				StringBuffer ret = new StringBuffer()
 				.append("<script type=\"text/javascript\">")
@@ -118,12 +139,28 @@ public class Article extends WebBase {
 		        return;
 			} 
 			StringBuffer ret = new StringBuffer()
+			
+			//.append("<img src='" + uri + "?imageView/1/w/300/h/200'/>")
+			
 			.append("<script type=\"text/javascript\">")
-			//.append("window.parent.document.getElementById('cke_68_previewImage').style.display = '';")
+			
+			//.append("$('#cke_68_previewImage').attr('src','" + uri + "').val('" + uri + "');")
+			
+			//for IE
+			.append("window.parent.document.getElementById('cke_70_previewImage').style.display = '';")
+			.append("window.parent.document.getElementById('cke_70_previewImage').src = '" + uri + "';")
+			.append("window.parent.document.getElementById('cke_75_textInput').value = '" + uri + "';")
+			
+			
+			//for firefox
+			.append("window.parent.document.getElementById('cke_68_previewImage').style.display = '';")
 			.append("window.parent.document.getElementById('cke_68_previewImage').src = '" + uri + "';")
 			.append("window.parent.document.getElementById('cke_73_textInput').value = '" + uri + "';")
+			
 			.append("window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + uri + "','');")
-			//.append("alert('上传成功 : " + uri + "');")
+			
+//			.append("alert('上传成功 : " + uri + "');")
+			
 			.append("</script>")
 			;
 	        out.print(ret.toString());    
