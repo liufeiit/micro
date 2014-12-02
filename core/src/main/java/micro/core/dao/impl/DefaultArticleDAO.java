@@ -82,9 +82,23 @@ public class DefaultArticleDAO extends BaseDAO implements ArticleDAO, ArticleMap
 			paramMap.put("content", article.getContent());
 			jdbcTemplate.update(UPDATE_CONTENT, paramMap);
 			if(StringUtil.isNotBlank(article.getCover())) {
-				paramMap.put("url", article.getCover());
-				paramMap.put("content_id", article.getId());
-				jdbcTemplate.update(UPDATE_COVER, paramMap);
+				String oldCover = jdbcTemplate.queryForObject(Query_Cover,
+						BeanParameterMapper.newSingleParameterMapper("content_id", article.getId()), String.class);
+				if(StringUtil.isNotBlank(oldCover)) {
+					paramMap.put("url", article.getCover());
+					paramMap.put("content_id", article.getId());
+					jdbcTemplate.update(UPDATE_COVER, paramMap);
+				} else {
+					KeyHolder h2 = new GeneratedKeyHolder();
+					//3.保存文章封面内容
+					jdbcTemplate.update(COVER_MEDIA_INSERT, BeanParameterMapper.newInstance(article), h2,
+							new String[] { "media_id" });
+					Number media_id = h2.getKey();
+					paramMap.put("content_id", article.getId());
+					paramMap.put("media_id", media_id.longValue());
+					//4.保存文章与封面的关联信息
+					jdbcTemplate.update(CONTENT_MEDIA_INSERT, paramMap);
+				}
 			}
 		} catch (DataAccessException e) {
 			log.error("Update Error.", e);
