@@ -111,9 +111,7 @@ public class Article extends WebBase {
 	}
 	
 	@RequestMapping(value = "/editor_upload.htm")
-	public void editor_upload(
-			HttpServletRequest request, 
-			HttpServletResponse response,
+	public void editor_upload(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("upload") MultipartFile upload) {
 		PrintWriter out = null;
 		try {
@@ -122,7 +120,6 @@ public class Article extends WebBase {
 				out.print("<font color=\"red\"size=\"2\">*文件格式不正确（必须为.jpg/.gif/.bmp/.png文件）</font>");
 				return;
 			}
-			String callback = request.getParameter("CKEditorFuncNum"); 
 			String uri = null;
 			try {
 				uri = QiniuUtils.upload(upload.getOriginalFilename(), upload.getInputStream());
@@ -130,37 +127,28 @@ public class Article extends WebBase {
 				log.error("Qiniu Upload Error.", e);
 			}
 			if(StringUtil.isBlank(uri)) {
-				StringBuffer ret = new StringBuffer()
+				StringBuffer ret = new StringBuffer("<font color=\"red\"size=\"2\">*文件上传失败！</font>")
 				.append("<script type=\"text/javascript\">")
 				.append("alert('上传失败！');")
 				.append("</script>")
 				;
 		        out.print(ret.toString());
 		        return;
-			} 
+			}
+			String callback = request.getParameter("CKEditorFuncNum"); 
 			StringBuffer ret = new StringBuffer()
-			
-			//.append("<img src='" + uri + "?imageView/1/w/300/h/200'/>")
-			
+			.append("<font color=\"red\"size=\"2\">*文件上传成功！</font>")
 			.append("<script type=\"text/javascript\">")
-			
-			//.append("$('#cke_68_previewImage').attr('src','" + uri + "').val('" + uri + "');")
-			
-			//for IE
+			//针对IE浏览器
 			.append("window.parent.document.getElementById('cke_70_previewImage').style.display = '';")
 			.append("window.parent.document.getElementById('cke_70_previewImage').src = '" + uri + "';")
 			.append("window.parent.document.getElementById('cke_75_textInput').value = '" + uri + "';")
-			
-			
-			//for firefox
+			//针对IE之外的浏览器
 			.append("window.parent.document.getElementById('cke_68_previewImage').style.display = '';")
 			.append("window.parent.document.getElementById('cke_68_previewImage').src = '" + uri + "';")
 			.append("window.parent.document.getElementById('cke_73_textInput').value = '" + uri + "';")
-			
+			//callback
 			.append("window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + uri + "','');")
-			
-//			.append("alert('上传成功 : " + uri + "');")
-			
 			.append("</script>")
 			;
 	        out.print(ret.toString());    
