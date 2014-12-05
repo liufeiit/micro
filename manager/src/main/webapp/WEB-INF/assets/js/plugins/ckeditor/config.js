@@ -3,6 +3,41 @@
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
+/**
+function brower() {
+	var Sys = {};
+	var ua = navigator.userAgent.toLowerCase();
+	if (window.ActiveXObject) {
+		Sys.ie = ua.match(/msie ([\d.]+)/)[1];
+	}
+	else if (document.getBoxObjectFor) {
+		Sys.firefox = ua.match(/firefox\/([\d.]+)/)[1];
+	}
+	else if (window.MessageEvent && !document.getBoxObjectFor) {
+		Sys.chrome = ua.match(/chrome\/([\d.]+)/)[1];
+	}
+	else if (window.opera) {
+		Sys.opera = ua.match(/opera.([\d.]+)/)[1];
+	}
+	else if (window.openDatabase) {
+		Sys.safari = ua.match(/version\/([\d.]+)/)[1];
+	}
+	
+	var ua = navigator.userAgent.toLowerCase();
+	window.ActiveXObject ? Sys.ie = ua.match(/msie ([\d.]+)/)[1] :
+        document.getBoxObjectFor ? Sys.firefox = ua.match(/firefox\/([\d.]+)/)[1] :
+        window.MessageEvent && !document.getBoxObjectFor ? Sys.chrome = ua.match(/chrome\/([\d.]+)/)[1] :
+        window.opera ? Sys.opera = ua.match(/opera.([\d.]+)/)[1] :
+        window.openDatabase ? Sys.safari = ua.match(/version\/([\d.]+)/)[1] : 0;
+        
+	if(Sys.ie) return "ie";
+	if(Sys.firefox) return "firefox";
+	if(Sys.chrome) return "chrome";
+	if(Sys.opera) return "opera";
+	if(Sys.safari) return "safari";
+}
+**/
+
 CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
 	// For the complete reference:
@@ -38,9 +73,9 @@ CKEDITOR.editorConfig = function( config ) {
 	
 	//config.filebrowserImageBrowseUrl = 'editor_upload.htm';
 	//config.filebrowserFlashBrowseUrl = 'editor_upload.htm';
-	config.filebrowserUploadUrl = 'editor_upload.htm';
+	config.filebrowserUploadUrl = 'editor_upload.htm?ua=ie';
 	//config.filebrowserImageUploadUrl = 'editor_upload.htm';
 	//config.filebrowserFlashUploadUrl = 'editor_upload.htm';
-	config.filebrowserWindowWidth = '800';  //“浏览服务器”弹出框的size设置
+	config.filebrowserWindowWidth = '800';
 	config.filebrowserWindowHeight = '500';
 };

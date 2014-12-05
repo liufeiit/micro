@@ -93,37 +93,62 @@ public class Article extends WebBase {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/editor_upload.htm")
-	public void editor_upload(
-			HttpServletRequest request, 
-			HttpServletResponse response,
-			@RequestParam("upload") MultipartFile upload) {
-		String callback = request.getParameter("CKEditorFuncNum"); 
-		String uri = null;
-		try {
-			uri = QiniuUtils.upload(upload.getOriginalFilename(), upload.getInputStream());
-		} catch (Exception e) {
-			log.error("Qiniu Upload Error.", e);
+	private boolean isImageFile(MultipartFile file) {
+		if (file == null || file.isEmpty()) {
+			return false;
 		}
+		String contentType = file.getContentType();
+		if (contentType.equals("image/pjpeg") 
+			|| contentType.equals("image/jpeg") 
+			|| contentType.equals("image/png")
+			|| contentType.equals("image/gif") 
+			|| contentType.equals("image/bmp")
+			|| contentType.equals("image/x-png")
+			) {
+			return true;
+		}
+		return false;
+	}
+	
+	@RequestMapping(value = "/editor_upload.htm")
+	public void editor_upload(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam("upload") MultipartFile upload) {
 		PrintWriter out = null;
 		try {
-			out = response.getWriter();  
+			out = response.getWriter();
+			if(!isImageFile(upload)) {
+				out.print("<font color=\"red\"size=\"2\">*文件格式不正确（必须为.jpg/.gif/.bmp/.png文件）</font>");
+				return;
+			}
+			String uri = null;
+			try {
+				uri = QiniuUtils.upload(upload.getOriginalFilename(), upload.getInputStream());
+			} catch (Exception e) {
+				log.error("Qiniu Upload Error.", e);
+			}
 			if(StringUtil.isBlank(uri)) {
-				StringBuffer ret = new StringBuffer()
+				StringBuffer ret = new StringBuffer("<font color=\"red\"size=\"2\">*文件上传失败！</font>")
 				.append("<script type=\"text/javascript\">")
 				.append("alert('上传失败！');")
 				.append("</script>")
 				;
 		        out.print(ret.toString());
 		        return;
-			} 
+			}
+			String callback = request.getParameter("CKEditorFuncNum"); 
 			StringBuffer ret = new StringBuffer()
+			.append("<font color=\"red\"size=\"2\">*文件上传成功！</font>")
 			.append("<script type=\"text/javascript\">")
-			//.append("window.parent.document.getElementById('cke_68_previewImage').style.display = '';")
+			//针对IE浏览器
+			.append("window.parent.document.getElementById('cke_70_previewImage').style.display = '';")
+			.append("window.parent.document.getElementById('cke_70_previewImage').src = '" + uri + "';")
+			.append("window.parent.document.getElementById('cke_75_textInput').value = '" + uri + "';")
+			//针对IE之外的浏览器
+			.append("window.parent.document.getElementById('cke_68_previewImage').style.display = '';")
 			.append("window.parent.document.getElementById('cke_68_previewImage').src = '" + uri + "';")
 			.append("window.parent.document.getElementById('cke_73_textInput').value = '" + uri + "';")
+			//callback
 			.append("window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + uri + "','');")
-			//.append("alert('上传成功 : " + uri + "');")
 			.append("</script>")
 			;
 	        out.print(ret.toString());    
