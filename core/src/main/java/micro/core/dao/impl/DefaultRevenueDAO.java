@@ -15,6 +15,7 @@ import micro.core.service.PageQuery;
 import micro.core.util.CalendarUtil;
 import micro.core.util.Static;
 
+import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
@@ -110,7 +111,10 @@ public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, Revenue
 		long pv = countUserPV(month, userId);
 		long referee_award = referee_award(month, userId);
 		long activity_award = activity_award(month, userId);
-		double totalIncome = (ip + referee_award + activity_award) * Static.PER_IP_PRICE;
+		
+		double percent = NumberUtils.toDouble(settingDAO.getSetting("ad_price", "per_ip_price", String.valueOf(Static.PER_IP_PRICE_0)), Static.PER_IP_PRICE_0);
+		
+		double totalIncome = (ip + referee_award + activity_award) * percent;
 		UserIncomeDO incomeDO = new UserIncomeDO();
 		incomeDO.setActivity(activity_award);
 		incomeDO.setPv(pv);
@@ -155,7 +159,10 @@ public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, Revenue
 			if(ip == null || ip <= 0L) {
 				return 0L;
 			}
-			return new Double(ip * Static.REFEREE_AWARD_PERCENT).longValue();
+			
+			double percent = NumberUtils.toDouble(settingDAO.getSetting("ad_price", "referee_award_percent", String.valueOf(Static.REFEREE_AWARD_PERCENT_0)), Static.REFEREE_AWARD_PERCENT_0);
+			
+			return new Double(ip * percent).longValue();
 		} catch (Exception e) {
 			log.error("Query Referee User Error.", e);
 		}
@@ -177,7 +184,10 @@ public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, Revenue
 			if(ip == null || ip <= 0L) {
 				return 0L;
 			}
-			return new Double(ip * Static.ACTIVITY_AWARD_PERCENT).longValue();
+			
+			double percent = NumberUtils.toDouble(settingDAO.getSetting("ad_price", "activity_award_percent", String.valueOf(Static.ACTIVITY_AWARD_PERCENT_0)), Static.ACTIVITY_AWARD_PERCENT_0);
+			
+			return new Double(ip * percent).longValue();
 		} catch (Exception e) {
 			log.error("Query Activity Error.", e);
 		}
@@ -200,7 +210,10 @@ public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, Revenue
 				return 0L;
 			}
 			if (hasReferee(userId)) {
-				return new Double(ip * (1.0D - Static.REFEREE_AWARD_PERCENT)).longValue();
+				
+				double percent = NumberUtils.toDouble(settingDAO.getSetting("ad_price", "referee_award_percent", String.valueOf(Static.REFEREE_AWARD_PERCENT_0)), Static.REFEREE_AWARD_PERCENT_0);
+				
+				return new Double(ip * (1.0D - percent)).longValue();
 			}
 			return ip;
 		} catch (Exception e) {

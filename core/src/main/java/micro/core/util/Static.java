@@ -15,12 +15,12 @@ public interface Static {
 	int HOUR_OF_DAY = 4;
 	
 	
-	double PER_IP_PRICE = 0.01D;
+	double PER_IP_PRICE_0 = 0.01D;//每个IP的价格
 	
-	double PER_PV_PRICE = 0D;
+	double PER_PV_PRICE_0 = 0D;//每个PV的价格
 	
-	double REFEREE_AWARD_PERCENT = 0.2D;
+	double REFEREE_AWARD_PERCENT_0 = 0.2D;//推荐人提成
 	
-	double ACTIVITY_AWARD_PERCENT = 0.2D;
+	double ACTIVITY_AWARD_PERCENT_0 = 0.2D;//自己的文章提成
 	
 }
