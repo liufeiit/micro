@@ -135,20 +135,20 @@ public class Article extends WebBase {
 		        out.print(ret.toString());
 		        return;
 			}
-			String callback = request.getParameter("CKEditorFuncNum"); 
+			String callback = request.getParameter("CKEditorFuncNum");
 			StringBuffer ret = new StringBuffer()
 			.append("<font color=\"red\"size=\"2\">*文件上传成功！</font>")
 			.append("<script type=\"text/javascript\">")
-			//针对IE浏览器
-			.append("window.parent.document.getElementById('cke_70_previewImage').style.display = '';")
-			.append("window.parent.document.getElementById('cke_70_previewImage').src = '" + uri + "';")
-			.append("window.parent.document.getElementById('cke_75_textInput').value = '" + uri + "';")
-			//针对IE之外的浏览器
-			.append("window.parent.document.getElementById('cke_68_previewImage').style.display = '';")
-			.append("window.parent.document.getElementById('cke_68_previewImage').src = '" + uri + "';")
-			.append("window.parent.document.getElementById('cke_73_textInput').value = '" + uri + "';")
+			.append("var image = window.parent.document.getElementById('cke_70_previewImage');")
+			.append("var txt = window.parent.document.getElementById('cke_75_textInput');")
+			.append("if(image == undefined){image = window.parent.document.getElementById('cke_68_previewImage');}")
+			.append("if(txt == undefined){txt = window.parent.document.getElementById('cke_73_textInput');}")
+			.append("image.style.display = '';")
+			.append("image.src = '" + uri + "';")
+			.append("txt.value = '" + uri + "';")
+			;
 			//callback
-			.append("window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + uri + "','');")
+			ret.append("window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + uri + "','');")
 			.append("</script>")
 			;
 	        out.print(ret.toString());    
@@ -162,7 +162,7 @@ public class Article extends WebBase {
 			}
 		}
 	}
-
+	
 	@RequestMapping(value = "/article_create.htm")
 	public ModelAndView article_create(HttpServletRequest request, 
 			@RequestParam("cover") MultipartFile cover) {
