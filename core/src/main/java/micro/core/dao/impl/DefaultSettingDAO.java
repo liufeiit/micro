@@ -32,7 +32,7 @@ public class DefaultSettingDAO extends BaseDAO implements SettingDAO {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("group", group);
 		paramMap.put("key", key);
-		setting = jdbcTemplate.queryForObject("SELECT value FROM site_setting WHERE group = :group AND key = :key;", paramMap, String.class);
+		setting = jdbcTemplate.queryForObject("SELECT value FROM site_setting as ss WHERE ss.group = :group AND ss.key = :key;", paramMap, String.class);
 		if (StringUtil.isBlank(setting)) {
 			return defaultSetting;
 		}

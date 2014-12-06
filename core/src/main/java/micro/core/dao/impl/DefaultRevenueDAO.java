@@ -8,6 +8,7 @@ import java.util.Map;
 import micro.core.dao.BaseDAO;
 import micro.core.dao.DAOException;
 import micro.core.dao.RevenueDAO;
+import micro.core.dao.SettingDAO;
 import micro.core.dao.statement.RevenueMapper;
 import micro.core.dataobject.UserDO;
 import micro.core.dataobject.UserIncomeDO;
@@ -16,6 +17,8 @@ import micro.core.util.CalendarUtil;
 import micro.core.util.Static;
 
 import org.apache.commons.lang.math.NumberUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
@@ -33,6 +36,17 @@ import tulip.util.CollectionUtil;
 @Repository("revenueDAO")
 public class DefaultRevenueDAO extends BaseDAO implements RevenueMapper, RevenueDAO {
 
+	@Autowired
+	@Qualifier(value="settingDAO")
+	protected SettingDAO settingDAO;
+
+	/**
+	 * @param settingDAO the settingDAO to set
+	 */
+	public void setSettingDAO(SettingDAO settingDAO) {
+		this.settingDAO = settingDAO;
+	}
+	
 	@Override
 	public boolean revenue(long userId, double income) throws DAOException {
 		try {
