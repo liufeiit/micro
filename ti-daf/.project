@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+  <name>ti-daf</name>
+  <comment>NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+  <projects>
+    <project>ti-base</project>
+    <project>ti-srv-util</project>
+    <project>ti-util</project>
+    <project>ti-cache-api</project>
+    <project>ti-srv-config-ctx</project>
+    <project>ti-lnk-spring</project>
+    <project>ti-lnk-rpc</project>
+    <project>ti-lnk-inter-api</project>
+    <project>ti-lnk-api</project>
+    <project>ti-lnk-protocol</project>
+    <project>ti-lnk-transport-amqp</project>
+    <project>ti-lnk-transport-wsock-common</project>
+    <project>ti-lnk-transport-wsock-server</project>
+    <project>ti-srv-redis-util</project>
+    <project>ti-lnk-session-redis</project>
+    <project>ti-cache-spring</project>
+    <project>ti-cache-impl</project>
+    <project>ti-cache-redis</project>
+  </projects>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.jdt.core.javabuilder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+  </natures>
+</projectDescription>
