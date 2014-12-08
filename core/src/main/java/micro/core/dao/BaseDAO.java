@@ -10,4 +10,5 @@ import tulip.data.jdbc.support.JdbcDAOSupport;
  */
 public class BaseDAO extends JdbcDAOSupport {
 	protected static final String LIKE_SIG = "%";
+
 }
